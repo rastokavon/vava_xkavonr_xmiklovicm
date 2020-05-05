@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -24,10 +26,20 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <Button fx:id="signInButtonUser" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#signInButtonUserClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign In" />
+      <Button fx:id="signInButtonUser" defaultButton="true" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#signInButtonUserClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign In" />
       <Label fx:id="welcomeLabelUser" alignment="CENTER" layoutX="345.0" layoutY="100.0" prefHeight="74.0" prefWidth="430.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Log as user!" textAlignment="CENTER" textFill="#499a8a" />
-      <TextField fx:id="usernameTextFieldUser" accessibleRole="TEXT_FIELD" layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0 px;" />
+      <TextField fx:id="usernameTextFieldUser" layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0 px;" />
       <Hyperlink fx:id="notRegisteredButtonUser" layoutX="533.0" layoutY="371.0" onAction="#notRegisteredButtonUserClicked" text="Not regitered yet" />
       <PasswordField fx:id="passwordTextFieldUser" layoutX="417.0" layoutY="250.0" prefHeight="26.0" prefWidth="290.0" promptText="Password" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16px; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
+      <ImageView fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/slovakFlag.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/britainFlag.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

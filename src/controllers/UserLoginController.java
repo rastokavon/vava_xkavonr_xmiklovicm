@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
@@ -15,12 +16,9 @@ import java.awt.*;
 import java.io.IOException;
 
 
-public class UserLoginController extends Application {
-    static Stage loginStage;
-    static Parent rootUser;
-    static Parent rootCompany;
-    static Scene sceneUser;
-    static Scene sceneCompany;
+public class UserLoginController {
+    Stage primaryStage;
+    Parent root;
 
     @FXML
     TextField usernameTextFieldUser;
@@ -28,33 +26,24 @@ public class UserLoginController extends Application {
     @FXML
     PasswordField passwordTextFieldUser;
 
-    @FXML
-    TextField usernameTextFieldCompany;
+    public void startUserController(Stage stage) throws Exception {
+        primaryStage = stage;
+        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/userLogin.fxml"));
 
-    @FXML
-    PasswordField passwordTextFieldCompany;
+        Scene sceneUserLogin = new Scene(root);
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        loginStage = primaryStage;
 
-        rootUser = FXMLLoader.load(getClass().getResource("../GUI/UserLogin.fxml"));
-        rootCompany = FXMLLoader.load(getClass().getResource("../GUI/CompanyLogin.fxml"));
-
-        sceneUser = new Scene(rootUser);
-        sceneCompany = new Scene(rootCompany);
-
-        loginStage.setScene(sceneUser);
-        loginStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        primaryStage.setScene(sceneUserLogin);
+        primaryStage.show();
     }
 
     public void signAsCompanyButtonUserClicked() throws Exception {
-        loginStage.setScene(sceneCompany);
+        primaryStage = (Stage) passwordTextFieldUser.getScene().getWindow();
+
+        CompanyLoginController clc = new CompanyLoginController();
+        clc.startCompanyLoginController(primaryStage);
     }
+
     public void signAsUserButtonUserClicked() {}
 
 
@@ -65,25 +54,13 @@ public class UserLoginController extends Application {
 
     }
     public void notRegisteredButtonUserClicked() throws Exception {
-        UserRegistrationController.startUserRegistrationController(loginStage);
-
+        primaryStage = (Stage) passwordTextFieldUser.getScene().getWindow();
+        UserRegistrationController urc = new UserRegistrationController();
+        urc.startUserRegistrationController(primaryStage);
     }
 
-
-
-    public void signAsUserButtonCompanyClicked() throws IOException {
-        loginStage.setScene(sceneUser);
-    }
     public void signAsCompanyButtonCompanyClicked() {}
 
-
-    public void signInButtonCompanyClicked(ActionEvent actionEvent) {
-        System.out.println(usernameTextFieldCompany.getText());
-        System.out.println(passwordTextFieldCompany.getText());
-    }
-
-    public void notRegisteredButtonCompanyClicked() throws Exception {
-    }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
     }

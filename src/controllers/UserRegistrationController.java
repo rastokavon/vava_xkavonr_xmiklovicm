@@ -7,24 +7,53 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class UserRegistrationController {
-    static Stage primaryStage;
-    static Parent root;
-    static Scene sceneUserRegistration;
+    Stage primaryStage;
+    Parent root;
 
+    @FXML
+    TextField usernameTextField;
+    @FXML
+    TextField passwordTextField;
+    @FXML
+    TextField firstNameTextField;
+    @FXML
+    TextField lastNameTextField;
+    @FXML
+    TextField mailTextField;
+    @FXML
+    TextField phoneNumberTextField;
     
-    public static void startUserRegistrationController(Stage stage) throws Exception {
+    public void startUserRegistrationController(Stage stage) throws Exception {
         primaryStage = stage;
-        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/UserRegistration.fxml"));
+        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/userRegistration.fxml"));
 
-        sceneUserRegistration = new Scene(root);
+        Scene sceneUserRegistration = new Scene(root);
 
         primaryStage.setScene(sceneUserRegistration);
+        primaryStage.show();
     }
     
     
     public void signInButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void backButtonClicked() throws Exception {
+        primaryStage = (Stage) passwordTextField.getScene().getWindow();
+
+        UserLoginController ulc = new UserLoginController();
+        ulc.startUserController(primaryStage);
+    }
+
+    public void signUpButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void slovakFlagClicked(MouseEvent mouseEvent) {
+    }
+
+    public void britishFlagClicked(MouseEvent mouseEvent) {
     }
 }
