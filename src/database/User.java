@@ -1,11 +1,13 @@
+package database;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Client")
-public class client {
+@Table(name = "User")
+public class User {
     @Id
     @Column(name="id")
     private Integer id;

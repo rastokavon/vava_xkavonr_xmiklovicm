@@ -1,7 +1,9 @@
+package database;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "server")
+@Table(name = "database.Server")
 public class Server {
     private static final long serialVersionUID = -1798070786993154676L;
 

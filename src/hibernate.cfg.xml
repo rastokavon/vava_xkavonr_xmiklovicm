@@ -9,6 +9,6 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">postgres</property>
 
-        <mapping class="Server"/>
+        <mapping class="database.Server"/>
     </session-factory>
 </hibernate-configuration>

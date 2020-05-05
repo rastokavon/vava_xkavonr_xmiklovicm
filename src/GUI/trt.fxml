@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
          <children>
@@ -23,9 +23,9 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <Button layoutX="417.0" layoutY="318.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign In" />
+      <Button fx:id="signInButton" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign In" />
       <Label layoutX="347.0" layoutY="42.0" prefHeight="74.0" prefWidth="405.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Welcome to,Kamimara" textAlignment="CENTER" textFill="#499a8a" />
-      <TextField layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16;" />
+      <TextField fx:id="usernameTextField" layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16;" />
       <TextField layoutX="417.0" layoutY="255.0" prefHeight="26.0" prefWidth="290.0" promptText="Password" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;;" />
       <Label layoutX="417.0" layoutY="232.0" prefHeight="18.0" prefWidth="83.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Password:" />
       <Label layoutX="418.0" layoutY="172.0" prefHeight="18.0" prefWidth="97.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Username:" />

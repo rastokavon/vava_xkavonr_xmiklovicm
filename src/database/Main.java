@@ -1,12 +1,8 @@
+package database;
+
+import database.Server;
 import org.hibernate.*;
-import org.hibernate.query.Query;
 import org.hibernate.cfg.Configuration;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.metamodel.EntityType;
-
-import java.util.Map;
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -30,12 +26,12 @@ public class Main {
         final Session session = getSession();
 
 
-        Server server = new Server();
-        server.setName("okkkki");
+        User user = new User();
+        user.setName("okkkki");
 
         Transaction t = session.beginTransaction();
 
-        session.save(server);
+        session.persist(user);
 
         session.getTransaction().commit();
 
