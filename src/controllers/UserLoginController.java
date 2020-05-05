@@ -8,8 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+import javafx.scene.control.TextField;
 import java.awt.*;
 import java.io.IOException;
 
@@ -20,15 +21,18 @@ public class UserLoginController extends Application {
     static Parent rootCompany;
     static Scene sceneUser;
     static Scene sceneCompany;
-    @FXML
-    static TextField usernameTextFieldUser;
 
     @FXML
-    static Hyperlink notRegisteredButtonUser;
+    TextField usernameTextFieldUser;
 
     @FXML
-    static PasswordField passwordTextFieldUser;
+    PasswordField passwordTextFieldUser;
 
+    @FXML
+    TextField usernameTextFieldCompany;
+
+    @FXML
+    PasswordField passwordTextFieldCompany;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -57,13 +61,10 @@ public class UserLoginController extends Application {
 
 
 
-
-
     @FXML
     public void signInButtonUserClicked() {
-        System.out.println("cicka");
         System.out.println(usernameTextFieldUser.getText());
-        System.out.println("cicka");
+        System.out.println(passwordTextFieldUser.getText());
 
 
     }
@@ -74,11 +75,6 @@ public class UserLoginController extends Application {
 
 
 
-
-
-
-
-
     public void signAsUserButtonCompanyClicked() throws IOException {
         loginStage.setScene(sceneUser);
     }
@@ -86,9 +82,17 @@ public class UserLoginController extends Application {
 
 
     public void signInButtonCompanyClicked(ActionEvent actionEvent) {
+        System.out.println(usernameTextFieldCompany.getText());
+        System.out.println(passwordTextFieldCompany.getText());
     }
 
     public void notRegisteredButtonCompanyClicked(ActionEvent actionEvent) {
+    }
+
+    public void slovakFlagClicked(MouseEvent mouseEvent) {
+    }
+
+    public void britishFlagClicked(MouseEvent mouseEvent) {
     }
 }
 
