@@ -58,15 +58,14 @@ public class UserLoginController extends Application {
     public void signAsUserButtonUserClicked() {}
 
 
-    @FXML
     public void signInButtonUserClicked() {
         System.out.println(usernameTextFieldUser.getText());
         System.out.println(passwordTextFieldUser.getText());
 
 
     }
-    @FXML
-    public void notRegisteredButtonUserClicked(ActionEvent event) {
+    public void notRegisteredButtonUserClicked() throws Exception {
+        UserRegistrationController.startUserRegistrationController(loginStage);
 
     }
 
@@ -83,7 +82,7 @@ public class UserLoginController extends Application {
         System.out.println(passwordTextFieldCompany.getText());
     }
 
-    public void notRegisteredButtonCompanyClicked(ActionEvent actionEvent) {
+    public void notRegisteredButtonCompanyClicked() throws Exception {
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {

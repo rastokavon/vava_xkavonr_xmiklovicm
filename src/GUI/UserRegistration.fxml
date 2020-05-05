@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserRegistrationController">
    <children>
-      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@../../../../../../buttons_login.css">
+      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </VBox>
-      <Button fx:id="signInButton" layoutX="417.0" layoutY="429.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@../../../../../../buttons_login.css" text="Sign Up" />
+      <Button fx:id="signInButton" layoutX="417.0" layoutY="429.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign Up" />
       <Label fx:id="welcomeLabel" layoutX="417.0" layoutY="14.0" prefHeight="74.0" prefWidth="290.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Create an account" textAlignment="CENTER" textFill="#499a8a" />
       <TextField fx:id="usernameTextField" layoutX="476.0" layoutY="204.0" prefHeight="32.0" prefWidth="251.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16;" />
       <TextField fx:id="passwordTextField" layoutX="476.0" layoutY="243.0" prefHeight="32.0" prefWidth="251.0" promptText="Password" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;;" />
