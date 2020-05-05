@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserRegistrationController">
    <children>
-      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@../../../../../../buttons_login.css">
+      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -25,7 +25,7 @@
             </Hyperlink>
          </children>
       </VBox>
-      <Button fx:id="signUpButton" defaultButton="true" layoutX="417.0" layoutY="419.0" mnemonicParsing="false" onAction="#signUpButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@../../../../../../buttons_login.css" text="Sign Up" />
+      <Button fx:id="signUpButton" defaultButton="true" layoutX="417.0" layoutY="419.0" mnemonicParsing="false" onAction="#signUpButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign Up" />
       <Label fx:id="welcomeLabel" layoutX="417.0" layoutY="14.0" prefHeight="74.0" prefWidth="290.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Create an account" textAlignment="CENTER" textFill="#499a8a" />
       <TextField fx:id="usernameTextField" layoutX="436.0" layoutY="204.0" prefHeight="32.0" prefWidth="251.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="passwordTextField" layoutX="436.0" layoutY="243.0" prefHeight="32.0" prefWidth="251.0" promptText="Password" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
@@ -53,11 +53,7 @@
       </Label>
       <TextField fx:id="mailTextField" layoutX="436.0" layoutY="320.0" prefHeight="32.0" prefWidth="251.0" promptText="Mail" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="phoneNumberTextField" layoutX="436.0" layoutY="359.0" prefHeight="32.0" prefWidth="251.0" promptText="Phone number" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
-      <Label fx:id="obligatoryLabel" layoutX="329.0" layoutY="461.0" prefHeight="20.0" prefWidth="251.0" style="-fx-font-family: &quot;Verdana&quot;;" text="* Obligatory text fields">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
+      <Label fx:id="obligatoryLabel" layoutX="327.0" layoutY="476.0" prefHeight="20.0" prefWidth="251.0" style="-fx-font-family: &quot;Verdana&quot;;" text="* Obligatory text fields" />
       <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/slovakFlag.png" />
@@ -68,5 +64,11 @@
             <Image url="@../images/britainFlag.png" />
          </image>
       </ImageView>
+      <TextField fx:id="roomNumberTextField" layoutX="436.0" layoutY="285.0" prefHeight="32.0" prefWidth="251.0" promptText="Room number" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label fx:id="starLabel5" layoutX="417.0" layoutY="292.0" prefHeight="20.0" prefWidth="18.0" style="-fx-font-family: &quot;Verdana&quot;;" text="*">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

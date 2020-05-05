@@ -17,10 +17,10 @@ public class CompanyLoginController {
     Parent root;
 
     @FXML
-    TextField usernameTextFieldCompany;
+    TextField usernameTextField;
 
     @FXML
-    TextField passwordTextFieldCompany;
+    TextField passwordTextField;
 
     public void startCompanyLoginController(Stage stage) throws Exception {
         primaryStage = stage;
@@ -32,23 +32,28 @@ public class CompanyLoginController {
         primaryStage.show();
     }
 
-    public void signAsCompanyButtonCompanyClicked(ActionEvent actionEvent) {
+    public void signAsCompanyButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void signAsUserButtonCompanyClicked(ActionEvent actionEvent) throws Exception {
-        primaryStage = (Stage) passwordTextFieldCompany.getScene().getWindow();
+    public void signAsUserButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = (Stage) passwordTextField.getScene().getWindow();
 
         UserLoginController ulc = new UserLoginController();
         ulc.startUserController(primaryStage);
     }
 
-    public void signInButtonCompanyClicked(ActionEvent actionEvent) {
+    public void signInButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void notRegisteredButtonCompanyClicked(ActionEvent actionEvent) {
+    public void notRegisteredButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = (Stage) passwordTextField.getScene().getWindow();
+
+        CompanyRegistrationController crc = new CompanyRegistrationController();
+        crc.startCompanyRegistrationController(primaryStage);
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
+        System.out.println(100);
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {

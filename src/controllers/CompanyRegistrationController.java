@@ -10,44 +10,41 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class UserRegistrationController {
+public class CompanyRegistrationController {
     Stage primaryStage;
     Parent root;
 
     @FXML
-    TextField roomNumberTextField;
+    TextField nameTextField;
     @FXML
-    TextField usernameTextField;
+    TextField streetTextField;
     @FXML
-    TextField passwordTextField;
+    TextField cityTextField;
     @FXML
-    TextField firstNameTextField;
+    TextField countryTextField;
     @FXML
-    TextField lastNameTextField;
+    TextField postalCodeTextField;
     @FXML
     TextField mailTextField;
     @FXML
     TextField phoneNumberTextField;
-    
-    public void startUserRegistrationController(Stage stage) throws Exception {
-        primaryStage = stage;
-        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/userRegistration.fxml"));
 
+    public void startCompanyRegistrationController(Stage stage) throws Exception {
+        primaryStage = stage;
+        System.out.println(10);
+        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/companyRegistration.fxml"));
+        System.out.println(10);
         Scene sceneUserRegistration = new Scene(root);
 
         primaryStage.setScene(sceneUserRegistration);
         primaryStage.show();
     }
-    
-    
-    public void signInButtonClicked(ActionEvent actionEvent) {
-    }
 
-    public void backButtonClicked() throws Exception {
-        primaryStage = (Stage) passwordTextField.getScene().getWindow();
+    public void backButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = (Stage) cityTextField.getScene().getWindow();
 
-        UserLoginController ulc = new UserLoginController();
-        ulc.startUserController(primaryStage);
+        CompanyLoginController clc = new CompanyLoginController();
+        clc.startCompanyLoginController(primaryStage);
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) {

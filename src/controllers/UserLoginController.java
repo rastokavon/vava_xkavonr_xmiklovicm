@@ -21,10 +21,10 @@ public class UserLoginController {
     Parent root;
 
     @FXML
-    TextField usernameTextFieldUser;
+    TextField usernameTextField;
 
     @FXML
-    PasswordField passwordTextFieldUser;
+    PasswordField passwordTextField;
 
     public void startUserController(Stage stage) throws Exception {
         primaryStage = stage;
@@ -37,32 +37,30 @@ public class UserLoginController {
         primaryStage.show();
     }
 
-    public void signAsCompanyButtonUserClicked() throws Exception {
-        primaryStage = (Stage) passwordTextFieldUser.getScene().getWindow();
+    public void signAsCompanyButtonClicked() throws Exception {
+        primaryStage = (Stage) passwordTextField.getScene().getWindow();
 
         CompanyLoginController clc = new CompanyLoginController();
         clc.startCompanyLoginController(primaryStage);
     }
 
-    public void signAsUserButtonUserClicked() {}
+    public void signAsUserButtonClicked() {}
 
 
-    public void signInButtonUserClicked() {
-        System.out.println(usernameTextFieldUser.getText());
-        System.out.println(passwordTextFieldUser.getText());
+    public void signInButtonClicked() {
+        System.out.println(usernameTextField.getText());
+        System.out.println(passwordTextField.getText());
 
 
     }
-    public void notRegisteredButtonUserClicked() throws Exception {
-        primaryStage = (Stage) passwordTextFieldUser.getScene().getWindow();
+    public void notRegisteredButtonClicked() throws Exception {
+        primaryStage = (Stage) passwordTextField.getScene().getWindow();
         UserRegistrationController urc = new UserRegistrationController();
         urc.startUserRegistrationController(primaryStage);
     }
 
-    public void signAsCompanyButtonCompanyClicked() {}
-
-
     public void slovakFlagClicked(MouseEvent mouseEvent) {
+        System.out.println(10);
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
