@@ -52,13 +52,10 @@ public class UserLoginController extends Application {
         launch(args);
     }
 
-
-
     public void signAsCompanyButtonUserClicked() throws Exception {
         loginStage.setScene(sceneCompany);
     }
     public void signAsUserButtonUserClicked() {}
-
 
 
     @FXML
