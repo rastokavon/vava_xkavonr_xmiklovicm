@@ -8,27 +8,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserLoginController">
    <children>
-      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@../../../../../../buttons_login.css">
+      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
          <children>
-            <Button fx:id="signAsCompanyButton" mnemonicParsing="false" onAction="#signAsCompanyButtonClicked" prefHeight="67.0" prefWidth="323.0" text="Company login">
+            <Button fx:id="signAsCompanyButtonCompany" mnemonicParsing="false" onAction="#signAsCompanyButtonCompanyClicked" prefHeight="67.0" prefWidth="323.0" text="Company login">
                <VBox.margin>
                   <Insets top="170.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="signAsUserButton" mnemonicParsing="false" onAction="#signAsUserButtonClicked" prefHeight="67.0" prefWidth="326.0" text="User login" />
+            <Button fx:id="signAsUserButtonCompany" mnemonicParsing="false" onAction="#signAsUserButtonCompanyClicked" prefHeight="67.0" prefWidth="326.0" text="User login" />
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </VBox>
-      <Button fx:id="signInButton" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@../../../../../../buttons_login.css" text="Sign In" />
-      <Label fx:id="welcomeLabel" layoutX="347.0" layoutY="42.0" prefHeight="74.0" prefWidth="405.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Log as company here!" textAlignment="CENTER" textFill="#499a8a" />
-      <TextField fx:id="usernameTextField" layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16;" />
-      <TextField fx:id="passwordTextField" layoutX="417.0" layoutY="255.0" prefHeight="26.0" prefWidth="290.0" promptText="Password" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;;" />
-      <Label fx:id="passwordLabel" layoutX="417.0" layoutY="232.0" prefHeight="18.0" prefWidth="83.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Password:" />
-      <Label fx:id="usernameLabel" layoutX="418.0" layoutY="172.0" prefHeight="18.0" prefWidth="130.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Username" />
-      <Hyperlink fx:id="notRegisteredButton" layoutX="533.0" layoutY="371.0" onAction="#notRegisteredButtonClicked" text="Not regitered yet" />
+      <Button fx:id="signInButtonCompany" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#signInButtonCompanyClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign In" />
+      <Label fx:id="welcomeLabelCompany" alignment="CENTER" layoutX="345.0" layoutY="100.0" prefHeight="74.0" prefWidth="430.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Manage your room!" textAlignment="CENTER" textFill="#499a8a" />
+      <TextField fx:id="usernameTextFieldCompany" layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Room number" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
+      <TextField fx:id="passwordTextFieldCompany" layoutX="417.0" layoutY="250.0" prefHeight="26.0" prefWidth="290.0" promptText="Password" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-border-color: #499A8A; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
+      <Hyperlink fx:id="notRegisteredButtonCompany" layoutX="533.0" layoutY="371.0" onAction="#notRegisteredButtonCompanyClicked" text="Not regitered yet" />
    </children>
 </AnchorPane>
