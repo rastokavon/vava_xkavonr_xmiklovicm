@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class LoginController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/trt.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/UserLogin.fxml"));
 
         Scene scene = new Scene(root);
 
