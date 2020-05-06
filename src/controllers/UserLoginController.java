@@ -1,5 +1,6 @@
 package controllers;
 
+import database.ProgramData;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,41 +8,67 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
-import java.awt.*;
+
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
-public class UserLoginController {
+public class UserLoginController implements Controller {
     Stage primaryStage;
     Parent root;
 
     @FXML
     TextField usernameTextField;
-
     @FXML
     PasswordField passwordTextField;
+    @FXML
+    Button signAsCompanyButton;
+    @FXML
+    Button signAsUserButton;
+    @FXML
+    Button signInButton;
+    @FXML
+    Hyperlink notRegisteredButton;
+    @FXML
+    Label welcomeLabel;
 
-    public void startUserController(Stage stage) throws Exception {
+    @Override
+    public void startController(Stage stage) throws Exception {
         primaryStage = stage;
         root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/userLogin.fxml"));
 
-        Scene sceneUserLogin = new Scene(root);
+        //setLanguage();
 
+        Scene sceneUserLogin = new Scene(root);
 
         primaryStage.setScene(sceneUserLogin);
         primaryStage.show();
     }
+    @FXML
+    public void initialize() {
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("login"));
+        welcomeLabel.setText(rbSk.getString("userLogin.welcome"));
+        signInButton.setText(rbSk.getString("login.signInButton"));
+        signAsCompanyButton.setText(rbSk.getString("login.logAsCompany"));
+        signAsUserButton.setText(rbSk.getString("login.logAsUser"));
+        passwordTextField.setPromptText(rbSk.getString("login.password"));
+        usernameTextField.setPromptText(rbSk.getString("userLogin.username"));
+        notRegisteredButton.setText(rbSk.getString("userLogin.notRegistered"));
+
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("userLogin.window"));
+    }
 
     public void signAsCompanyButtonClicked() throws Exception {
-        primaryStage = (Stage) passwordTextField.getScene().getWindow();
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
 
-        CompanyLoginController clc = new CompanyLoginController();
-        clc.startCompanyLoginController(primaryStage);
+        Controller clc = new CompanyLoginController();
+        clc.startController(primaryStage);
     }
 
     public void signAsUserButtonClicked() {}
@@ -54,16 +81,20 @@ public class UserLoginController {
 
     }
     public void notRegisteredButtonClicked() throws Exception {
-        primaryStage = (Stage) passwordTextField.getScene().getWindow();
-        UserRegistrationController urc = new UserRegistrationController();
-        urc.startUserRegistrationController(primaryStage);
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller urc = new UserRegistrationController();
+        urc.startController(primaryStage);
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
-        System.out.println(10);
+        ProgramData.getInstance().setLanguage("sk");
+        initialize();
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
+        ProgramData.getInstance().setLanguage("en");
+        initialize();
     }
 }
 

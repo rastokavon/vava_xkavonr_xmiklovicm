@@ -1,5 +1,6 @@
 package controllers;
 
+import database.ProgramData;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,11 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        ProgramData pd = ProgramData.getInstance();
+        pd.setLanguage("sk");
+        pd.setPrimaryStage(primaryStage);
+
         setPrimaryStage(primaryStage);
         rootUser = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/userLogin.fxml"));
 

@@ -1,16 +1,19 @@
 package controllers;
 
+import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class CompanyRegistrationController {
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+public class CompanyRegistrationController implements Controller {
     Stage primaryStage;
     Parent root;
 
@@ -28,31 +31,72 @@ public class CompanyRegistrationController {
     TextField mailTextField;
     @FXML
     TextField phoneNumberTextField;
+    @FXML
+    Hyperlink backButton;
+    @FXML
+    Button signUpButton;
+    @FXML
+    Label welcomeLabel;
+    @FXML
+    Label obligatoryLabel;
+    @FXML
+    Label nameLabel;
+    @FXML
+    Label addressLabel;
+    @FXML
+    Label contactLabel;
 
-    public void startCompanyRegistrationController(Stage stage) throws Exception {
+    @Override
+    public void startController(Stage stage) throws Exception {
         primaryStage = stage;
-        System.out.println(10);
         root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/companyRegistration.fxml"));
-        System.out.println(10);
+
         Scene sceneUserRegistration = new Scene(root);
 
         primaryStage.setScene(sceneUserRegistration);
         primaryStage.show();
     }
 
-    public void backButtonClicked(ActionEvent actionEvent) throws Exception {
-        primaryStage = (Stage) cityTextField.getScene().getWindow();
+    @FXML
+    public void initialize() {
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));
+        welcomeLabel.setText(rbSk.getString("companyReg.welcome"));
+        nameTextField.setPromptText(rbSk.getString("companyReg.nameField"));
+        streetTextField.setPromptText(rbSk.getString("companyReg.street"));
+        cityTextField.setPromptText(rbSk.getString("companyReg.city"));
+        countryTextField.setPromptText(rbSk.getString("companyReg.country"));
+        postalCodeTextField.setPromptText(rbSk.getString("companyReg.postalCode"));
+        mailTextField.setPromptText(rbSk.getString("reg.mail"));
+        phoneNumberTextField.setPromptText(rbSk.getString("reg.phoneNumber"));
+        nameLabel.setText(rbSk.getString("companyReg.nameLabel"));
+        obligatoryLabel.setText(rbSk.getString("reg.obligatory"));
+        addressLabel.setText(rbSk.getString("companyReg.address"));
+        contactLabel.setText(rbSk.getString("companyReg.contact"));
+        backButton.setText(rbSk.getString("reg.back"));
+        signUpButton.setText(rbSk.getString("reg.signUp"));
 
-        CompanyLoginController clc = new CompanyLoginController();
-        clc.startCompanyLoginController(primaryStage);
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("companyReg.window"));
+    }
+
+    public void backButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller clc = new CompanyLoginController();
+        clc.startController(primaryStage);
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) {
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
+        ProgramData.getInstance().setLanguage("sk");
+        initialize();
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
+        ProgramData.getInstance().setLanguage("en");
+        initialize();
     }
 }
