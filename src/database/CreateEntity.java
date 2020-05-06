@@ -13,9 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CreateEntity {
-    private static final Logger LOG = Logger.getLogger(CreateEntity.class.getName());
+    static final Logger LOG = Logger.getLogger(CreateEntity.class.getName());
 
     public static Company getCompanyFromID(Integer companyID) {
+
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
         CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -39,25 +40,71 @@ public class CreateEntity {
 
     }
 
-    public static void createPerson(String firstName, String lastName, String username,
+    public static boolean createPerson(String firstName, String lastName, String username,
                                     String password, String mail, String phoneNumber, int company) {
-        try {
-            Session session = CreateDatabase.getSession();
 
+        if ("".equals(firstName)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole meno");
+            return false;
+        }
+        if ("".equals(lastName)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole priezvisko");
+            return false;
+        }
+        if ("".equals(username)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole prihlasovacie meno");
+            return false;
+        }
+        if ("".equals(password)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole heslo");
+            return false;
+        }
+
+        Session session = CreateDatabase.getSession();
+
+        try {
             Transaction t = session.beginTransaction();
 
             session.save(new Person(firstName, lastName, username, password, mail, phoneNumber, getCompanyFromID(company)));
 
             t.commit();
-            session.close();
 
             System.out.println("Successfully saved new person...");
         } catch(Exception e) {
             LOG.log(Level.SEVERE, "Nepodarilo sa pridat zaznam");
+            return false;
+        } finally {
+            session.close();
         }
+        return true;
     }
-    public static void createCompany(String name, String street, String city,
+    public static boolean createCompany(String name, String street, String city,
                                      String country, String postalCode, String mail, String phoneNumber) {
+
+        if ("".equals(name)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole nazov firmy");
+            return false;
+        }
+        if ("".equals(street)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole ulica");
+            return false;
+        }
+        if ("".equals(city)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole mesto");
+            return false;
+        }
+        if ("".equals(country)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole stat");
+            return false;
+        }
+        if ("".equals(postalCode)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole PSC");
+            return false;
+        }
+        if ("".equals(mail)) {
+            LOG.log(Level.SEVERE, "Nevyplnene pole mail");
+            return false;
+        }
 
         Session session = CreateDatabase.getSession();
         Transaction t = session.beginTransaction();
@@ -67,6 +114,6 @@ public class CreateEntity {
         t.commit();
 
         session.close();
-        System.out.println("Successfully saved new company...");
+        return true;
     }
 }

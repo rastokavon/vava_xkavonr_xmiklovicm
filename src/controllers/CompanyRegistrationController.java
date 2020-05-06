@@ -88,18 +88,15 @@ public class CompanyRegistrationController implements Controller {
         clc.startController(primaryStage);
     }
 
-    public void signUpButtonClicked(ActionEvent actionEvent) {
-        System.out.println(nameTextField.getText());
-        System.out.println(streetTextField.getText());
-        System.out.println(cityTextField.getText());
-        System.out.println(countryTextField.getText());
-        System.out.println(postalCodeTextField.getText());
-        System.out.println(mailTextField.getText());
-        System.out.println(phoneNumberTextField.getText());
-
-        CreateEntity.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
+    public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
+        if (CreateEntity.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
                 countryTextField.getText(), postalCodeTextField.getText(), mailTextField.getText(),
-                phoneNumberTextField.getText());
+                phoneNumberTextField.getText())) {
+
+            primaryStage = ProgramData.getInstance().getPrimaryStage();
+            Controller clc = new CompanyLoginController();
+            clc.startController(primaryStage);
+        }
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {

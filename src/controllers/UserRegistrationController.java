@@ -13,10 +13,13 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserRegistrationController implements Controller {
     Stage primaryStage;
     Parent root;
+    static final Logger LOG = Logger.getLogger(CreateEntity.class.getName());
 
     @FXML
     TextField roomNumberTextField;
@@ -79,10 +82,21 @@ public class UserRegistrationController implements Controller {
         ulc.startController(primaryStage);
     }
 
-    public void signUpButtonClicked(ActionEvent actionEvent) {
-        CreateEntity.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
+    public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
+        try {
+            Integer.parseInt(roomNumberTextField.getText());
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Room number musi byt typu int.");
+            return;
+        }
+        if (CreateEntity.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
                 usernameTextField.getText(),passwordTextField.getText(), mailTextField.getText(),
-                phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()));
+                phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()))) {
+
+            primaryStage = ProgramData.getInstance().getPrimaryStage();
+            Controller ulc = new UserLoginController();
+            ulc.startController(primaryStage);
+        }
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
