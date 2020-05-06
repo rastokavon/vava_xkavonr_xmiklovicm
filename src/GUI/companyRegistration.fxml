@@ -39,8 +39,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="mailTextField" layoutX="356.0" layoutY="324.0" prefHeight="34.0" prefWidth="394.0" promptText="Mail" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField fx:id="phoneNumberTextField" layoutX="356.0" layoutY="369.0" prefHeight="34.0" prefWidth="394.0" promptText="Phone number" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
       <Label fx:id="obligatoryLabel" layoutX="327.0" layoutY="476.0" prefHeight="20.0" prefWidth="251.0" style="-fx-font-family: &quot;Verdana&quot;;" text="* Obligatory text fields" />
       <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -90,5 +88,7 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <TextField fx:id="mailTextField" layoutX="356.0" layoutY="324.0" prefHeight="34.0" prefWidth="394.0" promptText="Mail" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="phoneNumberTextField" layoutX="356.0" layoutY="369.0" prefHeight="34.0" prefWidth="394.0" promptText="Phone number" style="-fx-font-size: 16; -fx-font-family: &quot;Verdana&quot;; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
    </children>
 </AnchorPane>

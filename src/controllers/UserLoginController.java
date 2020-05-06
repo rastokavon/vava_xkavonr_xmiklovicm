@@ -41,8 +41,6 @@ public class UserLoginController implements Controller {
         primaryStage = stage;
         root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/userLogin.fxml"));
 
-        //setLanguage();
-
         Scene sceneUserLogin = new Scene(root);
 
         primaryStage.setScene(sceneUserLogin);
@@ -77,8 +75,6 @@ public class UserLoginController implements Controller {
     public void signInButtonClicked() {
         System.out.println(usernameTextField.getText());
         System.out.println(passwordTextField.getText());
-
-
     }
     public void notRegisteredButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();

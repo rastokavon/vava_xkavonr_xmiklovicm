@@ -28,7 +28,7 @@ public class Company {
         this.id = id;
     }
 
-    @Column (name = "name", length = 50, nullable = false)
+    @Column (name = "name", length = 50, nullable = false, unique = true)
     public String getName() {
         return name;
     }

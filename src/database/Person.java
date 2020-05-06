@@ -1,5 +1,8 @@
 package database;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity(name = "person")
@@ -79,6 +82,7 @@ public class Person {
     }
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "room_id", nullable = false)
     public Company getCompany() {
         return company;

@@ -23,7 +23,7 @@ public class CreateEntity {
         CriteriaQuery<Company> cr = cb.createQuery(Company.class);
         Root<Company> root = cr.from(Company.class);
 
-        cr.select(root).where(cb.gt(root.get("id"), companyID - 1));
+        cr.select(root).where(cb.equal(root.get("id"), companyID));
 
         Query<Company> query = session.createQuery(cr);
         query.setMaxResults(1);
@@ -107,11 +107,16 @@ public class CreateEntity {
         }
 
         Session session = CreateDatabase.getSession();
-        Transaction t = session.beginTransaction();
+        try {
+            Transaction t = session.beginTransaction();
 
-        session.save(new Company(name, street, city, country, postalCode, mail, phoneNumber));
+            session.save(new Company(name, street, city, country, postalCode, mail, phoneNumber));
 
-        t.commit();
+            t.commit();
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Nazov firmy je uz zaregistrovany");
+            return false;
+        }
 
         session.close();
         return true;
