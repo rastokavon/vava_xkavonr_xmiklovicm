@@ -1,5 +1,6 @@
 package controllers;
 
+import database.CreateEntity;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,6 +80,9 @@ public class UserRegistrationController implements Controller {
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) {
+        CreateEntity.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
+                usernameTextField.getText(),passwordTextField.getText(), mailTextField.getText(),
+                phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()));
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {

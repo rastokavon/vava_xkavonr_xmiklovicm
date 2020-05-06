@@ -1,5 +1,6 @@
 package controllers;
 
+import database.CreateEntity;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -88,6 +89,17 @@ public class CompanyRegistrationController implements Controller {
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) {
+        System.out.println(nameTextField.getText());
+        System.out.println(streetTextField.getText());
+        System.out.println(cityTextField.getText());
+        System.out.println(countryTextField.getText());
+        System.out.println(postalCodeTextField.getText());
+        System.out.println(mailTextField.getText());
+        System.out.println(phoneNumberTextField.getText());
+
+        CreateEntity.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
+                countryTextField.getText(), postalCodeTextField.getText(), mailTextField.getText(),
+                phoneNumberTextField.getText());
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
