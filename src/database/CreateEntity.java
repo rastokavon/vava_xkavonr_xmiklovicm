@@ -1,30 +1,42 @@
 package database;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import controllers.MainController;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class CreateEntity {
 
+    public static Company getCompanyFromID(Integer companyID) {
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Company> cr = cb.createQuery(Company.class);
+        Root<Company> root = cr.from(Company.class);
+        cr.select(root);
+        cr.select(root).where(cb.gt(root.get("id"), companyID));
 
-    public static Session getSession() throws HibernateException {
-        SessionFactory ourSessionFactory;
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        ourSessionFactory = configuration.buildSessionFactory();
+        Query<Company> query = session.createQuery(cr);
+        query.setMaxResults(1);
+        List<Company> results = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
 
-        return ourSessionFactory.openSession();
+        System.out.println(results.isEmpty());
+
+        return results.get(0);
     }
-
 
     public static void createPerson(String firstName, String lastName, String username,
                                     String password, String mail, String phoneNumber, int company) {
-        Session session = getSession();
+        Session session = CreateDatabase.getSession();
         Transaction t = session.beginTransaction();
 
-        //session.save(new Person(firstName, lastName, username, password, mail, phoneNumber, getCompany(company)));
+        session.save(new Person(firstName, lastName, username, password, mail, phoneNumber, getCompanyFromID(company)));
 
         t.commit();
         session.close();
@@ -33,21 +45,15 @@ public class CreateEntity {
     }
     public static void createCompany(String name, String street, String city,
                                      String country, String postalCode, String mail, String phoneNumber) {
-        System.out.println("piko...");
 
-        Session session = getSession();
+        Session session = CreateDatabase.getSession();
         Transaction t = session.beginTransaction();
-        System.out.println("piko...");
 
         session.save(new Company(name, street, city, country, postalCode, mail, phoneNumber));
-        System.out.println("Successfully saved new company...");
 
         t.commit();
-        System.out.println("piko...");
 
         session.close();
-
         System.out.println("Successfully saved new company...");
-
     }
 }
