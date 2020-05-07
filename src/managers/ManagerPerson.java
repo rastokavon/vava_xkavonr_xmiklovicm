@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Locale;
@@ -41,6 +42,32 @@ public class ManagerPerson {
 
         return true;
 
+    }
+
+    public static Person isRegistered(String username, String password){
+
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Person> cr = cb.createQuery(Person.class);
+        Root<Person> root = cr.from(Person.class);
+
+        Predicate[] predicates = new Predicate[2];
+        predicates[0] = cb.equal(root.get("password"), password);
+        predicates[1] = cb.equal(root.get("username"), username);
+        cr.select(root).where(predicates);
+
+        Query<Person> query = session.createQuery(cr);
+        query.setMaxResults(1);
+        List<Person> results = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        if (results.isEmpty()) {
+            return null;
+        }
+
+        return results.get(0);
     }
 
     public static StringBuffer createPerson(String firstName, String lastName, String username,

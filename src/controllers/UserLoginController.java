@@ -1,5 +1,7 @@
 package controllers;
 
+import database.Company;
+import database.Person;
 import database.ProgramData;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -11,10 +13,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import managers.ManagerCompany;
+import managers.ManagerPerson;
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class UserLoginController implements Controller {
@@ -73,8 +79,21 @@ public class UserLoginController implements Controller {
 
 
     public void signInButtonClicked() {
-        System.out.println(usernameTextField.getText());
-        System.out.println(passwordTextField.getText());
+        Person person = ManagerPerson.isRegistered(usernameTextField.getText(), passwordTextField.getText());
+        if (person == null) {
+            String bundle = ProgramData.getInstance().getLanguage();
+            ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
+
+            Logger LOG = ProgramData.getLOG();
+            LOG.log(Level.WARNING, "Prihlasovacie meno/heslo je neplatne");
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(rbSk.getString("companyLogin.title"));
+            alert.setContentText(rbSk.getString("userLogin.text"));
+            alert.showAndWait();
+        } else {
+            System.out.println("Prihlasenyyyyyy");
+        }
     }
     public void notRegisteredButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
