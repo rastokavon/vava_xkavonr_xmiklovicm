@@ -12,6 +12,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,25 +43,32 @@ public class ManagerPerson {
 
     }
 
-    public static boolean createPerson(String firstName, String lastName, String username,
+    public static StringBuffer createPerson(String firstName, String lastName, String username,
                                        String password, String mail, String phoneNumber, int companyID) {
         Logger LOG = ProgramData.getLOG();
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
+        StringBuffer errorBuffer = new StringBuffer("");
 
         if ("".equals(firstName)) {
             LOG.log(Level.INFO, "Nevyplnene pole meno");
-            return false;
+            errorBuffer.append(rbSk.getString("userReg.missingFirstName"));
+            errorBuffer.append("\n");
         }
         if ("".equals(lastName)) {
             LOG.log(Level.INFO, "Nevyplnene pole priezvisko");
-            return false;
+            errorBuffer.append(rbSk.getString("userReg.missingLastName"));
+            errorBuffer.append("\n");
         }
         if ("".equals(username)) {
             LOG.log(Level.INFO, "Nevyplnene pole prihlasovacie meno");
-            return false;
+            errorBuffer.append(rbSk.getString("userReg.missingUsername"));
+            errorBuffer.append("\n");
         }
         if ("".equals(password)) {
             LOG.log(Level.INFO, "Nevyplnene pole heslo");
-            return false;
+            errorBuffer.append(rbSk.getString("userReg.missingPassword"));
+            errorBuffer.append("\n");
         }
 
         Session session = CreateDatabase.getSession();
@@ -70,24 +79,26 @@ public class ManagerPerson {
             Company company = ManagerCompany.getCompanyFromID(companyID);
             if (company == null) {
                 LOG.log(Level.WARNING, "Cislo miestnosti je neplatne");
-                return false;
+                errorBuffer.append(rbSk.getString("userReg.wrongRoomNumber"));
+                errorBuffer.append("\n");
             }
             if (isUsedUsername(username)) {
                 LOG.log(Level.WARNING, "Pouzivatelske meno je pouzivane");
-                return false;
+                errorBuffer.append(rbSk.getString("userReg.usedUsername"));
+                errorBuffer.append("\n");
             }
 
             session.save(new Person(firstName, lastName, username, password, mail, phoneNumber, company));
 
             t.commit();
 
-            System.out.println("Successfully saved new person...");
         } catch(Exception e) {
             LOG.log(Level.SEVERE, "Nepodarilo sa pridat zaznam");
-            return false;
+            errorBuffer.append(rbSk.getString("userReg.cantInsert"));
+            errorBuffer.append("\n");
         } finally {
             session.close();
         }
-        return true;
+        return errorBuffer;
     }
 }

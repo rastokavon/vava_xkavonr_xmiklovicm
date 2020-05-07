@@ -14,10 +14,8 @@ import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class UserRegistrationController implements Controller {
     Stage primaryStage;
@@ -90,21 +88,39 @@ public class UserRegistrationController implements Controller {
         try {
             Integer.parseInt(roomNumberTextField.getText());
         } catch (Exception e) {
+            String bundle = ProgramData.getInstance().getLanguage();
+            ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
+
             LOG.log(Level.WARNING, "Room number musi byt typu int.");
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(rbSk.getString("userReg.title"));
+            alert.setContentText(rbSk.getString("userReg.missingRoomNumber"));
+            alert.showAndWait();
             return;
         }
-        if (ManagerPerson.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
+        StringBuffer message = ManagerPerson.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
                 usernameTextField.getText(),passwordTextField.getText(), mailTextField.getText(),
-                phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()))) {
+                phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()));
+        if (message.length() == 0) {
+            String bundle = ProgramData.getInstance().getLanguage();
+            ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));
 
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller ulc = new UserLoginController();
             ulc.startController(primaryStage);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Login successful");
-            alert.setHeaderText(null);
-            alert.setContentText("I have a great message for you!");
+            alert.setTitle(rbSk.getString("companyReg.title"));
+            alert.setContentText(rbSk.getString("userReg.text"));
+            alert.showAndWait();
+        } else {
+            String bundle1 = ProgramData.getInstance().getLanguage();
+            ResourceBundle rbSk1 = ResourceBundle.getBundle(bundle1 + "_popup", Locale.forLanguageTag("error"));
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(rbSk1.getString("userReg.title"));
+            alert.setContentText(String.valueOf(message) + "    ");
             alert.showAndWait();
         }
     }
