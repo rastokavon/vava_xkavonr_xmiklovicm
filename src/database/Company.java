@@ -5,11 +5,11 @@ import javax.persistence.*;
 @Entity(name = "company")
 public class Company {
     private int id;
-    private String name, street, city, country, postalCode, mail, phoneNumber;
+    private String name, street, city, country, postalCode, mail, phoneNumber, password;
 
     public Company() {}
     public Company(String name, String street, String city, String country,
-                   String postalCode, String mail, String phoneNumber) {
+                   String postalCode, String mail, String phoneNumber, String password) {
         setName(name);
         setStreet(street);
         setCity(city);
@@ -17,6 +17,7 @@ public class Company {
         setPostalCode(postalCode);
         setMail(mail);
         setPhoneNumber(phoneNumber);
+        setPassword(password);
     }
 
     @Id
@@ -34,6 +35,14 @@ public class Company {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column (name = "password", length = 30, nullable = false)
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Column (name = "street", length = 40, nullable = false)

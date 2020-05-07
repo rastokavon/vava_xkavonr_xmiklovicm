@@ -63,6 +63,29 @@ public class ManagerCompany {
         return results.get(0).getId();
     }
 
+    public static String getCompanyPasswordFromName(String comapanyName) {
+
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Company> cr = cb.createQuery(Company.class);
+        Root<Company> root = cr.from(Company.class);
+
+        cr.select(root).where(cb.equal(root.get("name"), comapanyName));
+
+        Query<Company> query = session.createQuery(cr);
+        query.setMaxResults(1);
+        List<Company> results = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        if (results.isEmpty()) {
+            return null;
+        }
+
+        return results.get(0).getPassword();
+    }
+
     public static StringBuffer createCompany(String name, String street, String city,
                                      String country, String postalCode, String mail, String phoneNumber) {
 
@@ -100,6 +123,9 @@ public class ManagerCompany {
             LOG.log(Level.INFO, "Nevyplnene pole nazov firmy");
             errorBuffer.append(rbSk.getString("companyReg.missingName"));
             errorBuffer.append("\n");
+        }
+
+        if (errorBuffer.length() > 0) {
             return errorBuffer;
         }
 
@@ -107,16 +133,19 @@ public class ManagerCompany {
         try {
             Transaction t = session.beginTransaction();
 
-            session.save(new Company(name, street, city, country, postalCode, mail, phoneNumber));
+            String password = generatePassword();
+            Company company = new Company(name, street, city, country, postalCode, mail, phoneNumber, password);
+
+            session.save(company);
             String bundle1 = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk1 = ResourceBundle.getBundle(bundle1 + "_popup", Locale.forLanguageTag("info"));
             t.commit();
 
-            System.out.println(rbSk1.getString("companyReg.title"));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(rbSk1.getString("companyReg.title"));
-            alert.setContentText(rbSk1.getString("companyReg.text") + "                 " +
-                    String.valueOf(getCompanyIDFromName(name)));
+            alert.setContentText(rbSk1.getString("companyReg.roomNumber") + "                 " +
+                    String.valueOf(getCompanyIDFromName(name)) + "\n\n" + rbSk1.getString("companyReg.password") +
+                    "            " + getCompanyPasswordFromName(name));
             alert.showAndWait();
 
         } catch (Exception e) {
@@ -129,5 +158,18 @@ public class ManagerCompany {
         }
 
         return errorBuffer;
+    }
+
+    public static String generatePassword() {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
+        int lenght = 10;
+        StringBuilder sb = new StringBuilder(lenght);
+
+        for (int i = 0; i < lenght; i++) {
+            int index = (int)(AlphaNumericString.length() * Math.random());
+
+            sb.append(AlphaNumericString.charAt(index));
+        }
+        return sb.toString();
     }
 }
