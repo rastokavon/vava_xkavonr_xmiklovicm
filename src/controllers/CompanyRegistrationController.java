@@ -1,6 +1,6 @@
 package controllers;
 
-import database.CreateEntity;
+import managers.ManagerCompany;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,7 +89,7 @@ public class CompanyRegistrationController implements Controller {
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
-        if (CreateEntity.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
+        if (ManagerCompany.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
                 countryTextField.getText(), postalCodeTextField.getText(), mailTextField.getText(),
                 phoneNumberTextField.getText())) {
 

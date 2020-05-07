@@ -1,9 +1,9 @@
-package database;
+package managers;
 
-import controllers.MainController;
+import database.Company;
+import database.CreateDatabase;
+import database.Person;
 import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
-import sun.rmi.runtime.Log;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CreateEntity {
-    static final Logger LOG = Logger.getLogger(CreateEntity.class.getName());
+public class ManagerCompany {
+    static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
     public static Company getCompanyFromID(Integer companyID) {
 
@@ -32,52 +32,13 @@ public class CreateEntity {
         session.close();
 
         if (results.isEmpty()) {
-            LOG.log(Level.WARNING, "Take cislo miestnosti neexistuje");
-            return new Company();
+            return null;
         }
 
         return results.get(0);
 
     }
 
-    public static boolean createPerson(String firstName, String lastName, String username,
-                                    String password, String mail, String phoneNumber, int company) {
-
-        if ("".equals(firstName)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole meno");
-            return false;
-        }
-        if ("".equals(lastName)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole priezvisko");
-            return false;
-        }
-        if ("".equals(username)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole prihlasovacie meno");
-            return false;
-        }
-        if ("".equals(password)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole heslo");
-            return false;
-        }
-
-        Session session = CreateDatabase.getSession();
-
-        try {
-            Transaction t = session.beginTransaction();
-
-            session.save(new Person(firstName, lastName, username, password, mail, phoneNumber, getCompanyFromID(company)));
-
-            t.commit();
-
-            System.out.println("Successfully saved new person...");
-        } catch(Exception e) {
-            LOG.log(Level.SEVERE, "Nepodarilo sa pridat zaznam");
-            return false;
-        } finally {
-            session.close();
-        }
-        return true;
-    }
     public static boolean createCompany(String name, String street, String city,
                                      String country, String postalCode, String mail, String phoneNumber) {
 
@@ -116,9 +77,10 @@ public class CreateEntity {
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "Nazov firmy je uz zaregistrovany");
             return false;
+        }finally {
+            session.close();
         }
 
-        session.close();
         return true;
     }
 }

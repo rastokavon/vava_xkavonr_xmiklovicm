@@ -1,6 +1,6 @@
 package controllers;
 
-import database.CreateEntity;
+import managers.ManagerCompany;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class UserRegistrationController implements Controller {
     Stage primaryStage;
     Parent root;
-    static final Logger LOG = Logger.getLogger(CreateEntity.class.getName());
+    static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
     @FXML
     TextField roomNumberTextField;
@@ -89,7 +90,7 @@ public class UserRegistrationController implements Controller {
             LOG.log(Level.SEVERE, "Room number musi byt typu int.");
             return;
         }
-        if (CreateEntity.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
+        if (ManagerPerson.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
                 usernameTextField.getText(),passwordTextField.getText(), mailTextField.getText(),
                 phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()))) {
 
