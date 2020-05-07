@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserRegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserRegistrationController">
    <children>
       <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
          <opaqueInsets>
@@ -20,7 +21,7 @@
          <children>
             <Hyperlink fx:id="backButton" alignment="CENTER" onAction="#backButtonClicked" prefHeight="57.0" prefWidth="87.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Back" visited="true">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
             </Hyperlink>
          </children>
@@ -59,11 +60,17 @@
          <image>
             <Image url="@../images/slovakFlag.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="15.0" onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/britainFlag.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Label fx:id="starLabel5" layoutX="417.0" layoutY="262.0" prefHeight="20.0" prefWidth="18.0" style="-fx-font-family: &quot;Verdana&quot;;" text="*">
          <font>

@@ -38,13 +38,15 @@ public class CompanyMainWindowController implements Controller {
     @FXML
     Hyperlink signOutHyperlink;
     @FXML
-    Hyperlink modifyInformationHyperlink;
+    Button modifyButton;
     @FXML
     Label roomLabel;
     @FXML
-    TreeTableView personThreeTableView;
+    TreeTableView usersTable;
     @FXML
     TextField searchTextField;
+    @FXML
+    Button changePasswordButton;
 
 
     @Override
@@ -67,15 +69,15 @@ public class CompanyMainWindowController implements Controller {
     public void initialize() {
 
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCompany"));
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
-//        roomLabel.setText(rbSk.getString("companyMain.roomLabel"));
-//        searchTextField.setPromptText(rbSk.getString("companyMain.searchField"));
-//        signOutHyperlink.setText(rbSk.getString("companyMain.signOut"));
-//        modifyInformationHyperlink.setText(rbSk.getString("companyMain.modifyInfo"));
-//
-//        primaryStage = ProgramData.getInstance().getPrimaryStage();
-//        primaryStage.setTitle(rbSk.getString("companyMain.window"));
+        roomLabel.setText(rbSk.getString("companyMain.roomLabel"));
+        searchTextField.setPromptText(rbSk.getString("companyMain.searchField"));
+        signOutHyperlink.setText(rbSk.getString("companyMain.signOut"));
+        modifyButton.setText(rbSk.getString("companyMain.modifyInfo"));
+        changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("companyMain.window"));
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
@@ -88,16 +90,20 @@ public class CompanyMainWindowController implements Controller {
         initialize();
     }
 
-    public void signOutHiperlinkClicked(ActionEvent actionEvent) throws Exception {
+    public void signOutHyperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
         Controller clc = new CompanyLoginController();
         clc.startController(primaryStage);
     }
 
-    public void modifyInformationHyperlinkClicked(ActionEvent actionEvent) {
+    public void magnifierClicked(MouseEvent mouseEvent) {
     }
 
-    public void magnifierClicked(MouseEvent mouseEvent) {
+
+    public void modifyButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void changePasswordButtonClicked(ActionEvent actionEvent) {
     }
 }
