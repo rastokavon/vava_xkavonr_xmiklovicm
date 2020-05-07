@@ -73,7 +73,7 @@ public class CompanyLoginController implements Controller {
         ulc.startController(primaryStage);
     }
 
-    public void signInButtonClicked(ActionEvent actionEvent) {
+    public void signInButtonClicked(ActionEvent actionEvent) throws Exception {
         int roomNumber;
         try {
             roomNumber = Integer.parseInt(usernameTextField.getText());
@@ -104,7 +104,9 @@ public class CompanyLoginController implements Controller {
             alert.setContentText(rbSk.getString("companyLogin.text"));
             alert.showAndWait();
         } else {
-            System.out.println("Prihlasenyyyyyy");
+            primaryStage = ProgramData.getInstance().getPrimaryStage();
+            Controller crc = new CompanyMainWindowController();
+            crc.startController(primaryStage);
         }
     }
 

@@ -24,17 +24,16 @@ public class CreateDatabase {
     public static void main(final String[] args) throws Exception {
         final Session session = getSession();
 
-
-
         Transaction t = session.beginTransaction();
-        Company cicka = new Company("ano", "a", "sdfsdfsdf", "a", "a", "a", "a", "pff");
 
-        session.save(cicka);
-        session.save(new Person("fedor", "a", "fedor", "a", "a", "a", cicka));
-
-
-
-
+//        Company cicka = new Company("ano", "a", "sdfsdfsdf", "a", "a", "a", "a", "pff");
+//
+//        session.save(cicka);
+//        session.save(new Person("fedor", "a", "fedor", "a", "a", "a", cicka));
+//
+//
+//
+//
         t.commit();
 
         session.close();

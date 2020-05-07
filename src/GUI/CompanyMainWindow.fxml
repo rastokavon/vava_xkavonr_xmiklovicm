@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CompanyMainWindowController">
+   <children>
+      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Hyperlink fx:id="signOutHyperlink" alignment="CENTER" onAction="#signOutHiperlinkClicked" prefHeight="47.0" prefWidth="74.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Sign out" visited="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="nameLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Firma ab" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="streetLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="street" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="cityLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="city" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="countryLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="country" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="postalCodeLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="postal code" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="mailLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="mail" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="phoneNumberLabel" prefHeight="32.0" prefWidth="318.0" style="-fx-font-family: &quot;Verdana&quot;;" text="phone number" textFill="#499a8a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="modifyInformationHyperlink" alignment="CENTER" onAction="#modifyInformationHyperlinkClicked" prefHeight="42.0" prefWidth="142.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Modify information" visited="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
+      <Label fx:id="roomLabel" alignment="CENTER" layoutX="417.0" layoutY="14.0" prefHeight="74.0" prefWidth="290.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Room xyz" textAlignment="CENTER" textFill="#499a8a" />
+      <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/slovakFlag.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="15.0" onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/britainFlag.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="searchTextField" layoutX="328.0" layoutY="116.0" prefHeight="34.0" prefWidth="416.0" promptText="Search for person" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
+      <TreeTableView fx:id="personThreeTableView" layoutX="326.0" layoutY="169.0" prefHeight="326.0" prefWidth="466.0">
+        <columns>
+          <TreeTableColumn prefWidth="232.800048828125" text="First name" />
+          <TreeTableColumn prefWidth="233.59991455078125" text="Last name" />
+        </columns>
+      </TreeTableView>
+      <ImageView fx:id="magnifier" fitHeight="34.0" fitWidth="36.0" layoutX="753.0" layoutY="116.0" onMouseClicked="#magnifierClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/magnifier.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
