@@ -3,17 +3,23 @@ package managers;
 import database.Company;
 import database.CreateDatabase;
 import database.Person;
+import database.ProgramData;
 import org.hibernate.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
+import java.text.Format;
+import java.text.Normalizer;
+import java.util.Formatter;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class ManagerCompany {
-    static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
     public static Company getCompanyFromID(Integer companyID) {
 
@@ -36,11 +42,15 @@ public class ManagerCompany {
         }
 
         return results.get(0);
-
     }
 
     public static boolean createCompany(String name, String street, String city,
                                      String country, String postalCode, String mail, String phoneNumber) {
+
+        Logger LOG = ProgramData.getLOG();
+        FileHandler fh = ProgramData.getLoggingsFh();
+        SimpleFormatter sf = new SimpleFormatter();
+        fh.setFormatter(sf);
 
         if ("".equals(name)) {
             LOG.log(Level.SEVERE, "Nevyplnene pole nazov firmy");

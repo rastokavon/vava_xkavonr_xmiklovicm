@@ -1,6 +1,11 @@
 package database;
 
 import javafx.stage.Stage;
+import managers.ManagerCompany;
+
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 public class ProgramData {
 
@@ -9,6 +14,19 @@ public class ProgramData {
     private String language;
 
     private Stage primaryStage;
+
+    private static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
+
+    private static FileHandler loggingsFh;
+
+    {
+        try {
+            loggingsFh = new FileHandler("loggings.log");
+            LOG.addHandler(loggingsFh);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private ProgramData() {}
 
@@ -33,5 +51,13 @@ public class ProgramData {
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    public static Logger getLOG() {
+        return LOG;
+    }
+
+    public static FileHandler getLoggingsFh() {
+        return loggingsFh;
     }
 }

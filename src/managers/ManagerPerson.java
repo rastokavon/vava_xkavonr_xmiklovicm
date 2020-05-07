@@ -3,6 +3,7 @@ package managers;
 import database.Company;
 import database.CreateDatabase;
 import database.Person;
+import database.ProgramData;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,8 +12,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class ManagerPerson {
     static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
@@ -43,7 +46,11 @@ public class ManagerPerson {
 
     public static boolean createPerson(String firstName, String lastName, String username,
                                        String password, String mail, String phoneNumber, int companyID) {
-
+        Logger LOG = ProgramData.getLOG();
+        FileHandler fh = ProgramData.getLoggingsFh();
+        SimpleFormatter sf = new SimpleFormatter();
+        fh.setFormatter(sf);
+        
         if ("".equals(firstName)) {
             LOG.log(Level.SEVERE, "Nevyplnene pole meno");
             return false;
