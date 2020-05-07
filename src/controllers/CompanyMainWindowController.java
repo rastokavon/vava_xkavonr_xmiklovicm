@@ -1,16 +1,21 @@
 package controllers;
 
 import database.Company;
+import database.Person;
 import database.ProgramData;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerCompany;
+import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -42,7 +47,7 @@ public class CompanyMainWindowController implements Controller {
     @FXML
     Label roomLabel;
     @FXML
-    TreeTableView usersTable;
+    TableView usersTable;
     @FXML
     TextField searchTextField;
     @FXML
@@ -86,6 +91,7 @@ public class CompanyMainWindowController implements Controller {
         postalCodeLabel.setText(company.getPostalCode());
         mailLabel.setText(company.getMail());
         phoneNumberLabel.setText(company.getPhoneNumber());
+        fillTable();
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
@@ -113,5 +119,25 @@ public class CompanyMainWindowController implements Controller {
     }
 
     public void changePasswordButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void fillTable() {
+        int roomNumber = ProgramData.getInstance().getIdLogged();
+        final ObservableList<Person> users = FXCollections.observableArrayList(ManagerPerson.getUsers(roomNumber));
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
+
+        TableColumn firstName = new TableColumn(rbSk.getString("companyMain.fnColumn"));
+        TableColumn lastName = new TableColumn(rbSk.getString("companyMain.lnColumn"));
+        TableColumn username = new TableColumn(rbSk.getString("companyMain.unColumn"));
+        usersTable.getColumns().setAll(firstName, lastName,username);
+
+        firstName.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+        username.setCellValueFactory(new PropertyValueFactory<Person, String>("username"));
+
+        usersTable.setItems(users);
+
+
     }
 }

@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,25 +31,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <TextField fx:id="searchTextField" layoutX="328.0" layoutY="116.0" prefHeight="34.0" prefWidth="416.0" promptText="Search for person" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
-      <TreeTableView fx:id="usersTable" layoutX="326.0" layoutY="169.0" prefHeight="326.0" prefWidth="466.0">
-        <columns>
-          <TreeTableColumn prefWidth="148.79998779296875" text="First name" />
-          <TreeTableColumn prefWidth="157.60003662109375" text="Last name" />
-            <TreeTableColumn prefWidth="159.20001220703125" text="Username" />
-        </columns>
+      <TableView fx:id="usersTable" layoutX="317.0" layoutY="160.0" prefHeight="333.0" prefWidth="474.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+         </columns>
          <columnResizePolicy>
-            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TreeTableView>
-      <ImageView fx:id="magnifier" fitHeight="34.0" fitWidth="36.0" layoutX="753.0" layoutY="116.0" onMouseClicked="#magnifierClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/magnifier.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></TableView>
       <AnchorPane prefHeight="500.0" prefWidth="299.0" style="-fx-background-color: #B6D1C5;">
          <children>
             <Hyperlink fx:id="signOutHyperlink" alignment="CENTER" onAction="#signOutHyperlinkClicked" prefHeight="47.0" prefWidth="125.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Sign out" visited="true">
@@ -110,5 +100,14 @@
             </Button>
          </children>
       </AnchorPane>
+      <TextField fx:id="searchTextField" layoutX="328.0" layoutY="116.0" prefHeight="34.0" prefWidth="416.0" promptText="Search for person" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
+      <ImageView fx:id="magnifier" fitHeight="34.0" fitWidth="36.0" layoutX="753.0" layoutY="116.0" onMouseClicked="#magnifierClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/magnifier.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

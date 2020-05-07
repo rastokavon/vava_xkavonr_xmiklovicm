@@ -70,6 +70,31 @@ public class ManagerPerson {
         return results.get(0);
     }
 
+    public static List<Person> getUsers(int roomId) {
+
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Person> cr = cb.createQuery(Person.class);
+        Root<Person> root = cr.from(Person.class);
+
+        Company company = ManagerCompany.getCompanyFromID(roomId);
+
+        cr.select(root).where(cb.equal(root.get("company"), company));
+
+        Query<Person> query = session.createQuery(cr);
+        List<Person> results = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        if (results.isEmpty()) {
+            return null;
+        }
+
+        return results;
+
+    }
+
     public static StringBuffer createPerson(String firstName, String lastName, String username,
                                        String password, String mail, String phoneNumber, int companyID) {
         Logger LOG = ProgramData.getLOG();
