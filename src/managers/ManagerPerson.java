@@ -12,13 +12,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class ManagerPerson {
-    static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
     public static boolean isUsedUsername(String username) {
 
@@ -47,24 +44,21 @@ public class ManagerPerson {
     public static boolean createPerson(String firstName, String lastName, String username,
                                        String password, String mail, String phoneNumber, int companyID) {
         Logger LOG = ProgramData.getLOG();
-        FileHandler fh = ProgramData.getLoggingsFh();
-        SimpleFormatter sf = new SimpleFormatter();
-        fh.setFormatter(sf);
-        
+
         if ("".equals(firstName)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole meno");
+            LOG.log(Level.INFO, "Nevyplnene pole meno");
             return false;
         }
         if ("".equals(lastName)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole priezvisko");
+            LOG.log(Level.INFO, "Nevyplnene pole priezvisko");
             return false;
         }
         if ("".equals(username)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole prihlasovacie meno");
+            LOG.log(Level.INFO, "Nevyplnene pole prihlasovacie meno");
             return false;
         }
         if ("".equals(password)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole heslo");
+            LOG.log(Level.INFO, "Nevyplnene pole heslo");
             return false;
         }
 
@@ -75,11 +69,11 @@ public class ManagerPerson {
 
             Company company = ManagerCompany.getCompanyFromID(companyID);
             if (company == null) {
-                LOG.log(Level.SEVERE, "Cislo miestnosti je neplatne");
+                LOG.log(Level.WARNING, "Cislo miestnosti je neplatne");
                 return false;
             }
             if (isUsedUsername(username)) {
-                LOG.log(Level.SEVERE, "Pouzivatelske meno je pouzivane");
+                LOG.log(Level.WARNING, "Pouzivatelske meno je pouzivane");
                 return false;
             }
 

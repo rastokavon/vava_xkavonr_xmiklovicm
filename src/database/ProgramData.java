@@ -6,6 +6,7 @@ import managers.ManagerCompany;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class ProgramData {
 
@@ -21,8 +22,10 @@ public class ProgramData {
 
     {
         try {
-            loggingsFh = new FileHandler("loggings.log");
+            loggingsFh = new FileHandler("loggings.log", true);
             LOG.addHandler(loggingsFh);
+            SimpleFormatter sf = new SimpleFormatter();
+            loggingsFh.setFormatter(sf);
         } catch (IOException e) {
             e.printStackTrace();
         }

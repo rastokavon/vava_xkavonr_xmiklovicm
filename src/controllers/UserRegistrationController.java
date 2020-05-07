@@ -14,13 +14,14 @@ import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class UserRegistrationController implements Controller {
     Stage primaryStage;
     Parent root;
-    static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
     @FXML
     TextField roomNumberTextField;
@@ -84,10 +85,12 @@ public class UserRegistrationController implements Controller {
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
+        Logger LOG = ProgramData.getLOG();
+
         try {
             Integer.parseInt(roomNumberTextField.getText());
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Room number musi byt typu int.");
+            LOG.log(Level.WARNING, "Room number musi byt typu int.");
             return;
         }
         if (ManagerPerson.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),

@@ -2,22 +2,15 @@ package managers;
 
 import database.Company;
 import database.CreateDatabase;
-import database.Person;
 import database.ProgramData;
 import org.hibernate.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.io.IOException;
-import java.text.Format;
-import java.text.Normalizer;
-import java.util.Formatter;
 import java.util.List;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class ManagerCompany {
 
@@ -48,32 +41,29 @@ public class ManagerCompany {
                                      String country, String postalCode, String mail, String phoneNumber) {
 
         Logger LOG = ProgramData.getLOG();
-        FileHandler fh = ProgramData.getLoggingsFh();
-        SimpleFormatter sf = new SimpleFormatter();
-        fh.setFormatter(sf);
 
         if ("".equals(name)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole nazov firmy");
+            LOG.log(Level.INFO, "Nevyplnene pole nazov firmy");
             return false;
         }
         if ("".equals(street)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole ulica");
+            LOG.log(Level.INFO, "Nevyplnene pole ulica");
             return false;
         }
         if ("".equals(city)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole mesto");
+            LOG.log(Level.INFO, "Nevyplnene pole mesto");
             return false;
         }
         if ("".equals(country)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole stat");
+            LOG.log(Level.INFO, "Nevyplnene pole stat");
             return false;
         }
         if ("".equals(postalCode)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole PSC");
+            LOG.log(Level.INFO, "Nevyplnene pole PSC");
             return false;
         }
         if ("".equals(mail)) {
-            LOG.log(Level.SEVERE, "Nevyplnene pole mail");
+            LOG.log(Level.INFO, "Nevyplnene pole mail");
             return false;
         }
 
@@ -85,7 +75,7 @@ public class ManagerCompany {
 
             t.commit();
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Nazov firmy je uz zaregistrovany");
+            LOG.log(Level.WARNING, "Nazov firmy je uz zaregistrovany");
             return false;
         }finally {
             session.close();
