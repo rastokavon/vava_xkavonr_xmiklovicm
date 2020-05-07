@@ -89,13 +89,24 @@ public class CompanyRegistrationController implements Controller {
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
-        if (ManagerCompany.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
+        StringBuffer message = ManagerCompany.createCompany(nameTextField.getText(), streetTextField.getText(), cityTextField.getText(),
                 countryTextField.getText(), postalCodeTextField.getText(), mailTextField.getText(),
-                phoneNumberTextField.getText())) {
+                phoneNumberTextField.getText());
+
+        if (message.length() == 0) {
 
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller clc = new CompanyLoginController();
             clc.startController(primaryStage);
+
+        } else {
+            String bundle = ProgramData.getInstance().getLanguage();
+            ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(rbSk.getString("companyReg.title"));
+            alert.setContentText(String.valueOf(message) + "    ");
+            alert.showAndWait();
         }
     }
 

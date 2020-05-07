@@ -100,6 +100,12 @@ public class UserRegistrationController implements Controller {
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller ulc = new UserLoginController();
             ulc.startController(primaryStage);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Login successful");
+            alert.setHeaderText(null);
+            alert.setContentText("I have a great message for you!");
+            alert.showAndWait();
         }
     }
 
