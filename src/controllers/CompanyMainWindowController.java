@@ -83,7 +83,7 @@ public class CompanyMainWindowController implements Controller {
         changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("companyMain.window"));
-        Company company = ManagerCompany.getCompanyFromID(ProgramData.getInstance().getIdLogged());
+        Company company = ManagerCompany.getCompanyFromID(ProgramData.getInstance().getCompany().getId());
         nameLabel.setText(company.getName());
         streetLabel.setText(company.getStreet());
         cityLabel.setText(company.getCity());
@@ -122,8 +122,7 @@ public class CompanyMainWindowController implements Controller {
     }
 
     public void fillTable() {
-        int roomNumber = ProgramData.getInstance().getIdLogged();
-        final ObservableList<Person> users = FXCollections.observableArrayList(ManagerPerson.getUsers(roomNumber));
+        int roomNumber = ProgramData.getInstance().getCompany().getId();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
@@ -135,9 +134,10 @@ public class CompanyMainWindowController implements Controller {
         firstName.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
         username.setCellValueFactory(new PropertyValueFactory<Person, String>("username"));
-
-        usersTable.setItems(users);
-
-
+        try {
+            final ObservableList<Person> users = FXCollections.observableArrayList(ManagerPerson.getUsers(roomNumber));
+            usersTable.setItems(users);
+        } catch (Exception e) {}
+        
     }
 }

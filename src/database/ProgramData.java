@@ -16,7 +16,7 @@ public class ProgramData {
 
     private Stage primaryStage;
 
-    private int idLogged;
+    private Company company;
 
     private static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
@@ -66,11 +66,12 @@ public class ProgramData {
         return loggingsFh;
     }
 
-    public int getIdLogged() {
-        return idLogged;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setIdLogged(int idLogged) {
-        this.idLogged = idLogged;
+    public void setCompany(Company company) {
+        this.company = company;
     }
+
 }
