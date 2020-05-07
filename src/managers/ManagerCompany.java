@@ -8,6 +8,7 @@ import org.hibernate.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Locale;
@@ -158,6 +159,32 @@ public class ManagerCompany {
         }
 
         return errorBuffer;
+    }
+
+    public static Company isRegistered(int roomNumber, String password){
+
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Company> cr = cb.createQuery(Company.class);
+        Root<Company> root = cr.from(Company.class);
+
+        Predicate[] predicates = new Predicate[2];
+        predicates[0] = cb.equal(root.get("password"), password);
+        predicates[1] = cb.equal(root.get("id"), roomNumber);
+        cr.select(root).where(predicates);
+
+        Query<Company> query = session.createQuery(cr);
+        query.setMaxResults(1);
+        List<Company> results = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        if (results.isEmpty()) {
+            return null;
+        }
+
+        return results.get(0);
     }
 
     public static String generatePassword() {
