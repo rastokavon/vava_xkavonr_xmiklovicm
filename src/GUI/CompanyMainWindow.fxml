@@ -92,17 +92,17 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="modifyButton" layoutX="58.0" layoutY="320.0" mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="26.0" prefWidth="195.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Modify ">
+            <Button fx:id="modifyButton" layoutX="58.0" layoutY="320.0" mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Modify ">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="changePasswordButton" layoutX="58.0" layoutY="355.0" mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #499A8a; -fx-background-radius: 0px; -fx-font-family: &quot;Verdana&quot;;" text="Change password">
+            <Button fx:id="changePasswordButton" layoutX="58.0" layoutY="355.0" mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Change password">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />

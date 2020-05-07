@@ -16,6 +16,8 @@ public class ProgramData {
 
     private Stage primaryStage;
 
+    private int idLogged;
+
     private static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
     private static FileHandler loggingsFh;
@@ -62,5 +64,13 @@ public class ProgramData {
 
     public static FileHandler getLoggingsFh() {
         return loggingsFh;
+    }
+
+    public int getIdLogged() {
+        return idLogged;
+    }
+
+    public void setIdLogged(int idLogged) {
+        this.idLogged = idLogged;
     }
 }

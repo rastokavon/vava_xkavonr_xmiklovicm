@@ -78,6 +78,14 @@ public class CompanyMainWindowController implements Controller {
         changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("companyMain.window"));
+        Company company = ManagerCompany.getCompanyFromID(ProgramData.getInstance().getIdLogged());
+        nameLabel.setText(company.getName());
+        streetLabel.setText(company.getStreet());
+        cityLabel.setText(company.getCity());
+        countryLabel.setText(company.getCountry());
+        postalCodeLabel.setText(company.getPostalCode());
+        mailLabel.setText(company.getMail());
+        phoneNumberLabel.setText(company.getPhoneNumber());
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
