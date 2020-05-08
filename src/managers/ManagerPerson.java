@@ -70,6 +70,7 @@ public class ManagerPerson {
         return results.get(0);
     }
 
+<<<<<<< HEAD
     public static void changePassword(Person person, String password) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -81,6 +82,9 @@ public class ManagerPerson {
     }
 
     public static List<Person> getUsers(int roomId) {
+=======
+    public static List<Person> getUsers(String name, int roomId) {
+>>>>>>> 8b17faab52e292f9ded2d410ca0c88af8702f31d
 
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -90,7 +94,14 @@ public class ManagerPerson {
 
         Company company = ManagerCompany.getCompanyFromID(roomId);
 
-        cr.select(root).where(cb.equal(root.get("company"), company));
+        name = "%" + name + "%";
+
+        Predicate[] predicates = new Predicate[2];
+        predicates[0] = cb.equal(root.get("company"), company);
+        predicates[1] = cb.like(root.get("username"), name);
+        Predicate predicate = cb.and(predicates[1], predicates[0]);
+
+        cr.select(root).where(predicate);
 
         Query<Person> query = session.createQuery(cr);
         List<Person> results = query.getResultList();
@@ -100,9 +111,46 @@ public class ManagerPerson {
         if (results.isEmpty()) {
             return null;
         }
-
         return results;
 
+    }
+
+    public static void deleteUser(String username) {
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Person> cr = cb.createQuery(Person.class);
+        Root<Person> root = cr.from(Person.class);
+
+        cr.select(root).where(cb.equal(root.get("username"), username));
+
+        Query<Person> query = session.createQuery(cr);
+        List<Person> results = query.getResultList();
+        if (!results.isEmpty()) {
+            session.delete(results.get(0));
+        }
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public static Person getUser(String username) {
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Person> cr = cb.createQuery(Person.class);
+        Root<Person> root = cr.from(Person.class);
+
+        cr.select(root).where(cb.equal(root.get("username"), username));
+
+        Query<Person> query = session.createQuery(cr);
+        List<Person> results = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        if (!results.isEmpty()) {
+            return results.get(0);
+        }
+        return null;
     }
 
     public static StringBuffer createPerson(String firstName, String lastName, String username,
