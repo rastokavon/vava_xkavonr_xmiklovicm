@@ -209,4 +209,59 @@ public class ManagerCompany {
         }
         return sb.toString();
     }
+
+    public static StringBuffer updateCompany(Company company, String street, String city, String country,
+                                             String postalCode, String mail, String phoneNumber) {
+        Logger LOG = ProgramData.getLOG();
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
+        StringBuffer errorBuffer = new StringBuffer("");
+
+        if ("".equals(street)) {
+            LOG.log(Level.INFO, "Nevyplnene pole ulica");
+            errorBuffer.append(rbSk.getString("companyReg.missingStreet"));
+            errorBuffer.append("\n");
+        }
+        if ("".equals(city)) {
+            LOG.log(Level.INFO, "Nevyplnene pole mesto");
+            errorBuffer.append(rbSk.getString("companyReg.missingCity"));
+            errorBuffer.append("\n");
+        }
+        if ("".equals(country)) {
+            LOG.log(Level.INFO, "Nevyplnene pole stat");
+            errorBuffer.append(rbSk.getString("companyReg.missingCountry"));
+            errorBuffer.append("\n");
+        }
+        if ("".equals(postalCode)) {
+            LOG.log(Level.INFO, "Nevyplnene pole PSC");
+            errorBuffer.append(rbSk.getString("companyReg.missingPostalCode"));
+            errorBuffer.append("\n");
+        }
+        if ("".equals(mail)) {
+            LOG.log(Level.INFO, "Nevyplnene pole mail");
+            errorBuffer.append(rbSk.getString("companyReg.missingMail"));
+            errorBuffer.append("\n");
+        }
+
+        if (errorBuffer.length() > 0) {
+            return errorBuffer;
+        }
+
+        Session session = CreateDatabase.getSession();
+        Transaction t = session.beginTransaction();
+
+        company.setStreet(street);
+        company.setCity(city);
+        company.setCountry(country);
+        company.setPostalCode(postalCode);
+        company.setPhoneNumber(phoneNumber);
+        company.setMail(mail);
+
+        session.update(company);
+
+        t.commit();
+        session.close();
+
+        return errorBuffer;
+    }
 }
