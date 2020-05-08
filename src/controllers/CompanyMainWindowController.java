@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 public class CompanyMainWindowController implements Controller {
     Stage primaryStage;
     Parent root;
-    Company company;
 
     @FXML
     Label nameLabel;
@@ -53,7 +52,6 @@ public class CompanyMainWindowController implements Controller {
     @FXML
     Button changePasswordButton;
 
-
     @Override
     public void startController(Stage stage) throws Exception {
         primaryStage = stage;
@@ -63,11 +61,6 @@ public class CompanyMainWindowController implements Controller {
 
         primaryStage.setScene(sceneUserRegistration);
         primaryStage.show();
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-        System.out.println(company.getName());
     }
 
     @FXML
@@ -83,7 +76,7 @@ public class CompanyMainWindowController implements Controller {
         changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("companyMain.window"));
-        Company company = ManagerCompany.getCompanyFromID(ProgramData.getInstance().getCompany().getId());
+        Company company = ProgramData.getInstance().getCompany();
         nameLabel.setText(company.getName());
         streetLabel.setText(company.getStreet());
         cityLabel.setText(company.getCity());
@@ -115,7 +108,11 @@ public class CompanyMainWindowController implements Controller {
     }
 
 
-    public void modifyButtonClicked(ActionEvent actionEvent) {
+    public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = new Stage();
+
+        Controller mcc = new ModifyCompanyController();
+        mcc.startController(primaryStage);
     }
 
     public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
