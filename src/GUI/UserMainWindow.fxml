@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserMainWindowController">
    <children>
-      <VBox fx:id="signInVBox" prefHeight="500.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #B6D1C5;" stylesheets="@buttons_login.css">
+      <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="123.0" layoutY="80.0" prefHeight="44.0" prefWidth="675.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Znenie celého postu alebo otázky" textAlignment="CENTER" textFill="#499a8a" />
+      <AnchorPane prefHeight="36.0" prefWidth="800.0" style="-fx-background-color: #B6D1C5;">
          <children>
-            <Button fx:id="signAsCompanyButton" mnemonicParsing="false" onAction="#signAsCompanyButtonClicked" prefHeight="67.0" prefWidth="323.0" text="Company login">
-               <VBox.margin>
-                  <Insets top="170.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="signAsUserButton" mnemonicParsing="false" onAction="#signAsUserButtonClicked" prefHeight="67.0" prefWidth="326.0" text="User login" />
+            <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="713.0" layoutY="7.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/slovakFlag.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="8.0" onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/britainFlag.png" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="577.0" prefHeight="35.0" prefWidth="135.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Prihlaseny pouzivatel" />
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css" text="Odhlásiť" />
+            <Button layoutX="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css" text="Domov" />
+            <Button layoutX="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css" text="Používatelia" />
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <Button fx:id="signInButton" defaultButton="true" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#signInButtonClicked" prefHeight="32.0" prefWidth="290.0" style="-fx-font-size: 16px;" stylesheets="@buttons_login.css" text="Sign In" />
-      <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="345.0" layoutY="100.0" prefHeight="74.0" prefWidth="430.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Log as user!" textAlignment="CENTER" textFill="#499a8a" />
-      <TextField fx:id="usernameTextField" layoutX="417.0" layoutY="195.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0 px;" />
-      <PasswordField fx:id="passwordTextField" layoutX="417.0" layoutY="250.0" prefHeight="26.0" prefWidth="290.0" promptText="Password" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16px; -fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px;" />
-      <Hyperlink fx:id="notRegisteredButton" layoutX="533.0" layoutY="371.0" onAction="#notRegisteredButtonClicked" text="Not regitered yet" />
-      <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
+      </AnchorPane>
+      <ImageView fitHeight="100.0" fitWidth="94.0" layoutX="30.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/slovakFlag.png" />
+            <Image url="@../images/user.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="15.0" onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/britainFlag.png" />
-         </image>
-      </ImageView>
+      <Hyperlink alignment="CENTER" layoutX="30.0" layoutY="130.0" prefHeight="23.0" prefWidth="94.0" text="Post user" />
+      <Button layoutX="6.0" layoutY="457.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="122.0" text="Pridať komentár" />
+      <Label alignment="TOP_LEFT" layoutX="138.0" layoutY="147.0" prefHeight="150.0" prefWidth="646.0" text="Label" />
+      <Label layoutX="138.0" layoutY="297.0" prefHeight="18.0" prefWidth="178.0" text="Pridal anonym pred 7 hodinami" />
+      <Label layoutX="138.0" layoutY="336.0" prefHeight="18.0" prefWidth="187.0" text="comanets" />
    </children>
 </AnchorPane>

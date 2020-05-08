@@ -64,7 +64,6 @@ public class Person {
         this.password = password;
     }
 
-
     @Column (name = "mail", length = 25)
     public String getMail() {
         return mail;

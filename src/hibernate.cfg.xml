@@ -13,7 +13,8 @@
 
         <mapping class="database.Company"/>
         <mapping class="database.Person"/>
-
+        <mapping class="database.Post"/>
+        <mapping class="database.Comment"/>
 
     </session-factory>
 </hibernate-configuration>

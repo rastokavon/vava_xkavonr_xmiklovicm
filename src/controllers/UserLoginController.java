@@ -78,7 +78,7 @@ public class UserLoginController implements Controller {
     public void signAsUserButtonClicked() {}
 
 
-    public void signInButtonClicked() {
+    public void signInButtonClicked() throws Exception {
         Person person = ManagerPerson.isRegistered(usernameTextField.getText(), passwordTextField.getText());
         if (person == null) {
             String bundle = ProgramData.getInstance().getLanguage();
@@ -92,6 +92,11 @@ public class UserLoginController implements Controller {
             alert.setContentText(rbSk.getString("userLogin.text"));
             alert.showAndWait();
         } else {
+            ProgramData.getInstance().setUser(person);
+            ProgramData.getInstance().setCompany(null);
+            primaryStage = ProgramData.getInstance().getPrimaryStage();
+            Controller crc = new UserMainWindowController();
+            crc.startController(primaryStage);
             System.out.println("Prihlasenyyyyyy");
         }
     }
