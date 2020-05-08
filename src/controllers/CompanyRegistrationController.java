@@ -50,7 +50,7 @@ public class CompanyRegistrationController implements Controller {
     @Override
     public void startController(Stage stage) throws Exception {
         primaryStage = stage;
-        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/companyRegistration.fxml"));
+        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/CompanyRegistration.fxml"));
 
         Scene sceneUserRegistration = new Scene(root);
 
