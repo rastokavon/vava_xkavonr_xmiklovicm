@@ -70,7 +70,7 @@ public class ManagerPerson {
         return results.get(0);
     }
 
-<<<<<<< HEAD
+
     public static void changePassword(Person person, String password) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -81,10 +81,7 @@ public class ManagerPerson {
         session.close();
     }
 
-    public static List<Person> getUsers(int roomId) {
-=======
     public static List<Person> getUsers(String name, int roomId) {
->>>>>>> 8b17faab52e292f9ded2d410ca0c88af8702f31d
 
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -209,6 +206,42 @@ public class ManagerPerson {
         } finally {
             session.close();
         }
+        return errorBuffer;
+    }
+    public static StringBuffer updatePerson(Person person, String firstName, String surname,
+                                            String mail, String phoneNumber) {
+        Logger LOG = ProgramData.getLOG();
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
+        StringBuffer errorBuffer = new StringBuffer("");
+
+        if ("".equals(firstName)) {
+            LOG.log(Level.INFO, "Nevyplnene pole krstne meno");
+            errorBuffer.append(rbSk.getString("userReg.missingFirstName"));
+            errorBuffer.append("\n");
+        }
+        if ("".equals(surname)) {
+            LOG.log(Level.INFO, "Nevyplnene pole priezvisko");
+            errorBuffer.append(rbSk.getString("userReg.missingLastName"));
+            errorBuffer.append("\n");
+        }
+        if (errorBuffer.length() > 0) {
+            return errorBuffer;
+        }
+
+        Session session = CreateDatabase.getSession();
+        Transaction t = session.beginTransaction();
+
+        person.setFirstName(firstName);
+        person.setLastName(surname);
+        person.setMail(mail);
+        person.setPhoneNumber(phoneNumber);
+
+        session.update(person);
+
+        t.commit();
+        session.close();
+
         return errorBuffer;
     }
 }

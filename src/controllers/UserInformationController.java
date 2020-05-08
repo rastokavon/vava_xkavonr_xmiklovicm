@@ -81,7 +81,7 @@ public class UserInformationController implements Controller {
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHiperlink.setText(ProgramData.getInstance().getUser().getUsername());
 
-        rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("userInfo"));
+        rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
         usernameLabel.setText(ProgramData.getInstance().getUser().getUsername());
         firstNameLabel.setText(ProgramData.getInstance().getUser().getFirstName());
@@ -93,8 +93,8 @@ public class UserInformationController implements Controller {
         mailLabel.setText(ProgramData.getInstance().getUser().getMail());
         phoneNumberLabel.setText(ProgramData.getInstance().getUser().getPhoneNumber());
 
-        modifyButton.setText(rbSk.getString("userInfo.modify"));
-        changePasswordButton.setText(rbSk.getString("userInfo.changePass"));
+        modifyButton.setText(rbSk.getString("companyMain.modifyInfo"));
+        changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("userInfo.title"));
@@ -138,7 +138,11 @@ public class UserInformationController implements Controller {
         cpc.startController(primaryStage);
     }
 
-    public void modifyButtonClicked(ActionEvent actionEvent) {
+    public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = new Stage();
+
+        Controller mpc = new ModifyPersonController();
+        mpc.startController(primaryStage);
     }
 }
 

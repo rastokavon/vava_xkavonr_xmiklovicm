@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyPersonController">
+   <children>
+      <AnchorPane prefHeight="48.0" prefWidth="600.0" style="-fx-background-color: #B6D5C1;">
+         <children>
+            <Hyperlink fx:id="backButton" alignment="CENTER" onAction="#backButtonClicked" prefHeight="59.0" prefWidth="86.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Back" visited="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="79.0" layoutY="11.0" prefHeight="38.0" prefWidth="514.0" text="Modify person" textFill="#499a8a">
+               <font>
+                  <Font name="Verdana" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="confirmButton" layoutX="355.0" layoutY="323.0" mnemonicParsing="false" onAction="#confirmButtonClicked" prefHeight="35.0" prefWidth="213.0" stylesheets="@buttons_login.css" text="Confirm" />
+      <Label fx:id="contactLabel" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="209.0" prefHeight="30.0" prefWidth="114.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Contact:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="mailTextField" layoutX="145.0" layoutY="200.0" prefHeight="34.0" prefWidth="422.0" promptText="Mail" style="-fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-font-family: &quot;Verdana&quot;;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="phoneNumberTextField" layoutX="145.0" layoutY="260.0" prefHeight="34.0" prefWidth="197.0" promptText="Phone number" style="-fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-font-family: &quot;Verdana&quot;;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="nameLabel" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="109.0" prefHeight="30.0" prefWidth="114.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Name:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstNameTextField" layoutX="145.0" layoutY="107.0" prefHeight="34.0" prefWidth="197.0" promptText="First name" style="-fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-font-family: &quot;Verdana&quot;;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="surnameTextField" layoutX="371.0" layoutY="107.0" prefHeight="34.0" prefWidth="197.0" promptText="Second name" style="-fx-background-color: transparent; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-font-family: &quot;Verdana&quot;;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
