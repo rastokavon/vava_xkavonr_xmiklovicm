@@ -104,7 +104,7 @@ public class CompanyLoginController implements Controller {
             alert.setContentText(rbSk.getString("companyLogin.text"));
             alert.showAndWait();
         } else {
-            //ProgramData.getInstance().setIdLogged(roomNumber);
+            ProgramData.getInstance().setUser(null);
             ProgramData.getInstance().setCompany(company);
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller crc = new CompanyMainWindowController();

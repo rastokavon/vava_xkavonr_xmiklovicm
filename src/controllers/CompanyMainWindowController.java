@@ -118,7 +118,11 @@ public class CompanyMainWindowController implements Controller {
     public void modifyButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void changePasswordButtonClicked(ActionEvent actionEvent) {
+    public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller cpc = new ChangePasswordController();
+        cpc.startController(primaryStage);
     }
 
     public void fillTable() {
@@ -138,6 +142,6 @@ public class CompanyMainWindowController implements Controller {
             final ObservableList<Person> users = FXCollections.observableArrayList(ManagerPerson.getUsers(roomNumber));
             usersTable.setItems(users);
         } catch (Exception e) {}
-        
+
     }
 }

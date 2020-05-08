@@ -17,6 +17,7 @@ public class ProgramData {
     private Stage primaryStage;
 
     private Company company;
+    private Person user;
 
     private static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
@@ -73,5 +74,14 @@ public class ProgramData {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    public Person getUser() {
+        return user;
+    }
+
+    public void setUser(Person user) {
+        this.user = user;
+    }
+
 
 }

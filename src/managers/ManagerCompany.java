@@ -187,6 +187,16 @@ public class ManagerCompany {
         return results.get(0);
     }
 
+    public static void changePassword(Company company, String password) {
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+
+        company.setPassword(password);
+        session.update(company);
+        session.getTransaction().commit();
+        session.close();
+    }
+
     public static String generatePassword() {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
         int lenght = 10;
