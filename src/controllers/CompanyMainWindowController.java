@@ -69,7 +69,8 @@ public class CompanyMainWindowController implements Controller {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
-        roomLabel.setText(rbSk.getString("companyMain.roomLabel"));
+        roomLabel.setText(rbSk.getString("companyMain.roomLabel") + " " +
+                ProgramData.getInstance().getCompany().getId());
         searchTextField.setPromptText(rbSk.getString("companyMain.searchField"));
         signOutHyperlink.setText(rbSk.getString("companyMain.signOut"));
         modifyButton.setText(rbSk.getString("companyMain.modifyInfo"));
@@ -105,8 +106,8 @@ public class CompanyMainWindowController implements Controller {
     }
 
     public void magnifierClicked(MouseEvent mouseEvent) {
+        fillTable();
     }
-
 
     public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = new Stage();
@@ -136,9 +137,36 @@ public class CompanyMainWindowController implements Controller {
         lastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
         username.setCellValueFactory(new PropertyValueFactory<Person, String>("username"));
         try {
-            final ObservableList<Person> users = FXCollections.observableArrayList(ManagerPerson.getUsers(roomNumber));
+            final ObservableList<Person> users;
+            usersTable.setItems(null);
+            users = FXCollections.observableArrayList(ManagerPerson.getUsers(searchTextField.getText(), roomNumber));
             usersTable.setItems(users);
         } catch (Exception e) {}
 
+    }
+
+    public void deleteCMClicked(ActionEvent actionEvent) {
+        Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
+        if (person != null) {
+            ManagerPerson.deleteUser(person.getUsername());
+        }
+        initialize();
+    }
+
+    public void showCMClicked(ActionEvent actionEvent) throws Exception {
+        Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
+        if (person != null) {
+            primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(UserRegistrationController.class.getResource("../GUI/UserDetail.fxml"));
+            Parent root = loader.load();
+            Scene sceneUserRegistration = new Scene(root);
+
+            primaryStage.setScene(sceneUserRegistration);
+
+            UserDetailController udc = loader.getController();
+            udc.setPerson(person);
+            udc.startController(primaryStage);
+            primaryStage.show();
+        }
     }
 }
