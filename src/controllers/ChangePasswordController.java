@@ -125,5 +125,48 @@ public class ChangePasswordController implements Controller {
                 alert.showAndWait();
             }
         }
+        else {
+            if (user.getPassword().equals(oldPasswordTextField.getText())) {
+                if (newPasswordTextField.getText().equals(repeatNewPasswordTextField.getText()) &&
+                        !newPasswordTextField.getText().equals("")) {
+
+                    ManagerPerson.changePassword(user, newPasswordTextField.getText());
+                    primaryStage = (Stage) changePasswordLabel.getScene().getWindow();
+                    primaryStage.close();
+
+                    String bundle = ProgramData.getInstance().getLanguage();
+                    ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle(rbSk.getString("changePass.title"));
+                    alert.setContentText(rbSk.getString("changePass.text"));
+                    alert.showAndWait();
+                } else {
+                    String bundle = ProgramData.getInstance().getLanguage();
+                    ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
+
+                    Logger LOG = ProgramData.getLOG();
+                    LOG.log(Level.WARNING, "Nove hesla sa nezhoduju");
+
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle(rbSk.getString("changePass.title"));
+                    alert.setContentText(rbSk.getString("changePass.unmatchingPass"));
+                    alert.showAndWait();
+                }
+            } else {
+                String bundle = ProgramData.getInstance().getLanguage();
+                ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
+
+                Logger LOG = ProgramData.getLOG();
+                LOG.log(Level.WARNING, "Stare heslo je neplatne");
+
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(rbSk.getString("changePass.title"));
+                alert.setContentText(rbSk.getString("changePass.wrongPass"));
+                alert.showAndWait();
+            }
+        }
     }
 }

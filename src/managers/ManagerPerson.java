@@ -70,6 +70,16 @@ public class ManagerPerson {
         return results.get(0);
     }
 
+    public static void changePassword(Person person, String password) {
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+
+        person.setPassword(password);
+        session.update(person);
+        session.getTransaction().commit();
+        session.close();
+    }
+
     public static List<Person> getUsers(int roomId) {
 
         Session session = CreateDatabase.getSession();

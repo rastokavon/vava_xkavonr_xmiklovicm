@@ -21,36 +21,17 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class UserMainWindowController implements Controller{
-
     Stage primaryStage;
     Parent root;
 
-//    @FXML
-//    Label nameLabel;
-//    @FXML
-//    Label streetLabel;
-//    @FXML
-//    Label cityLabel;
-//    @FXML
-//    Label countryLabel;
-//    @FXML
-//    Label postalCodeLabel;
-//    @FXML
-//    Label mailLabel;
-//    @FXML
-//    Label phoneNumberLabel;
-//    @FXML
-//    Hyperlink signOutHyperlink;
-//    @FXML
-//    Button modifyButton;
-//    @FXML
-//    Label roomLabel;
-//    @FXML
-//    TableView usersTable;
-//    @FXML
-//    TextField searchTextField;
-//    @FXML
-//    Button changePasswordButton;
+    @FXML
+    Button signOutButton;
+    @FXML
+    Button homeButton;
+    @FXML
+    Button usersButton;
+    @FXML
+    Hyperlink signedUserHiperlink;
 
 
     @Override
@@ -66,26 +47,13 @@ public class UserMainWindowController implements Controller{
 
     @FXML
     public void initialize() {
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
 
-//        String bundle = ProgramData.getInstance().getLanguage();
-//        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
-//
-//        roomLabel.setText(rbSk.getString("companyMain.roomLabel"));
-//        searchTextField.setPromptText(rbSk.getString("companyMain.searchField"));
-//        signOutHyperlink.setText(rbSk.getString("companyMain.signOut"));
-//        modifyButton.setText(rbSk.getString("companyMain.modifyInfo"));
-//        changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
-//        primaryStage = ProgramData.getInstance().getPrimaryStage();
-//        primaryStage.setTitle(rbSk.getString("companyMain.window"));
-//        Company company = ManagerCompany.getCompanyFromID(ProgramData.getInstance().getCompany().getId());
-//        nameLabel.setText(company.getName());
-//        streetLabel.setText(company.getStreet());
-//        cityLabel.setText(company.getCity());
-//        countryLabel.setText(company.getCountry());
-//        postalCodeLabel.setText(company.getPostalCode());
-//        mailLabel.setText(company.getMail());
-//        phoneNumberLabel.setText(company.getPhoneNumber());
-//        fillTable();
+        signOutButton.setText(rbSk.getString("mainPan.signOut"));
+        homeButton.setText(rbSk.getString("mainPan.home"));
+        usersButton.setText(rbSk.getString("mainPan.users"));
+        signedUserHiperlink.setText(ProgramData.getInstance().getUser().getUsername());
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
@@ -98,56 +66,23 @@ public class UserMainWindowController implements Controller{
         initialize();
     }
 
-    public void signAsCompanyButtonClicked(ActionEvent actionEvent) {
+    public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller clc = new UserInformationController();
+        clc.startController(primaryStage);
     }
 
-    public void signAsUserButtonClicked(ActionEvent actionEvent) {
+    public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller clc = new UserLoginController();
+        clc.startController(primaryStage);
     }
 
-    public void signInButtonClicked(ActionEvent actionEvent) {
+    public void homeButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void notRegisteredButtonClicked(ActionEvent actionEvent) {
+    public void usersButtonClicked(ActionEvent actionEvent) {
     }
-
-//    public void signOutHyperlinkClicked(ActionEvent actionEvent) throws Exception {
-//        primaryStage = ProgramData.getInstance().getPrimaryStage();
-//
-//        Controller clc = new CompanyLoginController();
-//        clc.startController(primaryStage);
-//    }
-//
-//    public void magnifierClicked(MouseEvent mouseEvent) {
-//    }
-//
-//
-//    public void modifyButtonClicked(ActionEvent actionEvent) {
-//    }
-//
-//    public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
-//        primaryStage = ProgramData.getInstance().getPrimaryStage();
-//
-//        Controller cpc = new ChangePasswordController();
-//        cpc.startController(primaryStage);
-//    }
-//
-//    public void fillTable() {
-//        int roomNumber = ProgramData.getInstance().getCompany().getId();
-//        String bundle = ProgramData.getInstance().getLanguage();
-//        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
-//
-//        TableColumn firstName = new TableColumn(rbSk.getString("companyMain.fnColumn"));
-//        TableColumn lastName = new TableColumn(rbSk.getString("companyMain.lnColumn"));
-//        TableColumn username = new TableColumn(rbSk.getString("companyMain.unColumn"));
-//        usersTable.getColumns().setAll(firstName, lastName,username);
-//
-//        firstName.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
-//        lastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
-//        username.setCellValueFactory(new PropertyValueFactory<Person, String>("username"));
-//        try {
-//            final ObservableList<Person> users = FXCollections.observableArrayList(ManagerPerson.getUsers(roomNumber));
-//            usersTable.setItems(users);
-//        } catch (Exception e) {}
-//
-//    }
 }
