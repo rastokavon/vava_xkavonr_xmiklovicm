@@ -58,7 +58,7 @@ public class UserRegistrationController implements Controller {
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));
         welcomeLabel.setText(rbSk.getString("userReg.welcome"));
         firstNameTextField.setPromptText(rbSk.getString("userReg.firstName"));
         lastNameTextField.setPromptText(rbSk.getString("userReg.lastName"));

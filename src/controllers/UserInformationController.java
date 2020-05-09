@@ -1,26 +1,23 @@
 package controllers;
 
-import database.Company;
 import database.Person;
+import database.Post;
 import database.ProgramData;
-import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import managers.ManagerCompany;
-import managers.ManagerPerson;
+import managers.ManagerPosts;
 
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class UserInformationController implements Controller {
@@ -60,6 +57,9 @@ public class UserInformationController implements Controller {
     @FXML
     Button changePasswordButton;
 
+    @FXML
+    TableView<Post> table;
+
 
     @Override
     public void startController(Stage stage) throws Exception {
@@ -98,6 +98,7 @@ public class UserInformationController implements Controller {
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("userInfo.title"));
+        fillTable();
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
@@ -143,6 +144,28 @@ public class UserInformationController implements Controller {
 
         Controller mpc = new ModifyPersonController();
         mpc.startController(primaryStage);
+    }
+
+    public void fillTable() {
+        Person person = ProgramData.getInstance().getUser();
+        //String bundle = ProgramData.getInstance().getLanguage();
+        //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
+
+
+        TableColumn titles = new TableColumn("Titles");
+        TableColumn dates = new TableColumn("Dates");
+        table.getColumns().setAll(titles, dates);
+
+        titles.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
+        dates.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
+
+        try {
+            final ObservableList<Post> posts;
+            table.setItems(null);
+            posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser()));
+            table.setItems(posts);
+        } catch (Exception e) {}
+
     }
 }
 
