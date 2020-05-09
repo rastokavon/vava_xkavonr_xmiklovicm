@@ -48,7 +48,7 @@ public class Comment {
         this.date = date;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "post_id", nullable = false)
     public Post getPost() {
@@ -58,7 +58,7 @@ public class Comment {
         this.post = post;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "person_id", nullable = false)
     public Person getPerson() {

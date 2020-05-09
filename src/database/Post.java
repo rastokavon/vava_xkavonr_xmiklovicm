@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "post")
@@ -13,6 +14,7 @@ public class Post {
     private String text;
     private Date date;
     private Person person;
+    private List<Comment> comments;
 
     public Post() {}
     public Post(String title, String text, Date date, Person person) {
@@ -31,7 +33,7 @@ public class Post {
         this.id = id;
     }
 
-    @Column (name = "title", length = 40, nullable = false)
+    @Column (name = "title", length = 40, nullable = false, unique = true)
     public String getTitle() {
         return title;
     }
@@ -55,7 +57,7 @@ public class Post {
         this.date = date;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "person_id", nullable = false)
     public Person getPerson() {
@@ -64,4 +66,14 @@ public class Post {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @OneToMany(mappedBy = "post")
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
 }

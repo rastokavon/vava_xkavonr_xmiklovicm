@@ -147,7 +147,6 @@ public class UserInformationController implements Controller {
     }
 
     public void fillTable() {
-        Person person = ProgramData.getInstance().getUser();
         //String bundle = ProgramData.getInstance().getLanguage();
         //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 

@@ -1,11 +1,14 @@
 package database;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity(name = "company")
 public class Company {
     private int id;
     private String name, street, city, country, postalCode, mail, phoneNumber, password;
+    private List<Person> users;
 
     public Company() {}
     public Company(String name, String street, String city, String country,
@@ -91,5 +94,14 @@ public class Company {
     }
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @OneToMany(mappedBy = "company")
+    public List<Person> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Person> users) {
+        this.users = users;
     }
 }

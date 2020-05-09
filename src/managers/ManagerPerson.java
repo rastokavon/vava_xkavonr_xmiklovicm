@@ -4,9 +4,11 @@ import database.Company;
 import database.CreateDatabase;
 import database.Person;
 import database.ProgramData;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -83,25 +85,15 @@ public class ManagerPerson {
 
     public static List<Person> getUsers(String name, int roomId) {
 
-        Session session = CreateDatabase.getSession();
-        session.beginTransaction();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Person> cr = cb.createQuery(Person.class);
-        Root<Person> root = cr.from(Person.class);
-
-        Company company = ManagerCompany.getCompanyFromID(roomId);
-
         name = "%" + name + "%";
 
-        Predicate[] predicates = new Predicate[2];
-        predicates[0] = cb.equal(root.get("company"), company);
-        predicates[1] = cb.like(root.get("username"), name);
-        Predicate predicate = cb.and(predicates[1], predicates[0]);
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        Criteria crit = session.createCriteria(Person.class);
+        crit.add(Restrictions.like("username", name));
+        crit.add(Restrictions.eq("company.id", roomId));
+        List<Person> results = crit.list();
 
-        cr.select(root).where(predicate);
-
-        Query<Person> query = session.createQuery(cr);
-        List<Person> results = query.getResultList();
         session.getTransaction().commit();
         session.close();
 

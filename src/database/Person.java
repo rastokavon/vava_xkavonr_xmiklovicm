@@ -3,12 +3,14 @@ package database;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "person")
 public class Person {
     private int id;
     private String firstName, lastName, username, password, mail, phoneNumber;
     private Company company;
+    private List<Post> posts;
 
     public Person() {}
     public Person(String firstName, String lastName, String username,
@@ -79,7 +81,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "room_id", nullable = false)
     public Company getCompany() {
@@ -88,4 +90,17 @@ public class Person {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    @OneToMany(mappedBy = "person")
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+
+
+
 }
