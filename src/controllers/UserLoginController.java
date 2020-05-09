@@ -52,10 +52,11 @@ public class UserLoginController implements Controller {
         primaryStage.setScene(sceneUserLogin);
         primaryStage.show();
     }
+
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("login"));
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("login"));
         welcomeLabel.setText(rbSk.getString("userLogin.welcome"));
         signInButton.setText(rbSk.getString("login.signInButton"));
         signAsCompanyButton.setText(rbSk.getString("login.logAsCompany"));
@@ -75,7 +76,8 @@ public class UserLoginController implements Controller {
         clc.startController(primaryStage);
     }
 
-    public void signAsUserButtonClicked() {}
+    public void signAsUserButtonClicked() {
+    }
 
 
     public void signInButtonClicked() throws Exception {
@@ -100,6 +102,7 @@ public class UserLoginController implements Controller {
             System.out.println("Prihlasenyyyyyy");
         }
     }
+
     public void notRegisteredButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 

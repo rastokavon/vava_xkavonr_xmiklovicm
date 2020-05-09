@@ -1,12 +1,12 @@
 .button {
-	-fx-background-color: #B6D1C5;
-	-fx-background-radius: 0px;
-    	-fx-font-family: "Verdana";
-	-fx-font-size: 18px;
+    -fx-background-color: #B6D1C5;
+    -fx-background-radius: 0px;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 18px;
 
 }
 
 .button:hover {
-	-fx-background-color: #87B8B8;
-	-fx-cursor: hand;
+    -fx-background-color: #87B8B8;
+    -fx-cursor: hand;
 }

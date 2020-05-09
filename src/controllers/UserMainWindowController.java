@@ -2,7 +2,6 @@ package controllers;
 
 import database.Post;
 import database.ProgramData;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,13 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import managers.ManagerPosts;
+import tables.TableAllPosts;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class UserMainWindowController implements Controller{
+public class UserMainWindowController implements Controller {
     Stage primaryStage;
     Parent root;
 
@@ -33,7 +34,7 @@ public class UserMainWindowController implements Controller{
     @FXML
     Hyperlink signedUserHiperlink;
     @FXML
-    TableView<Post> table;
+    TableView<TableAllPosts> table;
 
 
     @Override
@@ -50,7 +51,7 @@ public class UserMainWindowController implements Controller{
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
 
         signOutButton.setText(rbSk.getString("mainPan.signOut"));
         homeButton.setText(rbSk.getString("mainPan.home"));
@@ -95,30 +96,47 @@ public class UserMainWindowController implements Controller{
         //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
 
+//        TableColumn title = new TableColumn("Title");
+//        TableColumn author = new TableColumn("Author");
+//        TableColumn date = new TableColumn("Date");
+//        table.getColumns().setAll(title, date, author);
+//
+//        title.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
+//        date.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
+//        author.setCellValueFactory(new PropertyValueFactory<Post, String>("person.username"));
+//
+//
+//        try {
+//            final ObservableList<Post> posts;
+//            table.setItems(null);
+//            posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser().getCompany()));
+//            table.setItems(posts);
+//        } catch (Exception e) {
+//        }
+
         TableColumn title = new TableColumn("Title");
-        TableColumn author = new TableColumn("Author");
-        TableColumn date = new TableColumn("Date");
-        table.getColumns().setAll(title, date, author);
-
-        title.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
-        date.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
-        //author.setCellValueFactory(new PropertyValueFactory<Post, String>("person.username"));
-
-        author.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Post, String> data) {
-                // data.getValue() returns the Data instance for a particular TableView row
-                return data.getValue().getPerson().usernameProperty();
-            }
-        });
-    }
-
+        TableColumn author = new TableColumn("About");
+        table.getColumns().setAll(title, author);
 
         try {
-            final ObservableList<Post> posts;
+            List<Post> posts;
+            List<TableAllPosts> tableAllPosts = new ArrayList<>();
             table.setItems(null);
-            posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser().getCompany()));
-            table.setItems(posts);
-        } catch (Exception e) {}
+            posts = ManagerPosts.getPosts(ProgramData.getInstance().getUser().getCompany());
+            for (Post p : posts) {
+                TableAllPosts tap = new TableAllPosts();
+                tap.setDateName("Added: " + p.getDate() +  "\nUser: @" + p.getPerson().getUsername());
+                tap.setTitle(p.getTitle());
+                tableAllPosts.add(tap);
+            }
+            ObservableList<TableAllPosts> tablePosts = FXCollections.observableArrayList(tableAllPosts);
+
+
+            title.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("title"));
+            author.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("dateName"));
+            table.setItems(tablePosts);
+        } catch (Exception e) {
+        }
 
     }
 }

@@ -97,8 +97,7 @@ public class ModifyPersonController implements Controller {
             Controller clc = new UserInformationController();
             clc.startController(primaryStage);
 
-        }
-        else {
+        } else {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
 

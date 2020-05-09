@@ -2,6 +2,7 @@ package database;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,7 +15,9 @@ public class Comment {
     private Post post;
     private Person person;
 
-    public Comment() {}
+    public Comment() {
+    }
+
     public Comment(String text, Date date, Post post, Person person) {
         setText(text);
         setDate(date);
@@ -27,43 +30,48 @@ public class Comment {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
 
-    @Column (name = "text", length = 1000, nullable = false)
+    @Column(name = "text", length = 1000, nullable = false)
     public String getText() {
         return text;
     }
+
     public void setText(String text) {
         this.text = text;
     }
 
-    @Column (name = "date", nullable = false)
+    @Column(name = "date", nullable = false)
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "post_id", nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     public Post getPost() {
         return post;
     }
+
     public void setPost(Post post) {
         this.post = post;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "person_id", nullable = false)
+    @JoinColumn(name = "person_id", nullable = false)
     public Person getPerson() {
         return person;
     }
+
     public void setPerson(Person person) {
         this.person = person;
     }

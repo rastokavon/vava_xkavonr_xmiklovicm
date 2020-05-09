@@ -61,7 +61,7 @@ public class CompanyRegistrationController implements Controller {
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));
         welcomeLabel.setText(rbSk.getString("companyReg.welcome"));
         nameTextField.setPromptText(rbSk.getString("companyReg.nameField"));
         streetTextField.setPromptText(rbSk.getString("companyReg.street"));

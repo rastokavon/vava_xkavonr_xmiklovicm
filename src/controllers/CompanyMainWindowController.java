@@ -131,7 +131,7 @@ public class CompanyMainWindowController implements Controller {
         TableColumn firstName = new TableColumn(rbSk.getString("companyMain.fnColumn"));
         TableColumn lastName = new TableColumn(rbSk.getString("companyMain.lnColumn"));
         TableColumn username = new TableColumn(rbSk.getString("companyMain.unColumn"));
-        usersTable.getColumns().setAll(firstName, lastName,username);
+        usersTable.getColumns().setAll(firstName, lastName, username);
 
         firstName.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
@@ -141,7 +141,8 @@ public class CompanyMainWindowController implements Controller {
             usersTable.setItems(null);
             users = FXCollections.observableArrayList(ManagerPerson.getUsers(searchTextField.getText(), roomNumber));
             usersTable.setItems(users);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
     }
 

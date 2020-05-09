@@ -88,7 +88,7 @@ public class ManagerCompany {
     }
 
     public static StringBuffer createCompany(String name, String street, String city,
-                                     String country, String postalCode, String mail, String phoneNumber) {
+                                             String country, String postalCode, String mail, String phoneNumber) {
 
         Logger LOG = ProgramData.getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
@@ -154,14 +154,14 @@ public class ManagerCompany {
             errorBuffer.append(rbSk.getString("companyReg.isRegistered"));
             errorBuffer.append("\n");
             return errorBuffer;
-        }finally {
+        } finally {
             session.close();
         }
 
         return errorBuffer;
     }
 
-    public static Company isRegistered(int roomNumber, String password){
+    public static Company isRegistered(int roomNumber, String password) {
 
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -203,7 +203,7 @@ public class ManagerCompany {
         StringBuilder sb = new StringBuilder(lenght);
 
         for (int i = 0; i < lenght; i++) {
-            int index = (int)(AlphaNumericString.length() * Math.random());
+            int index = (int) (AlphaNumericString.length() * Math.random());
 
             sb.append(AlphaNumericString.charAt(index));
         }

@@ -100,8 +100,8 @@ public class UserRegistrationController implements Controller {
             return;
         }
         StringBuffer message = ManagerPerson.createPerson(firstNameTextField.getText(), lastNameTextField.getText(),
-                usernameTextField.getText(),passwordTextField.getText(), mailTextField.getText(),
-                phoneNumberTextField.getText(),Integer.parseInt(roomNumberTextField.getText()));
+                usernameTextField.getText(), passwordTextField.getText(), mailTextField.getText(),
+                phoneNumberTextField.getText(), Integer.parseInt(roomNumberTextField.getText()));
         if (message.length() == 0) {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));

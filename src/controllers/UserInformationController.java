@@ -74,7 +74,7 @@ public class UserInformationController implements Controller {
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
+        ResourceBundle rbSk =  ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
 
         signOutButton.setText(rbSk.getString("mainPan.signOut"));
         homeButton.setText(rbSk.getString("mainPan.home"));
@@ -165,6 +165,9 @@ public class UserInformationController implements Controller {
             table.setItems(posts);
         } catch (Exception e) {}
 
+    }
+
+    public void magnifierClicked(MouseEvent mouseEvent) {
     }
 }
 

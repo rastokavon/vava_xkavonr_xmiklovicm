@@ -26,13 +26,16 @@ public class ManagerPosts {
         Criteria crit = session.createCriteria(Post.class);
         crit.add(Restrictions.eq("person.id", person.getId()));
         List<Post> results = crit.list();
-
+        if (!results.isEmpty()) {
+            results.get(0).getPerson().getFirstName();
+        }
         session.getTransaction().commit();
         session.close();
 
         if (results.isEmpty()) {
             return null;
         }
+
         return results;
     }
 

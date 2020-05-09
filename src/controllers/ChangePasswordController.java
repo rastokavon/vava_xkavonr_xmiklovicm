@@ -56,6 +56,7 @@ public class ChangePasswordController implements Controller {
         primaryStage.setScene(sceneUserRegistration);
         primaryStage.show();
     }
+
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
@@ -124,8 +125,7 @@ public class ChangePasswordController implements Controller {
                 alert.setContentText(rbSk.getString("changePass.wrongPass"));
                 alert.showAndWait();
             }
-        }
-        else {
+        } else {
             if (user.getPassword().equals(oldPasswordTextField.getText())) {
                 if (newPasswordTextField.getText().equals(repeatNewPasswordTextField.getText()) &&
                         !newPasswordTextField.getText().equals("")) {

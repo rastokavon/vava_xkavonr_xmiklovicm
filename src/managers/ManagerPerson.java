@@ -46,7 +46,7 @@ public class ManagerPerson {
 
     }
 
-    public static Person isRegistered(String username, String password){
+    public static Person isRegistered(String username, String password) {
 
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -116,9 +116,13 @@ public class ManagerPerson {
         Query<Person> query = session.createQuery(cr);
         List<Person> results = query.getResultList();
         if (!results.isEmpty()) {
+            System.out.println(1);
             session.delete(results.get(0));
+            System.out.println(2);
         }
+        System.out.println(3);
         session.getTransaction().commit();
+        System.out.println(4);
         session.close();
     }
 
@@ -143,7 +147,7 @@ public class ManagerPerson {
     }
 
     public static StringBuffer createPerson(String firstName, String lastName, String username,
-                                       String password, String mail, String phoneNumber, int companyID) {
+                                            String password, String mail, String phoneNumber, int companyID) {
         Logger LOG = ProgramData.getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
@@ -191,7 +195,7 @@ public class ManagerPerson {
 
             t.commit();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             LOG.log(Level.SEVERE, "Nepodarilo sa pridat zaznam");
             errorBuffer.append(rbSk.getString("userReg.cantInsert"));
             errorBuffer.append("\n");
@@ -200,6 +204,7 @@ public class ManagerPerson {
         }
         return errorBuffer;
     }
+
     public static StringBuffer updatePerson(Person person, String firstName, String surname,
                                             String mail, String phoneNumber) {
         Logger LOG = ProgramData.getLOG();

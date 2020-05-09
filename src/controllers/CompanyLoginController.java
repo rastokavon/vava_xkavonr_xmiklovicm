@@ -51,7 +51,7 @@ public class CompanyLoginController implements Controller {
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
-        ResourceBundle rbSk =	ResourceBundle.getBundle(bundle, Locale.forLanguageTag("login"));
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("login"));
         welcomeLabel.setText(rbSk.getString("companyLogin.welcome"));
         signInButton.setText(rbSk.getString("login.signInButton"));
         signAsCompanyButton.setText(rbSk.getString("login.logAsCompany"));
@@ -64,7 +64,8 @@ public class CompanyLoginController implements Controller {
         primaryStage.setTitle(rbSk.getString("companyLogin.window"));
     }
 
-    public void signAsCompanyButtonClicked(ActionEvent actionEvent) {}
+    public void signAsCompanyButtonClicked(ActionEvent actionEvent) {
+    }
 
     public void signAsUserButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();

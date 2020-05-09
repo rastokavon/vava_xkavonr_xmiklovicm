@@ -75,7 +75,7 @@ public class UserDetailController implements Controller {
     public void setLabels() {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));
-        
+
         firstNameLabelUser.setText(person.getFirstName());
         secondNameLabelUser.setText(person.getLastName());
         usernameLabelUser.setText(person.getUsername());

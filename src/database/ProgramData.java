@@ -34,7 +34,8 @@ public class ProgramData {
         }
     }
 
-    private ProgramData() {}
+    private ProgramData() {
+    }
 
     public static ProgramData getInstance() {
         if (instance == null) {
