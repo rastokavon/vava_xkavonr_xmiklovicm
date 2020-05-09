@@ -5,69 +5,56 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.UserDetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserDetailController">
     <children>
         <AnchorPane prefHeight="400.0" prefWidth="256.0" style="-fx-background-color: #B6D5C1;">
             <children>
-                <Label fx:id="firstNameLabel" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="117.0" prefHeight="30.0"
-                       prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="First name:">
+                <Label fx:id="firstNameLabel" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="117.0" prefHeight="30.0" prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="First name:">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="secondNameLabel" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="161.0" prefHeight="30.0"
-                       prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Second name:">
+                <Label fx:id="secondNameLabel" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="161.0" prefHeight="30.0" prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Second name:">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="usernameLabel" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="205.0" prefHeight="30.0"
-                       prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Username:">
+                <Label fx:id="usernameLabel" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="205.0" prefHeight="30.0" prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Username:">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="mailLabel" alignment="CENTER_RIGHT" layoutY="249.0" prefHeight="30.0" prefWidth="240.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="Mail:">
+                <Label fx:id="mailLabel" alignment="CENTER_RIGHT" layoutY="249.0" prefHeight="30.0" prefWidth="240.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Mail:">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <Label fx:id="detailLabel" alignment="CENTER" layoutX="257.0" layoutY="40.0" prefHeight="38.0" prefWidth="340.0"
-               text="Detail" textFill="#499a8a">
+        <Label fx:id="detailLabel" alignment="CENTER" layoutX="257.0" layoutY="40.0" prefHeight="38.0" prefWidth="340.0" text="Detail" textFill="#499a8a">
             <font>
-                <Font name="Verdana" size="28.0"/>
+                <Font name="Verdana" size="28.0" />
             </font>
         </Label>
-        <Button fx:id="confirmButton" layoutX="288.0" layoutY="334.0" mnemonicParsing="false"
-                onAction="#confirmButtonClicked" prefHeight="35.0" prefWidth="278.0" stylesheets="@buttons_login.css"
-                text="OK"/>
-        <Label fx:id="firstNameLabelUser" alignment="CENTER" layoutX="278.0" layoutY="117.0" prefHeight="30.0"
-               prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Meno">
+        <Button fx:id="confirmButton" layoutX="288.0" layoutY="334.0" mnemonicParsing="false" onAction="#confirmButtonClicked" prefHeight="35.0" prefWidth="278.0" stylesheets="@buttons_login.css" text="OK" />
+        <Label fx:id="firstNameLabelUser" alignment="CENTER" layoutX="278.0" layoutY="117.0" prefHeight="30.0" prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Meno">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </Label>
-        <Label fx:id="mailLabelUser" alignment="CENTER" layoutX="278.0" layoutY="249.0" prefHeight="30.0"
-               prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Mail">
+        <Label fx:id="mailLabelUser" alignment="CENTER" layoutX="278.0" layoutY="249.0" prefHeight="30.0" prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Mail">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </Label>
-        <Label fx:id="usernameLabelUser" alignment="CENTER" layoutX="278.0" layoutY="205.0" prefHeight="30.0"
-               prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Username">
+        <Label fx:id="usernameLabelUser" alignment="CENTER" layoutX="278.0" layoutY="205.0" prefHeight="30.0" prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Username">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </Label>
-        <Label fx:id="secondNameLabelUser" alignment="CENTER" layoutX="278.0" layoutY="161.0" prefHeight="30.0"
-               prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Priezvisko">
+        <Label fx:id="secondNameLabelUser" alignment="CENTER" layoutX="278.0" layoutY="161.0" prefHeight="30.0" prefWidth="310.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Priezvisko">
             <font>
-                <Font size="20.0"/>
+                <Font size="20.0" />
             </font>
         </Label>
     </children>

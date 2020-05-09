@@ -48,6 +48,7 @@ public class ManagerPosts {
 
         for (Person p : users) {
             List<Post> tmpPosts = ManagerPosts.getPosts(p);
+            if (tmpPosts == null) continue;
             for (Post pt : tmpPosts) {
                 posts.add(pt);
             }

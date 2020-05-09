@@ -1,7 +1,6 @@
 package controllers;
 
 import database.Person;
-import database.Post;
 import database.ProgramData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,15 +13,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import managers.ManagerPosts;
+import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
-public class UserInformationController implements Controller {
-    Stage primaryStage;
-    Parent root;
+public class UserRoomMembers implements Controller {
+    @FXML
+    Hyperlink signedUserHiperlink;
 
     @FXML
     Button signOutButton;
@@ -30,15 +28,7 @@ public class UserInformationController implements Controller {
     Button homeButton;
     @FXML
     Button usersButton;
-    @FXML
-    Hyperlink signedUserHiperlink;
 
-    @FXML
-    Label usernameLabel;
-    @FXML
-    Label firstNameLabel;
-    @FXML
-    Label surnameLabel;
     @FXML
     Label streetLabel;
     @FXML
@@ -51,20 +41,30 @@ public class UserInformationController implements Controller {
     Label mailLabel;
     @FXML
     Label phoneNumberLabel;
+    @FXML
+    Label nameCompanyLabel;
+    @FXML
+    Label usersNumberLabel;
+    @FXML
+    Label roomIdLabel;
+    @FXML
+    Label allPostsLabel;
+    @FXML
+    Label roomLabel;
 
     @FXML
-    Button modifyButton;
-    @FXML
-    Button changePasswordButton;
+    TextField searchTextField;
 
     @FXML
-    TableView<Post> table;
+    TableView usersTable;
 
+    Stage primaryStage;
+    Parent root;
 
     @Override
     public void startController(Stage stage) throws Exception {
         primaryStage = stage;
-        root = FXMLLoader.load(UserRegistrationController.class.getResource("../GUI/UserInformation.fxml"));
+        root = FXMLLoader.load(UserRoomMembers.class.getResource("../GUI/UserRoomMembers.fxml"));
 
         Scene sceneUserLogin = new Scene(root);
 
@@ -83,9 +83,6 @@ public class UserInformationController implements Controller {
 
         rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
-        usernameLabel.setText(ProgramData.getInstance().getUser().getUsername());
-        firstNameLabel.setText(ProgramData.getInstance().getUser().getFirstName());
-        surnameLabel.setText(ProgramData.getInstance().getUser().getLastName());
         streetLabel.setText("street");
         cityLabel.setText("city");
         countryLabel.setText("country");
@@ -93,11 +90,9 @@ public class UserInformationController implements Controller {
         mailLabel.setText(ProgramData.getInstance().getUser().getMail());
         phoneNumberLabel.setText(ProgramData.getInstance().getUser().getPhoneNumber());
 
-        modifyButton.setText(rbSk.getString("companyMain.modifyInfo"));
-        changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
-
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("userInfo.title"));
+
         fillTable();
     }
 
@@ -111,8 +106,11 @@ public class UserInformationController implements Controller {
         initialize();
     }
 
-
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller clc = new UserInformationController();
+        clc.startController(primaryStage);
     }
 
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -129,50 +127,32 @@ public class UserInformationController implements Controller {
         clc.startController(primaryStage);
     }
 
-    public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
-        primaryStage = ProgramData.getInstance().getPrimaryStage();
-
-        Controller urmc = new UserRoomMembers();
-        urmc.startController(primaryStage);
-    }
-
-    public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
-        primaryStage = ProgramData.getInstance().getPrimaryStage();
-
-        Controller cpc = new ChangePasswordController();
-        cpc.startController(primaryStage);
-    }
-
-    public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
-        primaryStage = new Stage();
-
-        Controller mpc = new ModifyPersonController();
-        mpc.startController(primaryStage);
-    }
-
-    public void fillTable() {
-        //String bundle = ProgramData.getInstance().getLanguage();
-        //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
-
-
-        TableColumn titles = new TableColumn("Titles");
-        TableColumn dates = new TableColumn("Dates");
-        table.getColumns().setAll(titles, dates);
-
-        titles.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
-        dates.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
-
-        try {
-            final ObservableList<Post> posts;
-            table.setItems(null);
-            posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser()));
-            table.setItems(posts);
-        } catch (Exception e) {}
-
+    public void usersButtonClicked(ActionEvent actionEvent) {
     }
 
     public void magnifierClicked(MouseEvent mouseEvent) {
     }
+
+    public void fillTable() {
+        int roomNumber = ProgramData.getInstance().getUser().getCompany().getId();
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
+
+        TableColumn firstName = new TableColumn(rbSk.getString("companyMain.fnColumn"));
+        TableColumn lastName = new TableColumn(rbSk.getString("companyMain.lnColumn"));
+        TableColumn username = new TableColumn(rbSk.getString("companyMain.unColumn"));
+        usersTable.getColumns().setAll(firstName, lastName, username);
+
+        firstName.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+        username.setCellValueFactory(new PropertyValueFactory<Person, String>("username"));
+        try {
+            final ObservableList<Person> users;
+            usersTable.setItems(null);
+            users = FXCollections.observableArrayList(ManagerPerson.getUsers(searchTextField.getText(), roomNumber));
+            usersTable.setItems(users);
+        } catch (Exception e) {
+        }
+
+    }
 }
-
-

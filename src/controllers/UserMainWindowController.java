@@ -88,7 +88,11 @@ public class UserMainWindowController implements Controller {
     public void homeButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void usersButtonClicked(ActionEvent actionEvent) {
+    public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller urmc = new UserRoomMembers();
+        urmc.startController(primaryStage);
     }
 
     public void fillTable() {
@@ -130,11 +134,10 @@ public class UserMainWindowController implements Controller {
                 tableAllPosts.add(tap);
             }
             ObservableList<TableAllPosts> tablePosts = FXCollections.observableArrayList(tableAllPosts);
-
-
             title.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("title"));
             author.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("dateName"));
             table.setItems(tablePosts);
+            //table.getStyleClass().add("noheader.css");
         } catch (Exception e) {
         }
 

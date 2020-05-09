@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -7,50 +8,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.CompanyRegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CompanyRegistrationController">
     <children>
-        <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="123.0" layoutY="80.0" prefHeight="44.0"
-               prefWidth="675.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;"
-               text="Znenie celého postu alebo otázky" textAlignment="CENTER" textFill="#499a8a"/>
+        <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="123.0" layoutY="80.0" prefHeight="44.0" prefWidth="675.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Znenie celého postu alebo otázky" textAlignment="CENTER" textFill="#499a8a" />
         <AnchorPane prefHeight="36.0" prefWidth="800.0" style="-fx-background-color: #B6D1C5;">
             <children>
-                <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="713.0" layoutY="7.0"
-                           onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="713.0" layoutY="7.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/slovakFlag.png"/>
+                        <Image url="@../images/slovakFlag.png" />
                     </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </ImageView>
-                <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="8.0"
-                           onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="8.0" onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/britainFlag.png"/>
+                        <Image url="@../images/britainFlag.png" />
                     </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </ImageView>
-                <Hyperlink layoutX="577.0" prefHeight="35.0" prefWidth="135.0"
-                           style="-fx-border-width: 0px 0px 0px 0px;" text="Prihlaseny pouzivatel"/>
-                <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css"
-                        text="Odhlásiť"/>
-                <Button layoutX="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0"
-                        stylesheets="@buttons_login.css" text="Domov"/>
-                <Button layoutX="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0"
-                        stylesheets="@buttons_login.css" text="Používatelia"/>
+                <Hyperlink layoutX="577.0" prefHeight="35.0" prefWidth="135.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Prihlaseny pouzivatel" />
+                <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css" text="Odhlásiť" />
+                <Button layoutX="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css" text="Domov" />
+                <Button layoutX="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@buttons_login.css" text="Používatelia" />
             </children>
         </AnchorPane>
-        <ImageView fitHeight="100.0" fitWidth="94.0" layoutX="30.0" layoutY="43.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView fitHeight="100.0" fitWidth="94.0" layoutX="30.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/user.png"/>
+                <Image url="@../images/user.png" />
             </image>
         </ImageView>
-        <Hyperlink alignment="CENTER" layoutX="30.0" layoutY="130.0" prefHeight="23.0" prefWidth="94.0"
-                   text="Post user"/>
-        <Button layoutX="6.0" layoutY="457.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="122.0"
-                text="Pridať komentár"/>
-        <Label alignment="TOP_LEFT" layoutX="138.0" layoutY="147.0" prefHeight="150.0" prefWidth="646.0" text="Label"/>
-        <Label layoutX="138.0" layoutY="297.0" prefHeight="18.0" prefWidth="178.0"
-               text="Pridal anonym pred 7 hodinami"/>
-        <Label layoutX="138.0" layoutY="336.0" prefHeight="18.0" prefWidth="187.0" text="comanets"/>
+        <Hyperlink alignment="CENTER" layoutX="30.0" layoutY="130.0" prefHeight="23.0" prefWidth="94.0" text="Post user" />
+        <Button layoutX="6.0" layoutY="457.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="122.0" text="Pridať komentár" />
+        <Label alignment="TOP_LEFT" layoutX="138.0" layoutY="147.0" prefHeight="150.0" prefWidth="646.0" text="Label" />
+        <Label layoutX="138.0" layoutY="297.0" prefHeight="18.0" prefWidth="178.0" text="Pridal anonym pred 7 hodinami" />
+        <Label layoutX="138.0" layoutY="336.0" prefHeight="18.0" prefWidth="187.0" text="comanets" />
     </children>
 </AnchorPane>

@@ -1,19 +1,18 @@
 .table-row-cell {
     -fx-background-color: transparent;
-    -fx-min-height: 80;
+    -fx-min-height: 40;
 }
 .table-row-cell:focused {
     -fx-background-color: #e8f3e5;
-
     -fx-font-weight: bold;
 }
 .table-view {
     -fx-background-color: transparent;
 }
 .column-header {
-    -fx-background-color: transparent;
-    -fx-border-width: 0, 0;
-    -fx-font-size: 1px;
+    -fx-background-color: #B6D5C1;
+    -fx-border-color: #499a8a;
+    -fx-border-width: 1px 1px 1px 1px;
 }
 .table-cell {
     -fx-border-color: transparent -fx-box-border transparent transparent;

@@ -14,133 +14,110 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-            prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.CompanyMainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CompanyMainWindowController">
     <children>
-        <Label fx:id="roomLabel" alignment="CENTER" layoutX="417.0" layoutY="14.0" prefHeight="74.0" prefWidth="290.0"
-               style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Room xyz" textAlignment="CENTER"
-               textFill="#499a8a"/>
-        <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0"
-                   onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="roomLabel" alignment="CENTER" layoutX="417.0" layoutY="14.0" prefHeight="74.0" prefWidth="290.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Room xyz" textAlignment="CENTER" textFill="#499a8a" />
+        <ImageView fx:id="slovakFlag" fitHeight="23.0" fitWidth="29.0" layoutX="719.0" layoutY="15.0" onMouseClicked="#slovakFlagClicked" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/slovakFlag.png"/>
+                <Image url="@../images/slovakFlag.png" />
             </image>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="15.0"
-                   onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="britishFlag" fitHeight="23.0" fitWidth="29.0" layoutX="757.0" layoutY="15.0" onMouseClicked="#britishFlagClicked" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/britainFlag.png"/>
+                <Image url="@../images/britainFlag.png" />
             </image>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <TableView fx:id="usersTable" layoutX="317.0" layoutY="160.0" prefHeight="333.0" prefWidth="474.0">
+        <TableView fx:id="usersTable" layoutX="317.0" layoutY="160.0" prefHeight="333.0" prefWidth="474.0" stylesheets="@basic_table.css">
             <columns>
-                <TableColumn prefWidth="75.0" text="Column X"/>
-                <TableColumn prefWidth="75.0" text="Column X"/>
-                <TableColumn prefWidth="75.0" text="Column X"/>
+                <TableColumn prefWidth="75.0" text="Column X" />
+                <TableColumn prefWidth="75.0" text="Column X" />
+                <TableColumn prefWidth="75.0" text="Column X" />
             </columns>
             <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
             <contextMenu>
                 <ContextMenu fx:id="contextMenu">
                     <items>
-                        <MenuItem fx:id="deleteCM" onAction="#deleteCMClicked" mnemonicParsing="false" text="Delete"/>
-                        <MenuItem fx:id="showCM" onAction="#showCMClicked" mnemonicParsing="false" text="Show"/>
+                        <MenuItem fx:id="deleteCM" mnemonicParsing="false" onAction="#deleteCMClicked" text="Delete" />
+                        <MenuItem fx:id="showCM" mnemonicParsing="false" onAction="#showCMClicked" text="Show" />
                     </items>
                 </ContextMenu>
             </contextMenu>
         </TableView>
         <AnchorPane prefHeight="500.0" prefWidth="299.0" style="-fx-background-color: #B6D1C5;">
             <children>
-                <Hyperlink fx:id="signOutHyperlink" alignment="CENTER" onAction="#signOutHyperlinkClicked"
-                           prefHeight="47.0" prefWidth="125.0" style="-fx-border-width: 0px 0px 0px 0px;"
-                           text="Sign out" visited="true">
+                <Hyperlink fx:id="signOutHyperlink" alignment="CENTER" onAction="#signOutHyperlinkClicked" prefHeight="47.0" prefWidth="125.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Sign out" visited="true">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Hyperlink>
-                <Label fx:id="nameLabel" alignment="CENTER" layoutX="-5.0" layoutY="109.0" prefHeight="32.0"
-                       prefWidth="312.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-weight: bold;"
-                       text="Firma ab">
+                <Label fx:id="nameLabel" alignment="CENTER" layoutX="-5.0" layoutY="109.0" prefHeight="32.0" prefWidth="312.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-weight: bold;" text="Firma ab">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="streetLabel" layoutX="14.0" layoutY="152.0" prefHeight="32.0" prefWidth="171.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="street">
+                <Label fx:id="streetLabel" layoutX="14.0" layoutY="152.0" prefHeight="32.0" prefWidth="171.0" style="-fx-font-family: &quot;Verdana&quot;;" text="street">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="cityLabel" layoutX="185.0" layoutY="152.0" prefHeight="32.0" prefWidth="126.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="city">
+                <Label fx:id="cityLabel" layoutX="185.0" layoutY="152.0" prefHeight="32.0" prefWidth="126.0" style="-fx-font-family: &quot;Verdana&quot;;" text="city">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="countryLabel" layoutX="185.0" layoutY="184.0" prefHeight="32.0" prefWidth="126.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="country">
+                <Label fx:id="countryLabel" layoutX="185.0" layoutY="184.0" prefHeight="32.0" prefWidth="126.0" style="-fx-font-family: &quot;Verdana&quot;;" text="country">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="postalCodeLabel" layoutX="14.0" layoutY="184.0" prefHeight="32.0" prefWidth="171.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="postal code">
+                <Label fx:id="postalCodeLabel" layoutX="14.0" layoutY="184.0" prefHeight="32.0" prefWidth="171.0" style="-fx-font-family: &quot;Verdana&quot;;" text="postal code">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="mailLabel" layoutX="14.0" layoutY="239.0" prefHeight="32.0" prefWidth="297.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="mail">
+                <Label fx:id="mailLabel" layoutX="14.0" layoutY="239.0" prefHeight="32.0" prefWidth="297.0" style="-fx-font-family: &quot;Verdana&quot;;" text="mail">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="phoneNumberLabel" layoutX="14.0" layoutY="271.0" prefHeight="32.0" prefWidth="297.0"
-                       style="-fx-font-family: &quot;Verdana&quot;;" text="phone number">
+                <Label fx:id="phoneNumberLabel" layoutX="14.0" layoutY="271.0" prefHeight="32.0" prefWidth="297.0" style="-fx-font-family: &quot;Verdana&quot;;" text="phone number">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Button fx:id="modifyButton" layoutX="58.0" layoutY="320.0" mnemonicParsing="false"
-                        onAction="#modifyButtonClicked" prefHeight="26.0" prefWidth="195.0"
-                        style="-fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Modify ">
+                <Button fx:id="modifyButton" layoutX="58.0" layoutY="320.0" mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Modify ">
                     <font>
-                        <Font name="Verdana" size="14.0"/>
+                        <Font name="Verdana" size="14.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="changePasswordButton" layoutX="58.0" layoutY="355.0" mnemonicParsing="false"
-                        onAction="#changePasswordButtonClicked" prefHeight="26.0" prefWidth="195.0"
-                        style="-fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Change password">
+                <Button fx:id="changePasswordButton" layoutX="58.0" layoutY="355.0" mnemonicParsing="false" onAction="#changePasswordButtonClicked" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #499A8a; -fx-background-radius: 0px;" text="Change password">
                     <font>
-                        <Font name="Verdana" size="14.0"/>
+                        <Font name="Verdana" size="14.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
             </children>
         </AnchorPane>
-        <TextField fx:id="searchTextField" layoutX="328.0" layoutY="116.0" prefHeight="34.0" prefWidth="416.0"
-                   promptText="Search for person"
-                   style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;"/>
-        <ImageView fx:id="magnifier" fitHeight="34.0" fitWidth="36.0" layoutX="753.0" layoutY="116.0"
-                   onMouseClicked="#magnifierClicked" pickOnBounds="true" preserveRatio="true">
+        <TextField fx:id="searchTextField" layoutX="328.0" layoutY="116.0" prefHeight="34.0" prefWidth="416.0" promptText="Search for person" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 16; -fx-border-color: #499A8A; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
+        <ImageView fx:id="magnifier" fitHeight="34.0" fitWidth="36.0" layoutX="753.0" layoutY="116.0" onMouseClicked="#magnifierClicked" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/magnifier.png"/>
+                <Image url="@../images/magnifier.png" />
             </image>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
     </children>
