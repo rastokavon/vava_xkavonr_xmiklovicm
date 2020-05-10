@@ -116,13 +116,9 @@ public class ManagerPerson {
         Query<Person> query = session.createQuery(cr);
         List<Person> results = query.getResultList();
         if (!results.isEmpty()) {
-            System.out.println(1);
             session.delete(results.get(0));
-            System.out.println(2);
         }
-        System.out.println(3);
         session.getTransaction().commit();
-        System.out.println(4);
         session.close();
     }
 

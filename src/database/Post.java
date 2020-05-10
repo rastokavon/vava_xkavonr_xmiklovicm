@@ -64,7 +64,7 @@ public class Post {
         this.date = date;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "person_id", nullable = false)
     public Person getPerson() {

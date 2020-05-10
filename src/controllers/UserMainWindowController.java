@@ -96,27 +96,6 @@ public class UserMainWindowController implements Controller {
     }
 
     public void fillTable() {
-        //String bundle = ProgramData.getInstance().getLanguage();
-        //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
-
-
-//        TableColumn title = new TableColumn("Title");
-//        TableColumn author = new TableColumn("Author");
-//        TableColumn date = new TableColumn("Date");
-//        table.getColumns().setAll(title, date, author);
-//
-//        title.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
-//        date.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
-//        author.setCellValueFactory(new PropertyValueFactory<Post, String>("person.username"));
-//
-//
-//        try {
-//            final ObservableList<Post> posts;
-//            table.setItems(null);
-//            posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser().getCompany()));
-//            table.setItems(posts);
-//        } catch (Exception e) {
-//        }
 
         TableColumn title = new TableColumn("Title");
         TableColumn author = new TableColumn("About");

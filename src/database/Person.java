@@ -92,7 +92,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "room_id", nullable = false)
     public Company getCompany() {

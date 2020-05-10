@@ -1,5 +1,6 @@
 package controllers;
 
+import database.Company;
 import database.Person;
 import database.ProgramData;
 import javafx.collections.FXCollections;
@@ -13,8 +14,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import managers.ManagerCompany;
 import managers.ManagerPerson;
+import managers.ManagerPosts;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -83,15 +87,47 @@ public class UserRoomMembers implements Controller {
 
         rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
-        streetLabel.setText("street");
-        cityLabel.setText("city");
-        countryLabel.setText("country");
-        postalCodeLabel.setText("91943");
+        Company company = ProgramData.getInstance().getUser().getCompany();
+
+        nameCompanyLabel.setText(company.getName());
+        streetLabel.setText(company.getStreet());
+        cityLabel.setText(company.getCity());
+        countryLabel.setText(company.getCountry());
+        postalCodeLabel.setText(company.getPostalCode());
         mailLabel.setText(ProgramData.getInstance().getUser().getMail());
         phoneNumberLabel.setText(ProgramData.getInstance().getUser().getPhoneNumber());
+        usersNumberLabel.setText("Number of users in room: " +
+                ManagerPerson.getUsers("", company.getId()).size());
+        allPostsLabel.setText("All posts in room: " +
+                ManagerPosts.getPosts(company).size());
+        roomIdLabel.setText("Room ID: " + String.valueOf(company.getId()));
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("userInfo.title"));
+        usersTable.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 1) {
+                Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
+
+                if (person != null) {
+                    primaryStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(UserDetailController.class.getResource("../GUI/UserDetail.fxml"));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {}
+                    Scene scene = new Scene(root);
+
+                    primaryStage.setScene(scene);
+
+                    UserDetailController udc = loader.getController();
+                    udc.setPerson(person);
+                    try {
+                        udc.startController(primaryStage);
+                    } catch (Exception e) {}
+                    primaryStage.show();
+                }
+            }
+        });
 
         fillTable();
     }
@@ -131,6 +167,7 @@ public class UserRoomMembers implements Controller {
     }
 
     public void magnifierClicked(MouseEvent mouseEvent) {
+        fillTable();
     }
 
     public void fillTable() {
