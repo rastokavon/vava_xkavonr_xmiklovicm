@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@noheader.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserMainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@noheader.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserMainWindowController">
     <children>
         <AnchorPane prefHeight="36.0" prefWidth="800.0" style="-fx-background-color: #B6D1C5;">
             <children>
@@ -46,7 +46,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-      <Button fx:id="addPostButton" layoutX="609.0" layoutY="451.0" mnemonicParsing="false" onAction="#addPostButtonClicked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-radius: 30px;" stylesheets="@buttons_login.css" text="+ Add post">
+      <Button fx:id="addPostButton" layoutX="593.0" layoutY="451.0" mnemonicParsing="false" onAction="#addPostButtonClicked" prefHeight="36.0" prefWidth="192.0" style="-fx-background-radius: 30px;" stylesheets="@buttons_login.css" text="+ Pridat prispevok">
          <font>
             <Font size="16.0" />
          </font></Button>

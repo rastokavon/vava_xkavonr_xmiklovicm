@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import managers.ManagerPosts;
 import tables.TableAllPosts;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -60,6 +61,10 @@ public class UserMainWindowController implements Controller {
         homeButton.setText(rbSk.getString("mainPan.home"));
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHiperlink.setText(ProgramData.getInstance().getUser().getUsername());
+
+        addPostButton.setText(rbSk.getString("main.addPost"));
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("main.title"));
 
         table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
@@ -114,19 +119,23 @@ public class UserMainWindowController implements Controller {
     }
 
     public void fillTable() {
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
 
-        TableColumn title = new TableColumn("Title");
-        TableColumn author = new TableColumn("About");
+        TableColumn title = new TableColumn(rbSk.getString("main.tableTitle"));
+        TableColumn author = new TableColumn(rbSk.getString("main.tableAbout"));
         table.getColumns().setAll(title, author);
 
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             List<Post> posts;
             List<TableAllPosts> tableAllPosts = new ArrayList<>();
             table.setItems(null);
             posts = ManagerPosts.getPosts(ProgramData.getInstance().getUser().getCompany());
             for (Post p : posts) {
                 TableAllPosts tap = new TableAllPosts();
-                tap.setDateName("Added: " + p.getDate() +  "\nUser: @" + p.getPerson().getUsername());
+                tap.setDateName(rbSk.getString("main.added") + (formatter.format(p.getDate())) +  "\n" +
+                        rbSk.getString("main.user") + p.getPerson().getUsername());
                 tap.setTitle(p.getTitle());
                 tableAllPosts.add(tap);
             }

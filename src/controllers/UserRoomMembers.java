@@ -85,10 +85,10 @@ public class UserRoomMembers implements Controller {
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHiperlink.setText(ProgramData.getInstance().getUser().getUsername());
 
-        rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
-
         Company company = ProgramData.getInstance().getUser().getCompany();
 
+        roomLabel.setText(rbSk.getString("userRoom.roomLabel"));
+        searchTextField.setPromptText(rbSk.getString("userRoom.search"));
         nameCompanyLabel.setText(company.getName());
         streetLabel.setText(company.getStreet());
         cityLabel.setText(company.getCity());
@@ -96,14 +96,14 @@ public class UserRoomMembers implements Controller {
         postalCodeLabel.setText(company.getPostalCode());
         mailLabel.setText(ProgramData.getInstance().getUser().getMail());
         phoneNumberLabel.setText(ProgramData.getInstance().getUser().getPhoneNumber());
-        usersNumberLabel.setText("Number of users in room: " +
+        usersNumberLabel.setText(rbSk.getString("userRoom.number") +
                 ManagerPerson.getUsers("", company.getId()).size());
-        allPostsLabel.setText("All posts in room: " +
+        allPostsLabel.setText(rbSk.getString("userRoom.posts") +
                 ManagerPosts.getPosts(company).size());
-        roomIdLabel.setText("Room ID: " + String.valueOf(company.getId()));
+        roomIdLabel.setText(rbSk.getString("userRoom.id") + String.valueOf(company.getId()));
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();
-        primaryStage.setTitle(rbSk.getString("userInfo.title"));
+        primaryStage.setTitle(rbSk.getString("userRoom.title"));
         usersTable.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
                 Person person = (Person) usersTable.getSelectionModel().getSelectedItem();

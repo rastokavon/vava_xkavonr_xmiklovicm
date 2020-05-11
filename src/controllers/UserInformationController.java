@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import managers.ManagerPosts;
 import tables.TableAllPosts;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -36,6 +37,8 @@ public class UserInformationController implements Controller {
     @FXML
     Hyperlink signedUserHiperlink;
 
+    @FXML
+    Label mainLabel;
     @FXML
     Label usernameLabel;
     @FXML
@@ -86,6 +89,11 @@ public class UserInformationController implements Controller {
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHiperlink.setText(ProgramData.getInstance().getUser().getUsername());
 
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("userInfo.title"));
+        mainLabel.setText(rbSk.getString("userInfo.question"));
+        addPostButton.setText(rbSk.getString("main.addPost"));
+
         rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
         usernameLabel.setText(ProgramData.getInstance().getUser().getUsername());
@@ -101,8 +109,6 @@ public class UserInformationController implements Controller {
         modifyButton.setText(rbSk.getString("companyMain.modifyInfo"));
         changePasswordButton.setText(rbSk.getString("companyMain.changePassword"));
 
-        primaryStage = ProgramData.getInstance().getPrimaryStage();
-        primaryStage.setTitle(rbSk.getString("userInfo.title"));
         table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
                 TableAllPosts post = (TableAllPosts) table.getSelectionModel().getSelectedItem();
@@ -171,8 +177,8 @@ public class UserInformationController implements Controller {
     }
 
     public void fillTable() {
-        //String bundle = ProgramData.getInstance().getLanguage();
-        //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
 
 
         TableColumn title = new TableColumn("Titles");
@@ -183,13 +189,16 @@ public class UserInformationController implements Controller {
         author.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
 
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+
             List<Post> posts;
             List<TableAllPosts> tableAllPosts = new ArrayList<>();
             table.setItems(null);
             posts = ManagerPosts.getPosts(ProgramData.getInstance().getUser());
             for (Post p : posts) {
                 TableAllPosts tap = new TableAllPosts();
-                tap.setDateName("Added: " + p.getDate() +  "\nUser: @" + p.getPerson().getUsername());
+                tap.setDateName(rbSk.getString("main.added") + (formatter.format(p.getDate())) +  "\n" +
+                        rbSk.getString("main.user") + p.getPerson().getUsername());
                 tap.setTitle(p.getTitle());
                 tableAllPosts.add(tap);
             }

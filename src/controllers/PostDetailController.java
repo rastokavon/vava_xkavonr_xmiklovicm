@@ -73,13 +73,18 @@ public class PostDetailController implements Controller {
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk =  ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
 
         signOutButton.setText(rbSk.getString("mainPan.signOut"));
         homeButton.setText(rbSk.getString("mainPan.home"));
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHyperlink.setText(ProgramData.getInstance().getUser().getUsername());
+
+        commentsLabel.setText(rbSk.getString("userPost.comments"));
+        addCommentButton.setText(rbSk.getString("userPost.commentButton"));
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("userPost.windowTitle"));
 
         userPostedHyperlink.setText(ProgramData.getInstance().getPost().getPerson().getUsername());
         dateLabel.setText(formatter.format(ProgramData.getInstance().getPost().getDate()));
@@ -147,23 +152,26 @@ public class PostDetailController implements Controller {
     }
 
     public void fillCommentsTable() {
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk =  ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
 
         TableColumn text = new TableColumn("Title");
         TableColumn author = new TableColumn("About");
         commentsTable.getColumns().setAll(text, author);
 
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+
             List<Comment> comments;
             List<TableAllPosts> tableAllComments = new ArrayList<>();
             commentsTable.setItems(null);
             comments = ManagerComments.getComments(ProgramData.getInstance().getPost());
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             if (comments != null) {
 
                 for (Comment c : comments) {
                     TableAllPosts tap = new TableAllPosts();
-                    tap.setDateName("Added: " + formatter.format(c.getDate()) +
-                            "\nUser: @" + c.getPerson().getUsername());
+                    tap.setDateName(rbSk.getString("main.added") + formatter.format(c.getDate()) +
+                            "\n" + rbSk.getString("main.user") + c.getPerson().getUsername());
                     tap.setTitle(c.getText());
                     tableAllComments.add(tap);
                 }

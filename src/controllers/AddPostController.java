@@ -63,6 +63,17 @@ public class AddPostController implements Controller {
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHyperlink.setText(ProgramData.getInstance().getUser().getUsername());
 
+        titleLabel.setText(rbSk.getString("userAddPost.title"));
+        postLabel.setText(rbSk.getString("userAddPost.post"));
+
+        titleTextField.setPromptText(rbSk.getString("userAddPost.titlePrompt"));
+        postTextArea.setPromptText(rbSk.getString("userAddPost.postPrompt"));
+
+        addPostButton.setText(rbSk.getString("userAddPost.addButton"));
+
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+        primaryStage.setTitle(rbSk.getString("userAddPost.windowTitle"));
+
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {

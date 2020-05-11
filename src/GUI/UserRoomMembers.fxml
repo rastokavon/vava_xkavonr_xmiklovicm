@@ -107,7 +107,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <Label fx:id="roomLabel" alignment="CENTER" layoutX="414.0" layoutY="59.0" prefHeight="46.0" prefWidth="330.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="All users in this room" textAlignment="CENTER" textFill="#499a8a" />
+        <Label fx:id="roomLabel" alignment="CENTER" layoutX="314.0" layoutY="59.0" prefHeight="46.0" prefWidth="483.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-size: 30;" text="Vsetci pouzivatelia v miestnosti" textAlignment="CENTER" textFill="#499a8a" />
         <TableView fx:id="usersTable" layoutX="322.0" layoutY="169.0" prefHeight="328.0" prefWidth="468.0" stylesheets="@basic_table.css">
             <columns>
                 <TableColumn maxWidth="156.0" minWidth="156.0" prefWidth="202.4000244140625" text="Frst name" />
