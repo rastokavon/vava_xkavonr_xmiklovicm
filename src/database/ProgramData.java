@@ -1,5 +1,6 @@
 package database;
 
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import managers.ManagerCompany;
 
@@ -18,6 +19,7 @@ public class ProgramData {
 
     private Company company;
     private Person user;
+    private Post post = null;
 
     private static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
 
@@ -84,5 +86,11 @@ public class ProgramData {
         this.user = user;
     }
 
+    public Post getPost() {
+        return post;
+    }
 
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }

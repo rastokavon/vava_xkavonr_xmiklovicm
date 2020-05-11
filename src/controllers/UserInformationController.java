@@ -15,7 +15,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerPosts;
+import tables.TableAllPosts;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -60,7 +63,7 @@ public class UserInformationController implements Controller {
     Button addPostButton;
 
     @FXML
-    TableView<Post> table;
+    TableView<TableAllPosts> table;
 
 
     @Override
@@ -100,6 +103,21 @@ public class UserInformationController implements Controller {
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("userInfo.title"));
+        table.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 1) {
+                TableAllPosts post = (TableAllPosts) table.getSelectionModel().getSelectedItem();
+
+                if (post != null) {
+                    primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+                    Controller pdc = new PostDetailController();
+                    try {
+                        ProgramData.getInstance().setPost(ManagerPosts.getPost(post.getTitle()));
+                        pdc.startController(primaryStage);
+                    } catch (Exception e) {}
+                }
+            }
+        });
         fillTable();
     }
 
@@ -157,21 +175,32 @@ public class UserInformationController implements Controller {
         //ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("mainCom"));
 
 
-        TableColumn titles = new TableColumn("Titles");
-        TableColumn dates = new TableColumn("Dates");
-        table.getColumns().setAll(titles, dates);
+        TableColumn title = new TableColumn("Titles");
+        TableColumn author = new TableColumn("Dates");
+        table.getColumns().setAll(title, author);
 
-        titles.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
-        dates.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
+        title.setCellValueFactory(new PropertyValueFactory<Post, String>("title"));
+        author.setCellValueFactory(new PropertyValueFactory<Post, String>("date"));
 
         try {
-            final ObservableList<Post> posts;
+            List<Post> posts;
+            List<TableAllPosts> tableAllPosts = new ArrayList<>();
             table.setItems(null);
-            posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser()));
-            table.setItems(posts);
-
-            table.getSortOrder().add(dates);
+            posts = ManagerPosts.getPosts(ProgramData.getInstance().getUser());
+            for (Post p : posts) {
+                TableAllPosts tap = new TableAllPosts();
+                tap.setDateName("Added: " + p.getDate() +  "\nUser: @" + p.getPerson().getUsername());
+                tap.setTitle(p.getTitle());
+                tableAllPosts.add(tap);
+            }
+            ObservableList<TableAllPosts> tablePosts = FXCollections.observableArrayList(tableAllPosts);
+            title.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("title"));
+            author.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("dateName"));
+            table.setItems(tablePosts);
+            table.getSortOrder().add(author);
         } catch (Exception e) {}
+
+
 
     }
 

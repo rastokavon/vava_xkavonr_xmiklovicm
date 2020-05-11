@@ -1,5 +1,6 @@
 package controllers;
 
+import database.Person;
 import database.Post;
 import database.ProgramData;
 import javafx.collections.FXCollections;
@@ -60,6 +61,21 @@ public class UserMainWindowController implements Controller {
         usersButton.setText(rbSk.getString("mainPan.users"));
         signedUserHiperlink.setText(ProgramData.getInstance().getUser().getUsername());
 
+        table.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 1) {
+                TableAllPosts post = (TableAllPosts) table.getSelectionModel().getSelectedItem();
+
+                if (post != null) {
+                    primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+                    Controller pdc = new PostDetailController();
+                    try {
+                        ProgramData.getInstance().setPost(ManagerPosts.getPost(post.getTitle()));
+                        pdc.startController(primaryStage);
+                    } catch (Exception e) {}
+                }
+            }
+        });
         fillTable();
     }
 

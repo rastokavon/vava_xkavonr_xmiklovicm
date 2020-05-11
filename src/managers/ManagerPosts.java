@@ -19,6 +19,22 @@ import java.util.logging.Logger;
 
 public class ManagerPosts {
 
+    public static Post getPost(String title) {
+        Session session = CreateDatabase.getSession();
+        session.beginTransaction();
+        Criteria crit = session.createCriteria(Post.class);
+        crit.add(Restrictions.eq("title", title));
+        List<Post> results = crit.list();
+        session.getTransaction().commit();
+        session.close();
+
+        if (results.isEmpty()) {
+            return null;
+        }
+
+        return results.get(0);
+    }
+
     public static List<Post> getPosts(Person person) {
 
         Session session = CreateDatabase.getSession();
