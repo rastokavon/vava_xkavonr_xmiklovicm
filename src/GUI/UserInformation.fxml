@@ -108,7 +108,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <TableView fx:id="table" layoutX="312.0" layoutY="130.0" prefHeight="372.0" prefWidth="487.0" stylesheets="@noheader.css">
+        <TableView fx:id="table" layoutX="312.0" layoutY="130.0" prefHeight="329.0" prefWidth="487.0" stylesheets="@noheader.css">
             <columns>
                 <TableColumn prefWidth="368.800048828125" text="Title" />
                 <TableColumn prefWidth="116.79998779296875" text="Date" />
@@ -122,5 +122,10 @@
                 <Font size="30.0" />
             </font>
         </Label>
+      <Button fx:id="addPostButton" layoutX="619.0" layoutY="461.0" mnemonicParsing="false" onAction="#addPostButtonClicked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-radius: 30px;" stylesheets="@buttons_login.css" text="+ Add post">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

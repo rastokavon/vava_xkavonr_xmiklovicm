@@ -32,6 +32,8 @@ public class UserMainWindowController implements Controller {
     @FXML
     Button usersButton;
     @FXML
+    Button addPostButton;
+    @FXML
     Hyperlink signedUserHiperlink;
     @FXML
     TableView<TableAllPosts> table;
@@ -116,9 +118,16 @@ public class UserMainWindowController implements Controller {
             title.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("title"));
             author.setCellValueFactory(new PropertyValueFactory<TableAllPosts, String>("dateName"));
             table.setItems(tablePosts);
-            //table.getStyleClass().add("noheader.css");
+            table.getSortOrder().add(author);
         } catch (Exception e) {
         }
 
+    }
+
+    public void addPostButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller apc = new AddPostController();
+        apc.startController(primaryStage);
     }
 }

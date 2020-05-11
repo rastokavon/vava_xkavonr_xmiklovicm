@@ -1,21 +1,21 @@
 package managers;
 
-import database.Company;
-import database.CreateDatabase;
-import database.Person;
-import database.Post;
+import database.*;
 import javafx.geometry.Pos;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManagerPosts {
 
@@ -60,5 +60,53 @@ public class ManagerPosts {
         return posts;
     }
 
+    public static StringBuffer createPost(String title, String postText, Person person) {
+        Logger LOG = ProgramData.getLOG();
+        String bundle = ProgramData.getInstance().getLanguage();
+        ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
+        StringBuffer errorBuffer = new StringBuffer("");
 
+        if ("".equals(title)) {
+            LOG.log(Level.INFO, "Nevyplnene pole nadpis");
+            errorBuffer.append(rbSk.getString("addPost.missingTitle"));
+            errorBuffer.append("\n");
+        }
+        if ("".equals(postText)) {
+            LOG.log(Level.INFO, "Nevyplnene pole textu prispevku");
+            errorBuffer.append(rbSk.getString("addPost.missingPost"));
+            errorBuffer.append("\n");
+        }
+        if (title.length() > 40) {
+            LOG.log(Level.INFO, "Prilis dlhy nadpis");
+            errorBuffer.append(rbSk.getString("addPost.longTitle"));
+            errorBuffer.append("\n");
+        }
+        if (postText.length() > 1000) {
+            LOG.log(Level.INFO, "Prilis dlhy text prispevku");
+            errorBuffer.append(rbSk.getString("addPost.longPost"));
+            errorBuffer.append("\n");
+        }
+
+        Session session = CreateDatabase.getSession();
+
+        if (errorBuffer.length() > 0) {
+            return errorBuffer;
+        }
+        try {
+            Transaction t = session.beginTransaction();
+            Date date = new Date();
+
+            session.save(new Post(title, postText, date, person));
+
+            t.commit();
+
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Nepodarilo sa pridat prispevok");
+            errorBuffer.append(rbSk.getString("addPost.postTitleExist"));
+            errorBuffer.append("\n");
+        } finally {
+            session.close();
+        }
+        return errorBuffer;
+    }
 }

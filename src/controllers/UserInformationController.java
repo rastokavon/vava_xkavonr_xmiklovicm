@@ -56,6 +56,8 @@ public class UserInformationController implements Controller {
     Button modifyButton;
     @FXML
     Button changePasswordButton;
+    @FXML
+    Button addPostButton;
 
     @FXML
     TableView<Post> table;
@@ -167,11 +169,17 @@ public class UserInformationController implements Controller {
             table.setItems(null);
             posts = FXCollections.observableArrayList(ManagerPosts.getPosts(ProgramData.getInstance().getUser()));
             table.setItems(posts);
+
+            table.getSortOrder().add(dates);
         } catch (Exception e) {}
 
     }
 
-    public void magnifierClicked(MouseEvent mouseEvent) {
+    public void addPostButtonClicked(ActionEvent actionEvent) throws Exception {
+        primaryStage = ProgramData.getInstance().getPrimaryStage();
+
+        Controller apc = new AddPostController();
+        apc.startController(primaryStage);
     }
 }
 
