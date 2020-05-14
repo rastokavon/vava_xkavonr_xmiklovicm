@@ -27,7 +27,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Button fx:id="confirmButton" layoutX="355.0" layoutY="323.0" mnemonicParsing="false"
+        <Button fx:id="confirmButton" defaultButton="true" layoutX="355.0" layoutY="323.0" mnemonicParsing="false"
                 onAction="#confirmButtonClicked" prefHeight="35.0" prefWidth="213.0" stylesheets="@buttons_login.css"
                 text="Confirm"/>
         <Label fx:id="contactLabel" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="209.0" prefHeight="30.0"

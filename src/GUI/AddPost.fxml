@@ -57,6 +57,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="addPostButton" layoutX="294.0" layoutY="421.0" mnemonicParsing="false" onAction="#addPostButtonClicked" prefHeight="35.0" prefWidth="209.0" stylesheets="@buttons_login.css" text="Add post" />
+      <Button fx:id="addPostButton" defaultButton="true" layoutX="294.0" layoutY="421.0" mnemonicParsing="false" onAction="#addPostButtonClicked" prefHeight="35.0" prefWidth="209.0" stylesheets="@buttons_login.css" text="Add post" />
     </children>
 </AnchorPane>

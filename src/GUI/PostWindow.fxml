@@ -56,7 +56,7 @@
             <Font size="16.0" />
          </font>
       </TextArea>
-      <TableView fx:id="commentsTable" layoutX="152.0" layoutY="263.0" prefHeight="154.0" prefWidth="646.0" stylesheets="@noheader.css">
+      <TableView fx:id="commentsTable" layoutX="152.0" layoutY="263.0" prefHeight="154.0" prefWidth="646.0" stylesheets="@table_comments.css">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />

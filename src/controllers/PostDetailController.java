@@ -90,6 +90,7 @@ public class PostDetailController implements Controller {
         dateLabel.setText(formatter.format(ProgramData.getInstance().getPost().getDate()));
         titleLabel.setText(ProgramData.getInstance().getPost().getTitle());
         postTextAre.setText(ProgramData.getInstance().getPost().getText());
+        commentTextArea.setText("");
 
         fillCommentsTable();
     }

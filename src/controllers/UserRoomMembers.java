@@ -98,8 +98,14 @@ public class UserRoomMembers implements Controller {
         phoneNumberLabel.setText(ProgramData.getInstance().getUser().getPhoneNumber());
         usersNumberLabel.setText(rbSk.getString("userRoom.number") +
                 ManagerPerson.getUsers("", company.getId()).size());
-        allPostsLabel.setText(rbSk.getString("userRoom.posts") +
-                ManagerPosts.getPosts(company).size());
+        if (ManagerPosts.getPosts(company) != null) {
+            allPostsLabel.setText(rbSk.getString("userRoom.posts") +
+                    ManagerPosts.getPosts(company).size());
+        } else {
+            allPostsLabel.setText(rbSk.getString("userRoom.posts") +
+                    " 0");
+        }
+
         roomIdLabel.setText(rbSk.getString("userRoom.id") + String.valueOf(company.getId()));
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();

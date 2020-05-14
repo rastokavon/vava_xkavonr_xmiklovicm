@@ -99,7 +99,6 @@ public class UserLoginController implements Controller {
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller crc = new UserMainWindowController();
             crc.startController(primaryStage);
-            System.out.println("Prihlasenyyyyyy");
         }
     }
 

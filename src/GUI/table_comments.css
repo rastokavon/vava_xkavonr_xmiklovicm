@@ -1,0 +1,19 @@
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-min-height: 80;
+}
+.table-view {
+    -fx-background-color: transparent;
+}
+.column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0, 0;
+    -fx-font-size: 1px;
+}
+.table-cell {
+    -fx-border-color: transparent -fx-box-border transparent transparent;
+    -fx-font-size: 13px;
+    -fx-text-fill: #212121;
+    -fx-alignment: center_left;
+    -fx-wrap-text: true;
+}

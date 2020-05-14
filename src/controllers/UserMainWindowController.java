@@ -136,7 +136,7 @@ public class UserMainWindowController implements Controller {
                 TableAllPosts tap = new TableAllPosts();
                 tap.setDateName(rbSk.getString("main.added") + (formatter.format(p.getDate())) +  "\n" +
                         rbSk.getString("main.user") + p.getPerson().getUsername());
-                tap.setTitle(p.getTitle() + "\n" + p.getText());
+                tap.setTitle(p.getTitle());
                 tableAllPosts.add(tap);
             }
             ObservableList<TableAllPosts> tablePosts = FXCollections.observableArrayList(tableAllPosts);
