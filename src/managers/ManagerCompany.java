@@ -4,6 +4,7 @@ import database.Company;
 import database.CreateDatabase;
 import database.ProgramData;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.hibernate.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,10 +146,22 @@ public class ManagerCompany {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(rbSk1.getString("companyReg.title"));
-            alert.setContentText(rbSk1.getString("companyReg.roomNumber") + "                 " +
+            alert.setHeaderText(rbSk1.getString("companyReg.roomNumber") + "                 " +
                     String.valueOf(getCompanyIDFromName(name)) + "\n\n" + rbSk1.getString("companyReg.password") +
                     "            " + getCompanyPasswordFromName(name));
-            alert.showAndWait();
+            alert.setContentText(rbSk1.getString("companyReg.question"));
+
+            ButtonType yesButton = new ButtonType(rbSk1.getString("companyReg.yes"));
+            ButtonType noButton = new ButtonType(rbSk1.getString("companyReg.no"));
+
+            alert.getButtonTypes().setAll(yesButton, noButton);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == yesButton){
+                System.out.println(1);
+            } else if (result.get() == noButton) {
+                System.out.println(2);
+            }
 
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Nazov firmy je uz zaregistrovany");
