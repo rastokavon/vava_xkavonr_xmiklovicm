@@ -1,6 +1,8 @@
 package controllers;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.stage.FileChooser;
 import managers.ManagerCompany;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -86,14 +89,6 @@ public class CompanyRegistrationController implements Controller {
 
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         primaryStage.setTitle(rbSk.getString("companyReg.window"));
-
-        try {
-            generatePDF();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     public void backButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -171,11 +166,56 @@ public class CompanyRegistrationController implements Controller {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(file));
         document.open();
+        document.setMargins(100,100,100,100);
 
-        Paragraph welcomeText = new Paragraph();
-        welcomeText.add("   Tuto bude pekny text\ns privitanim!");
+        Paragraph welcomeTitle = new Paragraph("Registration information",
+                new Font(Font.FontFamily.HELVETICA, 25, Font.BOLD));
+        welcomeTitle.setAlignment(Paragraph.ALIGN_CENTER);
+        document.add(welcomeTitle);
+        document.add(new Paragraph("\n"));
+
+        String text = "Hello " + ProgramData.getInstance().getCurrentlyRegCompany().getName() + "!\n\n    Thank you " +
+                "for buying our product. KAMIMARA is highly recommended electronic communication system.\n    " +
+                "Share your room number with your friends, employees, customers to communicate easily and of course " +
+                "privately! If you are curious,don't understand or don't know something, feel free to post your " +
+                "question and wait for answers of other people in the room. You can help each other, communicate or " +
+                "just chatting.\n    Thank you again and enjoy your private session!\n\nKAMIMARA\n\n";
+        Paragraph welcomeText = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 12));
+        welcomeText.setAlignment(Paragraph.ALIGN_JUSTIFIED);
         document.add(welcomeText);
 
+        Paragraph infoTitle = new Paragraph("Information about company:\n",
+                new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD));
+
+        infoTitle.setAlignment(Paragraph.ALIGN_LEFT);
+        document.add(infoTitle);
+
+        document.add(new Chunk("Name: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getName() + "\n"));
+
+        document.add(new Chunk("Address: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getStreet() + ", " +
+                ProgramData.getInstance().getCurrentlyRegCompany().getPostalCode() + " " +
+                ProgramData.getInstance().getCurrentlyRegCompany().getCity() + " (" +
+                ProgramData.getInstance().getCurrentlyRegCompany().getCountry() + ")\n"));
+
+        document.add(new Chunk("Mail: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getMail() + "\n"));
+
+        document.add(new Chunk("Phone number: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        if ("".equals(ProgramData.getInstance().getCurrentlyRegCompany().getPhoneNumber())) {
+            document.add(new Chunk("-unknown-" + "\n\n\n"));
+        } else {
+            document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPhoneNumber() + "\n\n\n"));
+        }
+
+        document.add(new Chunk("Room number: ", new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD)));
+        document.add(new Chunk(String.valueOf(ProgramData.getInstance().getCurrentlyRegCompany().getId()) +
+                "\n", new Font(Font.FontFamily.HELVETICA, 15)));
+
+        document.add(new Chunk("New password: ", new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD)));
+        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPassword(),
+                new Font(Font.FontFamily.HELVETICA, 15)));
         document.close();
     }
 }
