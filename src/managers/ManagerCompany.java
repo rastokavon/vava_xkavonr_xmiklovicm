@@ -3,8 +3,6 @@ package managers;
 import database.Company;
 import database.CreateDatabase;
 import database.ProgramData;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import org.hibernate.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,7 +11,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,52 +38,6 @@ public class ManagerCompany {
         }
 
         return results.get(0);
-    }
-
-    public static Integer getCompanyIDFromName(String comapanyName) {
-
-        Session session = CreateDatabase.getSession();
-        session.beginTransaction();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Company> cr = cb.createQuery(Company.class);
-        Root<Company> root = cr.from(Company.class);
-
-        cr.select(root).where(cb.equal(root.get("name"), comapanyName));
-
-        Query<Company> query = session.createQuery(cr);
-        query.setMaxResults(1);
-        List<Company> results = query.getResultList();
-        session.getTransaction().commit();
-        session.close();
-
-        if (results.isEmpty()) {
-            return null;
-        }
-
-        return results.get(0).getId();
-    }
-
-    public static String getCompanyPasswordFromName(String comapanyName) {
-
-        Session session = CreateDatabase.getSession();
-        session.beginTransaction();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Company> cr = cb.createQuery(Company.class);
-        Root<Company> root = cr.from(Company.class);
-
-        cr.select(root).where(cb.equal(root.get("name"), comapanyName));
-
-        Query<Company> query = session.createQuery(cr);
-        query.setMaxResults(1);
-        List<Company> results = query.getResultList();
-        session.getTransaction().commit();
-        session.close();
-
-        if (results.isEmpty()) {
-            return null;
-        }
-
-        return results.get(0).getPassword();
     }
 
     public static StringBuffer createCompany(String name, String street, String city,
@@ -140,28 +91,10 @@ public class ManagerCompany {
             Company company = new Company(name, street, city, country, postalCode, mail, phoneNumber, password);
 
             session.save(company);
-            String bundle1 = ProgramData.getInstance().getLanguage();
-            ResourceBundle rbSk1 = ResourceBundle.getBundle(bundle1 + "_popup", Locale.forLanguageTag("info"));
             t.commit();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(rbSk1.getString("companyReg.title"));
-            alert.setHeaderText(rbSk1.getString("companyReg.roomNumber") + "                 " +
-                    String.valueOf(getCompanyIDFromName(name)) + "\n\n" + rbSk1.getString("companyReg.password") +
-                    "            " + getCompanyPasswordFromName(name));
-            alert.setContentText(rbSk1.getString("companyReg.question"));
+            ProgramData.getInstance().setCurrentlyRegCompany(company);
 
-            ButtonType yesButton = new ButtonType(rbSk1.getString("companyReg.yes"));
-            ButtonType noButton = new ButtonType(rbSk1.getString("companyReg.no"));
-
-            alert.getButtonTypes().setAll(yesButton, noButton);
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yesButton){
-                System.out.println(1);
-            } else if (result.get() == noButton) {
-                System.out.println(2);
-            }
 
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Nazov firmy je uz zaregistrovany");

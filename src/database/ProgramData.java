@@ -1,6 +1,5 @@
 package database;
 
-import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import managers.ManagerCompany;
 
@@ -18,6 +17,7 @@ public class ProgramData {
     private Stage primaryStage;
 
     private Company company;
+    private Company currentlyRegCompany;
     private Person user;
     private Post post = null;
 
@@ -92,5 +92,13 @@ public class ProgramData {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public Company getCurrentlyRegCompany() {
+        return currentlyRegCompany;
+    }
+
+    public void setCurrentlyRegCompany(Company currentlyRegCompany) {
+        this.currentlyRegCompany = currentlyRegCompany;
     }
 }
