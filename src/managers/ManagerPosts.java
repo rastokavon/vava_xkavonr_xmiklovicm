@@ -5,11 +5,22 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * trieda predstavuje vrstvu, ktora prepojuje obrazovky s databazou
+ * vykonava vsetky potrebne ukony pre pridavanie prispevkov z pohladu logiky programu
+ *
+ * vie vyberat z databazy prispevky podla roznych zadanych kriterii:
+ *  tie ktore patria do miestnosti
+ *  danemu pouzivatelovi
+ *  vyhladavanie prispevku podla nazvu
+ *
+ * rovnako pri vytvarani prispevku je komunikacia s databozou prostrednictvom vrtvy ManagerPosts
+ */
 public class ManagerPosts {
 
     public static Post getPost(String title) {

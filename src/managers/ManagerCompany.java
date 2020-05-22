@@ -4,7 +4,6 @@ import database.Company;
 import database.CreateDatabase;
 import database.ProgramData;
 import org.hibernate.*;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -15,6 +14,18 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * trieda predstavuje vrsvu mezdi databzou a vystupom pre pouzivatelov
+ * vykonava vsetku pracu okolo Company
+ *
+ * obsahuje rozne metody, ktore "prekladaju" vstupy z obrazoviek do databazy
+ * vie podla cisla najst dany objekt v databaze
+ * podla zadanych udajov vytvorit objekt v databaze
+ * modifikovat vytvoreny objekt Company v databaze
+ * vygenerovat heslo pre Company
+ * overovat registraciu
+ */
 public class ManagerCompany {
 
     public static Company getCompanyFromID(Integer companyID) {

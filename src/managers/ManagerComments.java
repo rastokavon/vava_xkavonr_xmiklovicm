@@ -5,7 +5,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +12,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * trieda ManagerComments predstavuje vrstvu medzi databazou a controllerom obrazovky
+ *
+ * keď sa pristupuje ku príspevku, komunikuje sa s touto triedou, ktora vytiahne vsetky komenty prisluchajuce
+ * danemu prispevku
+ * rovnako ked sa prispevku pridava koment, je pridavany prostrednitvom tejto triedy, ktora komunikuje s databazou
+ */
 public class ManagerComments {
 
     public static List<Comment> getComments(Post post) {

@@ -9,7 +9,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -20,6 +19,18 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * trieda predstavuje vrstvu medzi vstupmi pouzivatela z obrazoviek a databazou
+ * vykonava vsetku potrebnu pracu okolo entity Person
+ *
+ * podla vstupov od pouzivatela vie vytvorit novy objekt (registracia)
+ * vymazat dany objekt (spravovatel miestnosti)
+ * updateovat hodnoty
+ * vyhodnocuje rozne potrebne veci, ktore mozu vzniknut pri registracii (napriklad rovnake meno,
+ * pouzivatel uz je registrovany)
+ * vracia zoznam uzivatelov pre danu miestnost
+ */
 public class ManagerPerson {
 
     public static boolean isUsedUsername(String username) {
@@ -71,7 +82,6 @@ public class ManagerPerson {
 
         return results.get(0);
     }
-
 
     public static void changePassword(Person person, String password) {
         Session session = CreateDatabase.getSession();
