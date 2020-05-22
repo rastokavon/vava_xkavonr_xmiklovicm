@@ -74,7 +74,9 @@ public class ManagerComments {
             errorBuffer.append("Co sa to dokazilo?");
             errorBuffer.append("\n");
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
         return errorBuffer;
     }
