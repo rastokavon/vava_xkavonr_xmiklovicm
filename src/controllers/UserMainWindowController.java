@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserMainWindowController implements Controller {
     Stage primaryStage;
@@ -87,11 +89,17 @@ public class UserMainWindowController implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
@@ -99,6 +107,10 @@ public class UserMainWindowController implements Controller {
 
         Controller clc = new UserInformationController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie profilu prihlaseneho pouzivatela.");
+
     }
 
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -106,6 +118,9 @@ public class UserMainWindowController implements Controller {
 
         Controller clc = new UserLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
     public void homeButtonClicked(ActionEvent actionEvent) {
@@ -116,6 +131,9 @@ public class UserMainWindowController implements Controller {
 
         Controller urmc = new UserRoomMembers();
         urmc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
     public void fillTable() {
@@ -154,5 +172,9 @@ public class UserMainWindowController implements Controller {
 
         Controller apc = new AddPostController();
         apc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel " + ProgramData.getInstance().getUser().getUsername()
+                + " otvoril okno pridania prispevku.");
     }
 }

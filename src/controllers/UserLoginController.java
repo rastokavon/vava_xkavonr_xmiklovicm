@@ -74,6 +74,9 @@ public class UserLoginController implements Controller {
 
         Controller clc = new CompanyLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Otvorenie prihlasenia firmy.");
     }
 
     public void signAsUserButtonClicked() {
@@ -86,7 +89,7 @@ public class UserLoginController implements Controller {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
 
-            Logger LOG = ProgramData.getLOG();
+            Logger LOG = ProgramData.getInstance().getLOG();
             LOG.log(Level.WARNING, "Prihlasovacie meno/heslo je neplatne");
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -96,6 +99,10 @@ public class UserLoginController implements Controller {
         } else {
             ProgramData.getInstance().setUser(person);
             ProgramData.getInstance().setCompany(null);
+
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Pouzivatel " + person.getUsername() + " bol uspesne prihlaseny.");
+
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller crc = new UserMainWindowController();
             crc.startController(primaryStage);
@@ -107,16 +114,25 @@ public class UserLoginController implements Controller {
 
         Controller urc = new UserRegistrationController();
         urc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Otvorenie registracie pouzivatela.");
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 }
 

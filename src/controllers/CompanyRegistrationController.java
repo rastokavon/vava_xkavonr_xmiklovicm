@@ -21,10 +21,11 @@ import org.dom4j.DocumentException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompanyRegistrationController implements Controller {
     Stage primaryStage;
@@ -98,6 +99,9 @@ public class CompanyRegistrationController implements Controller {
 
         Controller clc = new CompanyLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Navrat do hlavneho menu prihlasenia firmy.");
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -106,6 +110,10 @@ public class CompanyRegistrationController implements Controller {
                 phoneNumberTextField.getText());
 
         if (message.length() == 0) {
+
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Registrovana nova firma: "
+                    + ProgramData.getInstance().getCurrentlyRegCompany().getName());
 
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller clc = new CompanyLoginController();
@@ -147,11 +155,17 @@ public class CompanyRegistrationController implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
     public void generatePDF() throws DocumentException, FileNotFoundException {
@@ -219,5 +233,8 @@ public class CompanyRegistrationController implements Controller {
         document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPassword(),
                 new Font(Font.FontFamily.HELVETICA, 15)));
         document.close();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Vygenerovanie PDF.");
     }
 }

@@ -80,10 +80,13 @@ public class UserRegistrationController implements Controller {
 
         Controller ulc = new UserLoginController();
         ulc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Navrat do hlavneho menu prihlasenia pouzivatela.");
     }
 
     public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
-        Logger LOG = ProgramData.getLOG();
+        Logger LOG = ProgramData.getInstance().getLOG();
 
         try {
             Integer.parseInt(roomNumberTextField.getText());
@@ -105,6 +108,8 @@ public class UserRegistrationController implements Controller {
         if (message.length() == 0) {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));
+
+            LOG.log(Level.INFO, "Pouzivatel " + usernameTextField.getText() + " bol uspesne zaregistrovany.");
 
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller ulc = new UserLoginController();
@@ -128,10 +133,16 @@ public class UserRegistrationController implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 }

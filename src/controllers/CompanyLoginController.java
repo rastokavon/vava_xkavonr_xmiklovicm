@@ -72,6 +72,9 @@ public class CompanyLoginController implements Controller {
 
         Controller ulc = new UserLoginController();
         ulc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Otvorenie prihlasenia pouzivatela.");
     }
 
     public void signInButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -82,8 +85,8 @@ public class CompanyLoginController implements Controller {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
 
-            Logger LOG = ProgramData.getLOG();
-            LOG.log(Level.WARNING, "Room number musi byt typu int.");
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.WARNING, "Cislo miestnosti musi byt typu int.");
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(rbSk.getString("companyLogin.title"));
@@ -96,15 +99,17 @@ public class CompanyLoginController implements Controller {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
 
-            Logger LOG = ProgramData.getLOG();
+            Logger LOG = ProgramData.getInstance().getLOG();
             LOG.log(Level.WARNING, "Cislo miestnosti/heslo je neplatne");
-
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(rbSk.getString("companyLogin.title"));
             alert.setContentText(rbSk.getString("companyLogin.text"));
             alert.showAndWait();
         } else {
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Firma " + company.getName() + " bola uspesne prihlasena.");
+
             ProgramData.getInstance().setUser(null);
             ProgramData.getInstance().setCompany(company);
             primaryStage = ProgramData.getInstance().getPrimaryStage();
@@ -118,16 +123,25 @@ public class CompanyLoginController implements Controller {
 
         Controller crc = new CompanyRegistrationController();
         crc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Otvorenie registracie firmy.");
     }
 
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
 }

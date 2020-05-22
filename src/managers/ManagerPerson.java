@@ -122,50 +122,30 @@ public class ManagerPerson {
         session.close();
     }
 
-    public static Person getUser(String username) {
-        Session session = CreateDatabase.getSession();
-        session.beginTransaction();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Person> cr = cb.createQuery(Person.class);
-        Root<Person> root = cr.from(Person.class);
-
-        cr.select(root).where(cb.equal(root.get("username"), username));
-
-        Query<Person> query = session.createQuery(cr);
-        List<Person> results = query.getResultList();
-        session.getTransaction().commit();
-        session.close();
-
-        if (!results.isEmpty()) {
-            return results.get(0);
-        }
-        return null;
-    }
-
     public static StringBuffer createPerson(String firstName, String lastName, String username,
                                             String password, String mail, String phoneNumber, int companyID) {
-        Logger LOG = ProgramData.getLOG();
+        Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
         StringBuffer errorBuffer = new StringBuffer("");
 
         if ("".equals(firstName)) {
-            LOG.log(Level.INFO, "Nevyplnene pole meno");
+            LOG.log(Level.WARNING, "Nevyplnene pole meno");
             errorBuffer.append(rbSk.getString("userReg.missingFirstName"));
             errorBuffer.append("\n");
         }
         if ("".equals(lastName)) {
-            LOG.log(Level.INFO, "Nevyplnene pole priezvisko");
+            LOG.log(Level.WARNING, "Nevyplnene pole priezvisko");
             errorBuffer.append(rbSk.getString("userReg.missingLastName"));
             errorBuffer.append("\n");
         }
         if ("".equals(username)) {
-            LOG.log(Level.INFO, "Nevyplnene pole prihlasovacie meno");
+            LOG.log(Level.WARNING, "Nevyplnene pole prihlasovacie meno");
             errorBuffer.append(rbSk.getString("userReg.missingUsername"));
             errorBuffer.append("\n");
         }
         if ("".equals(password)) {
-            LOG.log(Level.INFO, "Nevyplnene pole heslo");
+            LOG.log(Level.WARNING, "Nevyplnene pole heslo");
             errorBuffer.append(rbSk.getString("userReg.missingPassword"));
             errorBuffer.append("\n");
         }
@@ -203,18 +183,18 @@ public class ManagerPerson {
 
     public static StringBuffer updatePerson(Person person, String firstName, String surname,
                                             String mail, String phoneNumber) {
-        Logger LOG = ProgramData.getLOG();
+        Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
         StringBuffer errorBuffer = new StringBuffer("");
 
         if ("".equals(firstName)) {
-            LOG.log(Level.INFO, "Nevyplnene pole krstne meno");
+            LOG.log(Level.WARNING, "Nevyplnene pole krstne meno");
             errorBuffer.append(rbSk.getString("userReg.missingFirstName"));
             errorBuffer.append("\n");
         }
         if ("".equals(surname)) {
-            LOG.log(Level.INFO, "Nevyplnene pole priezvisko");
+            LOG.log(Level.WARNING, "Nevyplnene pole priezvisko");
             errorBuffer.append(rbSk.getString("userReg.missingLastName"));
             errorBuffer.append("\n");
         }

@@ -13,6 +13,8 @@ import managers.ManagerCompany;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ModifyCompanyController implements Controller {
     Stage primaryStage;
@@ -89,6 +91,9 @@ public class ModifyCompanyController implements Controller {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         Controller crc = new CompanyMainWindowController();
         crc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zrusena modifikacia zaznamu firmy.");
     }
 
     public void confirmButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -104,6 +109,9 @@ public class ModifyCompanyController implements Controller {
             primaryStage = ProgramData.getInstance().getPrimaryStage();
             Controller clc = new CompanyMainWindowController();
             clc.startController(primaryStage);
+
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Zaznam o firme bol modifikovany.");
 
         } else {
             String bundle = ProgramData.getInstance().getLanguage();

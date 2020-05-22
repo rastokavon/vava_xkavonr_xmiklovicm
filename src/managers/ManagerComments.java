@@ -33,18 +33,18 @@ public class ManagerComments {
     }
 
     public static StringBuffer createComment(String commentText, Post post, Person person) {
-        Logger LOG = ProgramData.getLOG();
+        Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
         StringBuffer errorBuffer = new StringBuffer("");
 
         if ("".equals(commentText)) {
-            LOG.log(Level.INFO, "Nevyplnene pole textu komentaru");
+            LOG.log(Level.WARNING, "Nevyplnene pole textu komentaru");
             errorBuffer.append(rbSk.getString("addComment.missingText"));
             errorBuffer.append("\n");
         }
         if (commentText.length() > 1000) {
-            LOG.log(Level.INFO, "Prilis dlhy text komentaru");
+            LOG.log(Level.WARNING, "Prilis dlhy text komentaru");
             errorBuffer.append(rbSk.getString("addComment.longComment"));
             errorBuffer.append("\n");
         }
@@ -63,7 +63,7 @@ public class ManagerComments {
             t.commit();
 
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Nepodarilo sa pridat komentar");
+            LOG.log(Level.SEVERE, "Nepodarilo sa pridat komentar: ", e);
             errorBuffer.append("Co sa to dokazilo?");
             errorBuffer.append("\n");
         } finally {

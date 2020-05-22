@@ -21,6 +21,8 @@ import managers.ManagerPosts;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserRoomMembers implements Controller {
     @FXML
@@ -141,11 +143,17 @@ public class UserRoomMembers implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
@@ -153,6 +161,10 @@ public class UserRoomMembers implements Controller {
 
         Controller clc = new UserInformationController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie profilu prihlaseneho pouzivatela.");
+
     }
 
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -160,6 +172,9 @@ public class UserRoomMembers implements Controller {
 
         Controller clc = new UserLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -167,6 +182,9 @@ public class UserRoomMembers implements Controller {
 
         Controller clc = new UserMainWindowController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
     public void usersButtonClicked(ActionEvent actionEvent) {

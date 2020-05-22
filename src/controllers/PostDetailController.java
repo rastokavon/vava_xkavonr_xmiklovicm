@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PostDetailController implements Controller {
     Stage primaryStage;
@@ -98,11 +100,17 @@ public class PostDetailController implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
     public void signedUserHyperlinkClicked(ActionEvent actionEvent) throws Exception {
@@ -110,6 +118,9 @@ public class PostDetailController implements Controller {
 
         Controller clc = new UserInformationController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie profilu prihlaseneho pouzivatela.");
     }
 
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -117,6 +128,9 @@ public class PostDetailController implements Controller {
 
         Controller clc = new UserLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -124,6 +138,9 @@ public class PostDetailController implements Controller {
 
         Controller clc = new UserMainWindowController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
     public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -131,9 +148,12 @@ public class PostDetailController implements Controller {
 
         Controller urmc = new UserRoomMembers();
         urmc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
-    public void userPostedHyperlinkClicked(ActionEvent actionEvent) {
+    public void userPostedHyperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader(UserDetailController.class.getResource("../GUI/UserDetail.fxml"));
         Parent root = null;
@@ -146,10 +166,13 @@ public class PostDetailController implements Controller {
 
         UserDetailController udc = loader.getController();
         udc.setPerson(ProgramData.getInstance().getPost().getPerson());
-        try {
-            udc.startController(primaryStage);
-        } catch (Exception e) {}
+        udc.startController(primaryStage);
+
         primaryStage.show();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie informacii o pouzivatelovi "
+                + ProgramData.getInstance().getPost().getPerson().getUsername());
     }
 
     public void fillCommentsTable() {
@@ -195,6 +218,10 @@ public class PostDetailController implements Controller {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));
 
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Pouzivatel " + ProgramData.getInstance().getUser().getUsername()
+                    + " pridal komentar na prispevok: " + ProgramData.getInstance().getPost().getTitle());
+
             initialize();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -203,7 +230,8 @@ public class PostDetailController implements Controller {
             alert.showAndWait();
         } else {
             String bundle1 = ProgramData.getInstance().getLanguage();
-            ResourceBundle rbSk1 = ResourceBundle.getBundle(bundle1 + "_popup", Locale.forLanguageTag("error"));
+            ResourceBundle rbSk1 = ResourceBundle.getBundle(bundle1
+                    + "_popup", Locale.forLanguageTag("error"));
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(rbSk1.getString("addPost.title"));

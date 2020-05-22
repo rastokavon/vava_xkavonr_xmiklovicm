@@ -2,13 +2,14 @@ package controllers;
 
 import database.ProgramData;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class MainController extends Application {
 
@@ -22,6 +23,8 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Aplikacia bola spustena.");
 
         ProgramData pd = ProgramData.getInstance();
         pd.setLanguage("sk");
@@ -34,6 +37,16 @@ public class MainController extends Application {
 
         primaryStage.setScene(sceneUserLogin);
         primaryStage.show();
+    }
+
+    @Override
+    public void stop(){
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Program uspesne ukonceny.");
+
+        if (ProgramData.getInstance().getLoggingsFh() != null) {
+            ProgramData.getInstance().getLoggingsFh().close();
+        }
     }
 
     public Stage getPrimaryStage() {
