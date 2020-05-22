@@ -2,20 +2,33 @@ package database;
 
 import javafx.stage.Stage;
 import managers.ManagerCompany;
-
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+
+/**
+ * v triede ProgramData je aplikovany navrhovy vzor Singleton
+ *
+ * v triede su ulozene vsetky pouzivane instancie objektov programu
+ *
+ * obsahuje veci potrebne pre chod programu a casto sa ku nej pristupuje pri roznych volaniach
+ * od pouzivatela
+ *
+ * po prihlaseni sa do tejto instancie triedy nahra dany prihlaseny pouzivatel a rovanako aj miestnost,
+ * do ktorej pouzivatel patri
+ *
+ * podla aktualne zadaneho jazyka pouzivatelom obsahuje informaciu, o ktory jazyk sa jedna
+ *
+ * rovnako pri chode programu obsahuje instanciu okna, ktora sa vzdy vypyta pri zmene sceny
+ *
+ * obsahuje aj LOG file, do ktoreho sa vypisuju rozne necakane stavy
+ */
 public class ProgramData {
-
     private static ProgramData instance = null;
-
     private String language;
-
     private Stage primaryStage;
-
     private Company company;
     private Company currentlyRegCompany;
     private Person user;

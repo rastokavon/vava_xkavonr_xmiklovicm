@@ -2,12 +2,19 @@ package database;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 
+/**
+ * Post predstavuje objekt, ktory nesie nejaky text (myslienku)
+ *
+ * napisal ho nejaky registrovany pouzivatel a patri teda do urcitej miestnosti
+ * mozu ho vidiet teda aj iny pouzivatelia v danej misetnosti a rovnako mu pridavat komentare
+ *
+ * Post je reprezentovany nejakym nadpisom (title) a samotnym textom prispevku
+ */
 @Entity(name = "post")
 public class Post {
     private int id;

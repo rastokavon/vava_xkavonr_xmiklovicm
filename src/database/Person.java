@@ -2,10 +2,22 @@ package database;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.List;
 
+
+/**
+ * trieda Person predstavuje objekt, ktory je napampovany na databazu a obsahuje vsetky potrebne atributy
+ * pre pouzivatela - kazda registracia vytvori triedu Person s prislusnymi zadanymi udajmi
+ *
+ * kazdy uzivatel patri nejakej Company - trieda ktora reprezentuje miestnost, do ktorej Person patri (kde
+ * sa registroval)
+ *
+ * Person moze vytvarat jednotlive prispevky -> Post a tie potom patria do danej miestnosti, mozu ich vidiet
+ * ostatni registrovani pouzivatelia
+ *
+ * rovnako Person moze komentovat prispevky, ktore patria do jeho miestnosti
+ */
 @Entity(name = "person")
 public class Person {
     private int id;

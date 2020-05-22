@@ -2,11 +2,17 @@ package database;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Date;
 
 
+/**
+ * trieda Comment predstavuje nejaky text, ktorym je mozne okomentovat prispevok - teda Comment vzdy
+ * patri nejakemu (jednemmu) prispevku -> Post
+ *
+ * obsahuje vsetky potrebne atributy pre identifikaciu komentu, ako je cas pridania, prispevok a pouzivatela,
+ * ktory prispevok komentoval (napisal koment)
+ */
 @Entity(name = "comment")
 public class Comment {
     private int id;

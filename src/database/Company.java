@@ -1,10 +1,16 @@
 package database;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * trieda Company predstavuje samotnu miestnost, do ktorej sa prihlasuju pouzivatelia (Person)
+ *
+ * firma sa po zaplateni poplatku zaregistruje, zada vsetky kontaktne udaje
+ * vytvori sa teda nova miestnost (id Company), do ktorej sa prihlasuju pouzivatelia a mozu pridavat a sledovat
+ * prispevky
+ */
 @Entity(name = "company")
 public class Company {
     private int id;
