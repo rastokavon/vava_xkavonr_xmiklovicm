@@ -10,12 +10,20 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerPosts;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, ktore sluzi na pridanie prispevku
+ *
+ * zadava sa nadpis
+ * a samotny text prispevku, ktory sa po odkliknuti buttonu addPostButton prida do databazy
+ *
+ * pri pridavani sa kontroluje niekolko veci, napriklad ci ma prispevok/nadpis nejaky text, dlzka textu...
+ */
 public class AddPostController implements Controller {
     Stage primaryStage;
     Parent root;
@@ -132,7 +140,6 @@ public class AddPostController implements Controller {
         Logger LOG = ProgramData.getInstance().getLOG();
         LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
-
 
     public void addPostButtonClicked(ActionEvent actionEvent) throws Exception {
         StringBuffer message = ManagerPosts.createPost(titleTextField.getText(), postTextArea.getText(),

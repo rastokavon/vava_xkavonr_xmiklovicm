@@ -12,12 +12,18 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import managers.ManagerCompany;
 import managers.ManagerPerson;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, kde sa meni heslo
+ * zadava sa nove aj stare heslo
+ *
+ * po odkliknutu confirm buttonu sa kontroluje niekolko veci (zhoda novych hesiel, stare heslo a pod...)
+ */
 public class ChangePasswordController implements Controller {
     Stage primaryStage;
     Parent root;
