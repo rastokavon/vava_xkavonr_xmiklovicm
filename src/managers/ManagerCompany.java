@@ -43,38 +43,38 @@ public class ManagerCompany {
     public static StringBuffer createCompany(String name, String street, String city,
                                              String country, String postalCode, String mail, String phoneNumber) {
 
-        Logger LOG = ProgramData.getLOG();
+        Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
         StringBuffer errorBuffer = new StringBuffer("");
 
         if ("".equals(street)) {
-            LOG.log(Level.INFO, "Nevyplnene pole ulica");
+            LOG.log(Level.WARNING, "Nevyplnene pole ulica");
             errorBuffer.append(rbSk.getString("companyReg.missingStreet"));
             errorBuffer.append("\n");
         }
         if ("".equals(city)) {
-            LOG.log(Level.INFO, "Nevyplnene pole mesto");
+            LOG.log(Level.WARNING, "Nevyplnene pole mesto");
             errorBuffer.append(rbSk.getString("companyReg.missingCity"));
             errorBuffer.append("\n");
         }
         if ("".equals(country)) {
-            LOG.log(Level.INFO, "Nevyplnene pole stat");
+            LOG.log(Level.WARNING, "Nevyplnene pole stat");
             errorBuffer.append(rbSk.getString("companyReg.missingCountry"));
             errorBuffer.append("\n");
         }
         if ("".equals(postalCode)) {
-            LOG.log(Level.INFO, "Nevyplnene pole PSC");
+            LOG.log(Level.WARNING, "Nevyplnene pole PSC");
             errorBuffer.append(rbSk.getString("companyReg.missingPostalCode"));
             errorBuffer.append("\n");
         }
         if ("".equals(mail)) {
-            LOG.log(Level.INFO, "Nevyplnene pole mail");
+            LOG.log(Level.WARNING, "Nevyplnene pole mail");
             errorBuffer.append(rbSk.getString("companyReg.missingMail"));
             errorBuffer.append("\n");
         }
         if ("".equals(name)) {
-            LOG.log(Level.INFO, "Nevyplnene pole nazov firmy");
+            LOG.log(Level.WARNING, "Nevyplnene pole nazov firmy");
             errorBuffer.append(rbSk.getString("companyReg.missingName"));
             errorBuffer.append("\n");
         }
@@ -97,7 +97,7 @@ public class ManagerCompany {
 
 
         } catch (Exception e) {
-            LOG.log(Level.WARNING, "Nazov firmy je uz zaregistrovany");
+            LOG.log(Level.SEVERE, "Nazov firmy je uz zaregistrovany");
             errorBuffer.append(rbSk.getString("companyReg.isRegistered"));
             errorBuffer.append("\n");
             return errorBuffer;
@@ -159,33 +159,34 @@ public class ManagerCompany {
 
     public static StringBuffer updateCompany(Company company, String street, String city, String country,
                                              String postalCode, String mail, String phoneNumber) {
-        Logger LOG = ProgramData.getLOG();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));
         StringBuffer errorBuffer = new StringBuffer("");
 
         if ("".equals(street)) {
-            LOG.log(Level.INFO, "Nevyplnene pole ulica");
+            LOG.log(Level.WARNING, "Nevyplnene pole ulica");
             errorBuffer.append(rbSk.getString("companyReg.missingStreet"));
             errorBuffer.append("\n");
         }
         if ("".equals(city)) {
-            LOG.log(Level.INFO, "Nevyplnene pole mesto");
+            LOG.log(Level.WARNING, "Nevyplnene pole mesto");
             errorBuffer.append(rbSk.getString("companyReg.missingCity"));
             errorBuffer.append("\n");
         }
         if ("".equals(country)) {
-            LOG.log(Level.INFO, "Nevyplnene pole stat");
+            LOG.log(Level.WARNING, "Nevyplnene pole stat");
             errorBuffer.append(rbSk.getString("companyReg.missingCountry"));
             errorBuffer.append("\n");
         }
         if ("".equals(postalCode)) {
-            LOG.log(Level.INFO, "Nevyplnene pole PSC");
+            LOG.log(Level.WARNING, "Nevyplnene pole PSC");
             errorBuffer.append(rbSk.getString("companyReg.missingPostalCode"));
             errorBuffer.append("\n");
         }
         if ("".equals(mail)) {
-            LOG.log(Level.INFO, "Nevyplnene pole mail");
+            LOG.log(Level.WARNING, "Nevyplnene pole mail");
             errorBuffer.append(rbSk.getString("companyReg.missingMail"));
             errorBuffer.append("\n");
         }
@@ -195,19 +196,26 @@ public class ManagerCompany {
         }
 
         Session session = CreateDatabase.getSession();
-        Transaction t = session.beginTransaction();
+        try {
+            Transaction t = session.beginTransaction();
 
-        company.setStreet(street);
-        company.setCity(city);
-        company.setCountry(country);
-        company.setPostalCode(postalCode);
-        company.setPhoneNumber(phoneNumber);
-        company.setMail(mail);
 
-        session.update(company);
+            company.setStreet(street);
+            company.setCity(city);
+            company.setCountry(country);
+            company.setPostalCode(postalCode);
+            company.setPhoneNumber(phoneNumber);
+            company.setMail(mail);
 
-        t.commit();
-        session.close();
+            session.update(company);
+
+            t.commit();
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Neocakavana chyba: ", e);
+        } finally {
+
+            session.close();
+        }
 
         return errorBuffer;
     }

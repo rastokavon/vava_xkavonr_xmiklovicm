@@ -1,6 +1,5 @@
 package controllers;
 
-import database.Company;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,11 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import managers.ManagerCompany;
 import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ModifyPersonController implements Controller {
     Stage primaryStage;
@@ -82,6 +82,9 @@ public class ModifyPersonController implements Controller {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
         Controller crc = new UserInformationController();
         crc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zrusena modifikacia zaznamu pouzivatela.");
     }
 
     public void confirmButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -97,6 +100,8 @@ public class ModifyPersonController implements Controller {
             Controller clc = new UserInformationController();
             clc.startController(primaryStage);
 
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Zaznam o pouzivatelovi bol modifikovany.");
         } else {
             String bundle = ProgramData.getInstance().getLanguage();
             ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("error"));

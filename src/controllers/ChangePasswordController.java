@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import managers.ManagerCompany;
 import managers.ManagerPerson;
 
@@ -95,6 +94,10 @@ public class ChangePasswordController implements Controller {
                     String bundle = ProgramData.getInstance().getLanguage();
                     ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));
 
+                    Logger LOG = ProgramData.getInstance().getLOG();
+                    LOG.log(Level.INFO, "Zmenene heslo pouzivatela "
+                            + ProgramData.getInstance().getUser().getUsername());
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle(rbSk.getString("changePass.title"));
                     alert.setContentText(rbSk.getString("changePass.text"));
@@ -103,7 +106,7 @@ public class ChangePasswordController implements Controller {
                     String bundle = ProgramData.getInstance().getLanguage();
                     ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
 
-                    Logger LOG = ProgramData.getLOG();
+                    Logger LOG = ProgramData.getInstance().getLOG();
                     LOG.log(Level.WARNING, "Nove hesla sa nezhoduju");
 
 
@@ -116,7 +119,7 @@ public class ChangePasswordController implements Controller {
                 String bundle = ProgramData.getInstance().getLanguage();
                 ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
 
-                Logger LOG = ProgramData.getLOG();
+                Logger LOG = ProgramData.getInstance().getLOG();
                 LOG.log(Level.WARNING, "Stare heslo je neplatne");
 
 
@@ -137,6 +140,10 @@ public class ChangePasswordController implements Controller {
                     String bundle = ProgramData.getInstance().getLanguage();
                     ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("info"));
 
+                    Logger LOG = ProgramData.getInstance().getLOG();
+                    LOG.log(Level.INFO, "Zmenene heslo firmy "
+                            + ProgramData.getInstance().getCompany().getName());
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle(rbSk.getString("changePass.title"));
                     alert.setContentText(rbSk.getString("changePass.text"));
@@ -145,7 +152,7 @@ public class ChangePasswordController implements Controller {
                     String bundle = ProgramData.getInstance().getLanguage();
                     ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
 
-                    Logger LOG = ProgramData.getLOG();
+                    Logger LOG = ProgramData.getInstance().getLOG();
                     LOG.log(Level.WARNING, "Nove hesla sa nezhoduju");
 
 
@@ -158,7 +165,7 @@ public class ChangePasswordController implements Controller {
                 String bundle = ProgramData.getInstance().getLanguage();
                 ResourceBundle rbSk = ResourceBundle.getBundle(bundle + "_popup", Locale.forLanguageTag("warning"));
 
-                Logger LOG = ProgramData.getLOG();
+                Logger LOG = ProgramData.getInstance().getLOG();
                 LOG.log(Level.WARNING, "Stare heslo je neplatne");
 
 

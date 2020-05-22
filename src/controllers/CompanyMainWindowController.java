@@ -19,6 +19,8 @@ import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class CompanyMainWindowController implements Controller {
@@ -91,11 +93,17 @@ public class CompanyMainWindowController implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
     public void signOutHyperlinkClicked(ActionEvent actionEvent) throws Exception {
@@ -103,6 +111,9 @@ public class CompanyMainWindowController implements Controller {
 
         Controller clc = new CompanyLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Firma " + ProgramData.getInstance().getCompany().getName() + " bola odhlasena.");
     }
 
     public void magnifierClicked(MouseEvent mouseEvent) {
@@ -114,6 +125,9 @@ public class CompanyMainWindowController implements Controller {
 
         Controller mcc = new ModifyCompanyController();
         mcc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Vybrata moznost zmeny informacii o firme.");
     }
 
     public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -121,6 +135,9 @@ public class CompanyMainWindowController implements Controller {
 
         Controller cpc = new ChangePasswordController();
         cpc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Vybrata moznost zmeny hesla firmy.");
     }
 
     public void fillTable() {
@@ -149,14 +166,23 @@ public class CompanyMainWindowController implements Controller {
     public void deleteCMClicked(ActionEvent actionEvent) {
         Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
         if (person != null) {
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Pouzivatel " + person.getUsername() + " bol odstraneny z miestnosti firmy "
+                    + ProgramData.getInstance().getCompany().getName());
+
             ManagerPerson.deleteUser(person.getUsername());
         }
+
         initialize();
     }
 
     public void showCMClicked(ActionEvent actionEvent) throws Exception {
         Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
         if (person != null) {
+
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.INFO, "Zobrazeny detail pouzivatela " + person.getUsername());
+
             primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader(UserRegistrationController.class.getResource("../GUI/UserDetail.fxml"));
             Parent root = loader.load();

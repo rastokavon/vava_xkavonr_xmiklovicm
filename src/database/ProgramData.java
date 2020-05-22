@@ -1,12 +1,16 @@
 package database;
 
 import javafx.stage.Stage;
-import managers.ManagerCompany;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
+import static java.lang.System.exit;
 
 public class ProgramData {
 
@@ -21,18 +25,28 @@ public class ProgramData {
     private Person user;
     private Post post = null;
 
-    private static final Logger LOG = Logger.getLogger(ManagerCompany.class.getName());
+    private final Logger LOG = Logger.getLogger(ProgramData.class.getName());
 
-    private static FileHandler loggingsFh;
+    private FileHandler loggingsFh;
 
     {
         try {
-            loggingsFh = new FileHandler("loggings.log", true);
-            LOG.addHandler(loggingsFh);
+            LOG.setUseParentHandlers(false);
+
+            InputStream is;
+            is = new FileInputStream("etc/config.properties");
+            Properties p = new Properties();
+            p.load(is);
+
+            setLoggingsFh(new FileHandler(p.getProperty("logFile.name"),
+                    Integer.parseInt(p.getProperty("logFile.maxSize")),
+                    Integer.parseInt(p.getProperty("logFile.count")), true));
+            LOG.addHandler(getLoggingsFh());
             SimpleFormatter sf = new SimpleFormatter();
-            loggingsFh.setFormatter(sf);
+            getLoggingsFh().setFormatter(sf);
         } catch (IOException e) {
             e.printStackTrace();
+            exit(1);
         }
     }
 
@@ -62,12 +76,16 @@ public class ProgramData {
         this.primaryStage = primaryStage;
     }
 
-    public static Logger getLOG() {
+    public Logger getLOG() {
         return LOG;
     }
 
-    public static FileHandler getLoggingsFh() {
+    public FileHandler getLoggingsFh() {
         return loggingsFh;
+    }
+
+    public void setLoggingsFh(FileHandler loggingsFh) {
+        this.loggingsFh = loggingsFh;
     }
 
     public Company getCompany() {

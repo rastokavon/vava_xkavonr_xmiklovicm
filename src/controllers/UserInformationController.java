@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class UserInformationController implements Controller {
@@ -130,11 +132,17 @@ public class UserInformationController implements Controller {
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
 
@@ -146,6 +154,9 @@ public class UserInformationController implements Controller {
 
         Controller clc = new UserLoginController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -153,6 +164,9 @@ public class UserInformationController implements Controller {
 
         Controller clc = new UserMainWindowController();
         clc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
     public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -160,6 +174,9 @@ public class UserInformationController implements Controller {
 
         Controller urmc = new UserRoomMembers();
         urmc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
     public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -167,6 +184,10 @@ public class UserInformationController implements Controller {
 
         Controller cpc = new ChangePasswordController();
         cpc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel " + ProgramData.getInstance().getUser().getUsername()
+                + " vybral moznost zmeny hesla.");
     }
 
     public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
@@ -174,6 +195,10 @@ public class UserInformationController implements Controller {
 
         Controller mpc = new ModifyPersonController();
         mpc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel " + ProgramData.getInstance().getUser().getUsername()
+                + " vybral moznost zmeny profilu.");
     }
 
     public void fillTable() {
@@ -218,6 +243,10 @@ public class UserInformationController implements Controller {
 
         Controller apc = new AddPostController();
         apc.startController(primaryStage);
+
+        Logger LOG = ProgramData.getInstance().getLOG();
+        LOG.log(Level.INFO, "Pouzivatel " + ProgramData.getInstance().getUser().getUsername()
+                + " otvoril okno pridania prispevku.");
     }
 }
 

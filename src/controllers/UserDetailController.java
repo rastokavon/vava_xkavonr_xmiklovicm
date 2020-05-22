@@ -1,17 +1,12 @@
 package controllers;
 
-import database.Company;
 import database.Person;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import managers.ManagerPerson;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -47,7 +42,7 @@ public class UserDetailController implements Controller {
     Label mailLabelUser;
 
     @Override
-    public void startController(Stage stage) throws Exception {
+    public void startController(Stage stage) {
         primaryStage = stage;
 
         setLabels();
