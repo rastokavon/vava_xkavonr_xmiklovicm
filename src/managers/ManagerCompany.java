@@ -113,7 +113,9 @@ public class ManagerCompany {
             errorBuffer.append("\n");
             return errorBuffer;
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
 
         return errorBuffer;
@@ -224,8 +226,9 @@ public class ManagerCompany {
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "Neocakavana chyba: ", e);
         } finally {
-
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
 
         return errorBuffer;

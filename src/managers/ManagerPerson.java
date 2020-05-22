@@ -186,7 +186,9 @@ public class ManagerPerson {
             errorBuffer.append(rbSk.getString("userReg.cantInsert"));
             errorBuffer.append("\n");
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
         return errorBuffer;
     }

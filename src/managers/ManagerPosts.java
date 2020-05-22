@@ -125,7 +125,9 @@ public class ManagerPosts {
             errorBuffer.append(rbSk.getString("addPost.postTitleExist"));
             errorBuffer.append("\n");
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
         return errorBuffer;
     }

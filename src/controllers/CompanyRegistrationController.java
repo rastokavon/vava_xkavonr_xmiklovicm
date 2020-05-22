@@ -167,7 +167,7 @@ public class CompanyRegistrationController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
-    public void generatePDF() throws DocumentException, FileNotFoundException {
+    public void generatePDF() {
 
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF file(*.pdf)", "*.pdf"));
@@ -175,63 +175,79 @@ public class CompanyRegistrationController implements Controller {
         File file = chooser.showSaveDialog(ProgramData.getInstance().getPrimaryStage());
 
         if (file == null) {
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.SEVERE, "Nedokaze vygenerovat PDF");
+
             return;
         }
 
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(file));
-        document.open();
-        document.setMargins(100,100,100,100);
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(file));
 
-        Paragraph welcomeTitle = new Paragraph("Registration information",
-                new Font(Font.FontFamily.HELVETICA, 25, Font.BOLD));
-        welcomeTitle.setAlignment(Paragraph.ALIGN_CENTER);
-        document.add(welcomeTitle);
-        document.add(new Paragraph("\n"));
+            document.open();
+            document.setMargins(100, 100, 100, 100);
 
-        String text = "Hello " + ProgramData.getInstance().getCurrentlyRegCompany().getName() + "!\n\n    Thank you " +
-                "for buying our product. KAMIMARA is highly recommended electronic communication system.\n    " +
-                "Share your room number with your friends, employees, customers to communicate easily and of course " +
-                "privately! If you are curious,don't understand or don't know something, feel free to post your " +
-                "question and wait for answers of other people in the room. You can help each other, communicate or " +
-                "just chatting.\n    Thank you again and enjoy your private session!\n\nKAMIMARA\n\n";
-        Paragraph welcomeText = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 12));
-        welcomeText.setAlignment(Paragraph.ALIGN_JUSTIFIED);
-        document.add(welcomeText);
+            Paragraph welcomeTitle = new Paragraph("Registration information",
+                    new Font(Font.FontFamily.HELVETICA, 25, Font.BOLD));
+            welcomeTitle.setAlignment(Paragraph.ALIGN_CENTER);
+            document.add(welcomeTitle);
+            document.add(new Paragraph("\n"));
 
-        Paragraph infoTitle = new Paragraph("Information about company:\n",
-                new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD));
+            String text = "Hello " + ProgramData.getInstance().getCurrentlyRegCompany().getName() + "!\n\n    Thank you " +
+                    "for buying our product. KAMIMARA is highly recommended electronic communication system.\n    " +
+                    "Share your room number with your friends, employees, customers to communicate easily and of course " +
+                    "privately! If you are curious,don't understand or don't know something, feel free to post your " +
+                    "question and wait for answers of other people in the room. You can help each other, communicate or " +
+                    "just chatting.\n    Thank you again and enjoy your private session!\n\nKAMIMARA\n\n";
+            Paragraph welcomeText = new Paragraph(text, new Font(Font.FontFamily.HELVETICA, 12));
+            welcomeText.setAlignment(Paragraph.ALIGN_JUSTIFIED);
+            document.add(welcomeText);
 
-        infoTitle.setAlignment(Paragraph.ALIGN_LEFT);
-        document.add(infoTitle);
+            Paragraph infoTitle = new Paragraph("Information about company:\n",
+                    new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD));
 
-        document.add(new Chunk("Name: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getName() + "\n"));
+            infoTitle.setAlignment(Paragraph.ALIGN_LEFT);
+            document.add(infoTitle);
 
-        document.add(new Chunk("Address: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getStreet() + ", " +
-                ProgramData.getInstance().getCurrentlyRegCompany().getPostalCode() + " " +
-                ProgramData.getInstance().getCurrentlyRegCompany().getCity() + " (" +
-                ProgramData.getInstance().getCurrentlyRegCompany().getCountry() + ")\n"));
+            document.add(new Chunk("Name: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+            document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getName() + "\n"));
 
-        document.add(new Chunk("Mail: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getMail() + "\n"));
+            document.add(new Chunk("Address: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+            document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getStreet() + ", " +
+                    ProgramData.getInstance().getCurrentlyRegCompany().getPostalCode() + " " +
+                    ProgramData.getInstance().getCurrentlyRegCompany().getCity() + " (" +
+                    ProgramData.getInstance().getCurrentlyRegCompany().getCountry() + ")\n"));
 
-        document.add(new Chunk("Phone number: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        if ("".equals(ProgramData.getInstance().getCurrentlyRegCompany().getPhoneNumber())) {
-            document.add(new Chunk("-unknown-" + "\n\n\n"));
-        } else {
-            document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPhoneNumber() + "\n\n\n"));
+            document.add(new Chunk("Mail: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+            document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getMail() + "\n"));
+
+            document.add(new Chunk("Phone number: ", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+            if ("".equals(ProgramData.getInstance().getCurrentlyRegCompany().getPhoneNumber())) {
+                document.add(new Chunk("-unknown-" + "\n\n\n"));
+            } else {
+                document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPhoneNumber() + "\n\n\n"));
+            }
+
+            document.add(new Chunk("Room number: ", new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD)));
+            document.add(new Chunk(String.valueOf(ProgramData.getInstance().getCurrentlyRegCompany().getId()) +
+                    "\n", new Font(Font.FontFamily.HELVETICA, 15)));
+
+            document.add(new Chunk("New password: ", new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD)));
+            document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPassword(),
+                    new Font(Font.FontFamily.HELVETICA, 15)));
+
+        }catch (DocumentException e) {
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.SEVERE, "Nedokaze vygenerovat PDF:", e);
+        } catch (FileNotFoundException e) {
+            Logger LOG = ProgramData.getInstance().getLOG();
+            LOG.log(Level.SEVERE, "Nedokaze vygenerovat PDF:", e);
+        } finally {
+            if (document != null) {
+                document.close();
+            }
         }
-
-        document.add(new Chunk("Room number: ", new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD)));
-        document.add(new Chunk(String.valueOf(ProgramData.getInstance().getCurrentlyRegCompany().getId()) +
-                "\n", new Font(Font.FontFamily.HELVETICA, 15)));
-
-        document.add(new Chunk("New password: ", new Font(Font.FontFamily.HELVETICA, 15, Font.BOLD)));
-        document.add(new Chunk(ProgramData.getInstance().getCurrentlyRegCompany().getPassword(),
-                new Font(Font.FontFamily.HELVETICA, 15)));
-        document.close();
 
         Logger LOG = ProgramData.getInstance().getLOG();
         LOG.log(Level.INFO, "Vygenerovanie PDF.");

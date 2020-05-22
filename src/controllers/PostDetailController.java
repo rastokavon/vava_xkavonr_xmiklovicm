@@ -157,9 +157,8 @@ public class PostDetailController implements Controller {
         primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader(UserDetailController.class.getResource("../GUI/UserDetail.fxml"));
         Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {}
+        root = loader.load();
+
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);

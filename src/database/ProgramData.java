@@ -42,10 +42,11 @@ public class ProgramData {
     private FileHandler loggingsFh;
 
     {
+        InputStream is = null;
         try {
             LOG.setUseParentHandlers(false);
 
-            InputStream is;
+
             is = new FileInputStream("etc/config.properties");
             Properties p = new Properties();
             p.load(is);
@@ -59,6 +60,14 @@ public class ProgramData {
         } catch (IOException e) {
             e.printStackTrace();
             exit(1);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

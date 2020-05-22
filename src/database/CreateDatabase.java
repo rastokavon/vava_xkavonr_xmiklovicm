@@ -17,6 +17,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -25,8 +26,8 @@ public class CreateDatabase {
     private static final SessionFactory ourSessionFactory;
 
     static {
+        InputStream is = null;
         try {
-            InputStream is;
             is = new FileInputStream("etc/config.properties");
             Properties p = new Properties();
             p.load(is);
@@ -38,6 +39,14 @@ public class CreateDatabase {
             ourSessionFactory = configuration.buildSessionFactory();
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

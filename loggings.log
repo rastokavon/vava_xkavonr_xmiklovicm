@@ -1,12 +1,108 @@
-máj 07, 2020 10:11:29 AM controllers.UserRegistrationController signUpButtonClicked
-WARNING: Room number musi byt typu int.
-máj 07, 2020 10:11:29 AM controllers.UserRegistrationController signUpButtonClicked
-WARNING: Room number musi byt typu int.
-máj 07, 2020 10:11:35 AM managers.ManagerPerson createPerson
-INFO: Nevyplnene pole meno
-máj 07, 2020 10:11:58 AM managers.ManagerCompany createCompany
-SEVERE: Nevyplnene pole nazov firmy
-máj 07, 2020 10:11:58 AM managers.ManagerCompany createCompany
-SEVERE: Nevyplnene pole nazov firmy
-máj 07, 2020 10:11:58 AM managers.ManagerCompany createCompany
-SEVERE: Nevyplnene pole nazov firmy
+máj 22, 2020 3:27:04 PM controllers.UserLoginController notRegisteredButtonClicked
+INFO: Otvorenie registracie pouzivatela.
+máj 22, 2020 3:27:06 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:27:14 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:27:16 PM controllers.UserLoginController notRegisteredButtonClicked
+INFO: Otvorenie registracie pouzivatela.
+máj 22, 2020 3:27:18 PM controllers.UserRegistrationController britishFlagClicked
+INFO: Zmeneny jazyk na anglictinu.
+máj 22, 2020 3:27:19 PM controllers.UserRegistrationController backButtonClicked
+INFO: Navrat do hlavneho menu prihlasenia pouzivatela.
+máj 22, 2020 3:27:22 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:27:55 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:27:56 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:28:56 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:28:59 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:29:54 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:29:56 PM controllers.UserLoginController signAsCompanyButtonClicked
+INFO: Otvorenie prihlasenia firmy.
+máj 22, 2020 3:29:57 PM controllers.CompanyLoginController signAsUserButtonClicked
+INFO: Otvorenie prihlasenia pouzivatela.
+máj 22, 2020 3:30:00 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:33:23 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:33:27 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:33:58 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:34:02 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:34:41 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:34:45 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:36:01 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:36:05 PM controllers.UserLoginController signInButtonClicked
+INFO: Pouzivatel o bol uspesne prihlaseny.
+máj 22, 2020 3:36:07 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:41:02 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:41:05 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:41:18 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:41:20 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:42:06 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:42:11 PM controllers.UserLoginController signInButtonClicked
+INFO: Pouzivatel o bol uspesne prihlaseny.
+máj 22, 2020 3:42:15 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:43:36 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:43:38 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 3:44:15 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 3:44:19 PM controllers.UserLoginController signInButtonClicked
+WARNING: Prihlasovacie meno/heslo je neplatne
+máj 22, 2020 3:44:23 PM controllers.UserLoginController signInButtonClicked
+INFO: Pouzivatel o bol uspesne prihlaseny.
+máj 22, 2020 3:44:25 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 6:55:25 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 6:55:28 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 9:54:27 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 9:54:33 PM controllers.UserLoginController signInButtonClicked
+INFO: Pouzivatel i bol uspesne prihlaseny.
+máj 22, 2020 9:54:35 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 9:57:57 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 9:58:01 PM controllers.UserLoginController signInButtonClicked
+INFO: Pouzivatel i bol uspesne prihlaseny.
+máj 22, 2020 9:58:07 PM controllers.PostDetailController addCommentButtonClicked
+INFO: Pouzivatel i pridal komentar na prispevok: ako
+máj 22, 2020 9:58:10 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 10:03:21 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 10:03:23 PM controllers.UserLoginController signAsCompanyButtonClicked
+INFO: Otvorenie prihlasenia firmy.
+máj 22, 2020 10:03:24 PM controllers.CompanyLoginController notRegisteredButtonClicked
+INFO: Otvorenie registracie firmy.
+máj 22, 2020 10:03:33 PM controllers.CompanyRegistrationController signUpButtonClicked
+INFO: Registrovana nova firma: pip
+máj 22, 2020 10:03:39 PM controllers.CompanyRegistrationController generatePDF
+INFO: Vygenerovanie PDF.
+máj 22, 2020 10:03:40 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
+máj 22, 2020 10:04:52 PM controllers.MainController start
+INFO: Aplikacia bola spustena.
+máj 22, 2020 10:04:54 PM controllers.MainController stop
+INFO: Program uspesne ukonceny.
