@@ -9,12 +9,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import managers.ManagerPerson;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, kde je mozne menit udaju o pouzivatelovi
+ *
+ * obsahuje polia s nacitanymi udajmi o pouzivatelovi (povodnymi)
+ * tie je mozne zmenit a ulozit
+ * po skontrolovani korektnosti tychto udajov systemom sa dane pozmenene udaje ulozia
+ */
 public class ModifyPersonController implements Controller {
     Stage primaryStage;
     Parent root;

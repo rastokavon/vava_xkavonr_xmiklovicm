@@ -1,6 +1,5 @@
 package controllers;
 
-import database.Person;
 import database.Post;
 import database.ProgramData;
 import javafx.collections.FXCollections;
@@ -16,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerPosts;
 import tables.TableAllPosts;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +24,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * 
+ */
 public class UserInformationController implements Controller {
     Stage primaryStage;
     Parent root;
@@ -70,7 +71,6 @@ public class UserInformationController implements Controller {
     @FXML
     TableView<TableAllPosts> table;
 
-
     @Override
     public void startController(Stage stage) throws Exception {
         primaryStage = stage;
@@ -81,6 +81,7 @@ public class UserInformationController implements Controller {
         primaryStage.setScene(sceneUserLogin);
         primaryStage.show();
     }
+
     @FXML
     public void initialize() {
         String bundle = ProgramData.getInstance().getLanguage();
@@ -144,7 +145,6 @@ public class UserInformationController implements Controller {
         Logger LOG = ProgramData.getInstance().getLOG();
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
-
 
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
     }

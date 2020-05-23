@@ -15,8 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,6 +24,16 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, kde sa zadavaju udaje o firme, ktora spravuje miestnost
+ *
+ * po zadani udajov a odkliknuti tlacidla pre registraciu sa kontroluje vhodnost zadanych udajov (ci su vsetky
+ * polia vyplnene, do pola s cislami sa nezadal string a pod...)
+ *
+ * po schvaleni udajov aplikaciou sa ukaze okno uspesnej registracie a je mozne ulozit udaje o miestnosti
+ * (teda Company) do externeho suboru PDF
+ */
 public class CompanyRegistrationController implements Controller {
     Stage primaryStage;
     Parent root;

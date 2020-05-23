@@ -1,7 +1,6 @@
 package controllers;
 
 import database.Comment;
-import database.Post;
 import database.ProgramData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,10 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerComments;
-import managers.ManagerPosts;
 import tables.TableAllPosts;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +23,12 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno ukazuje cele znenie prispevku aj s jeho nadpisom, autorom a komentami
+ *
+ * takyto prisevok je mozne komentovat, prezerat si jeho komenty
+ */
 public class PostDetailController implements Controller {
     Stage primaryStage;
     Parent root;

@@ -10,12 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import managers.ManagerCompany;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, kde je mozne pozmenit udaje o spolocnosti
+ *
+ * obsahuje vyplnene polia, kde su nacitane povodne informacie o spolocnosti, tie je mozne zmenit
+ * a nasledne ulozit
+ * skontroluje sa ich korektnost a potom sa ulozia do systemu
+ */
 public class ModifyCompanyController implements Controller {
     Stage primaryStage;
     Parent root;

@@ -4,13 +4,17 @@ import database.Person;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
+/**
+ * po kliknuti na daneho pouzivatela sa zobrazi male okno, kde je mozne vidiet jeho detail
+ *
+ * je mozne prezerat si jeho osobne udaje a pod...
+ */
 public class UserDetailController implements Controller {
     Stage primaryStage;
 
@@ -48,7 +52,6 @@ public class UserDetailController implements Controller {
         setLabels();
     }
 
-
     @FXML
     public void initialize() {
 
@@ -65,7 +68,6 @@ public class UserDetailController implements Controller {
         primaryStage = (Stage) firstNameLabel.getScene().getWindow();
         primaryStage.close();
     }
-
 
     public void setLabels() {
         String bundle = ProgramData.getInstance().getLanguage();

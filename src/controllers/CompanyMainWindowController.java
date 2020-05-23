@@ -14,15 +14,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import managers.ManagerCompany;
 import managers.ManagerPerson;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * hlavne okno spravcu miestnosti - spolocnosti (Company)
+ *
+ * je mozne vidiet zoznam vsetkych uzivatelov, ktori patria do danej miestnosti
+ * je mozne modifikovat udaje spolocnosti, menit heslo a pod...
+ *
+ * rovnako je mozne vyhladavat uzivatelov podla zadaneho vstupu
+ */
 public class CompanyMainWindowController implements Controller {
     Stage primaryStage;
     Parent root;

@@ -11,13 +11,19 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerCompany;
-
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, ktore sluzi pre pihlasenie spolocnosti
+ * po prihlaseni sa "vstupi" do miestnosti danej spolocnosti
+ * je mozne kliknut na link, ktory otvori registracne okno
+ *
+ * zadava sa ID miestnosti a heslo
+ */
 public class CompanyLoginController implements Controller {
     Stage primaryStage;
     Parent root;
@@ -143,5 +149,4 @@ public class CompanyLoginController implements Controller {
         Logger LOG = ProgramData.getInstance().getLOG();
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
-
 }

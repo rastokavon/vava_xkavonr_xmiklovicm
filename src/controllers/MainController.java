@@ -6,11 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * MainController je hlavny spustac programu
+ *
+ * nacitavaju (a vytvoria) sa v nom vsetky potrebne objekty a udaje, potrebne pre chod programu
+ * po vytvoreni objektov sa spusti login okno pre User
+ */
 public class MainController extends Application {
 
 
@@ -56,6 +61,4 @@ public class MainController extends Application {
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
-
-
 }
