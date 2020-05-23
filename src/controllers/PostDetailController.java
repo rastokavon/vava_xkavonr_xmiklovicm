@@ -1,7 +1,7 @@
 package controllers;
 
 import database.Comment;
-import database.ProgramData;
+import main.ProgramData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

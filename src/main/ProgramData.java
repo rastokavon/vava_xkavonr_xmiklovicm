@@ -1,5 +1,8 @@
-package database;
+package main;
 
+import database.Company;
+import database.Person;
+import database.Post;
 import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.IOException;

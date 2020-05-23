@@ -1,6 +1,8 @@
 package managers;
 
 import database.*;
+import main.CreateDatabase;
+import main.ProgramData;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

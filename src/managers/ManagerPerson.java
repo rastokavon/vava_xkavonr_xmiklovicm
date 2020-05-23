@@ -1,9 +1,9 @@
 package managers;
 
 import database.Company;
-import database.CreateDatabase;
+import main.CreateDatabase;
 import database.Person;
-import database.ProgramData;
+import main.ProgramData;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;

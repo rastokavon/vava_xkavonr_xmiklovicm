@@ -6,7 +6,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.stage.FileChooser;
 import managers.ManagerCompany;
-import database.ProgramData;
+import main.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

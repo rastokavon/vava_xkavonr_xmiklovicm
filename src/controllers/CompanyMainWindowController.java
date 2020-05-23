@@ -2,7 +2,7 @@ package controllers;
 
 import database.Company;
 import database.Person;
-import database.ProgramData;
+import main.ProgramData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

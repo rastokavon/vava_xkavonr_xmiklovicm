@@ -1,6 +1,6 @@
-package controllers;
+package main;
 
-import database.ProgramData;
+import controllers.UserRegistrationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

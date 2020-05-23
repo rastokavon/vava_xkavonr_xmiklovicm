@@ -1,8 +1,8 @@
 package managers;
 
 import database.Company;
-import database.CreateDatabase;
-import database.ProgramData;
+import main.CreateDatabase;
+import main.ProgramData;
 import org.hibernate.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

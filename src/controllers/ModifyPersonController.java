@@ -1,6 +1,6 @@
 package controllers;
 
-import database.ProgramData;
+import main.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
