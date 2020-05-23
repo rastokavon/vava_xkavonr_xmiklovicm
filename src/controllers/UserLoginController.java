@@ -1,28 +1,29 @@
 package controllers;
 
-import database.Company;
 import database.Person;
 import database.ProgramData;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import managers.ManagerCompany;
 import managers.ManagerPerson;
-
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * prve okno, ktore sa zobrazi po spusteni aplikacie
+ * je mozne zadat prihlasovacie udaje pouzivatela a otvori sa jeho hlavne menu
+ *
+ * je mozne sa dostat do inych prihlaseni/registracii ci uz uzivatelov, miestnosti
+ *
+ * pri prihlasovani sa komunikuje s databazou a vyhladava sa dany pouzivatel podla zadanych udajov
+ */
 public class UserLoginController implements Controller {
     Stage primaryStage;
     Parent root;
@@ -81,7 +82,6 @@ public class UserLoginController implements Controller {
 
     public void signAsUserButtonClicked() {
     }
-
 
     public void signInButtonClicked() throws Exception {
         Person person = ManagerPerson.isRegistered(usernameTextField.getText(), passwordTextField.getText());

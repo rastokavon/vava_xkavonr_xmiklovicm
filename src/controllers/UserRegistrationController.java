@@ -1,6 +1,5 @@
 package controllers;
 
-import managers.ManagerCompany;
 import database.ProgramData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,12 +10,20 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerPerson;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, kde je mozne pridat pouzivatela do systemu
+ *
+ * vyplnia sa potrebne polia a po kliknuti buttonu pre registraciu sa kontroluju potrebne
+ * poziadavky (ci su vsetky potrebne polia vyplnene, ci polia s int neobsahuju string a pod...)
+ *
+ * po overeni sa prida pouzivatel do systemu a prislucha urcitej miestnosti, do ktorej sa registroval
+ */
 public class UserRegistrationController implements Controller {
     Stage primaryStage;
     Parent root;

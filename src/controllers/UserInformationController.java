@@ -25,7 +25,12 @@ import java.util.logging.Logger;
 
 
 /**
- * 
+ * okno predstavuje informacie aktualne prihlaseneho pouzivatela
+ *
+ * je mozne vidiet svoje osobne udaje, ktore je mozne pozmenit
+ * rovnako je mozne zmenit heslo
+ *
+ * pouzivatel vidi vsetky svoje pridane prispevky a moze si ich rozkliknut, teda vidiet ich detail
  */
 public class UserInformationController implements Controller {
     Stage primaryStage;

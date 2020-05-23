@@ -1,6 +1,5 @@
 package controllers;
 
-import database.Person;
 import database.Post;
 import database.ProgramData;
 import javafx.collections.FXCollections;
@@ -16,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerPosts;
 import tables.TableAllPosts;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,15 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno predstavuje hlavne menu pouzivatela
+ *
+ * pouzivatel vidi vsetky prispevky miestnosti a moze nimi prechadzat
+ * je mozne kazdy prispevok si rozkliknut a vidiet jeho detail
+ * rovnako je mozne pridat prispevok, ktory sa ulozi do danej miestnosti
+ * a vidia ho ostatni pouzivatelia
+ */
 public class UserMainWindowController implements Controller {
     Stage primaryStage;
     Parent root;

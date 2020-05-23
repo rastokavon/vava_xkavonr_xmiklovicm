@@ -14,16 +14,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import managers.ManagerCompany;
 import managers.ManagerPerson;
 import managers.ManagerPosts;
-
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * okno, kde si pouzivatel moze pozriet vsetkych ostatnych pouzivatelov patriacich do jeho miestnosti
+ *
+ * moze vyhladavat pouzivatela podla zadaneho vstupu a vidiet jeho detail po rozkliknuti
+ * rovnako vidi vsetky potrebne informacie o miestnosti, ktore reprezentuju firmu
+ */
 public class UserRoomMembers implements Controller {
     @FXML
     Hyperlink signedUserHiperlink;
