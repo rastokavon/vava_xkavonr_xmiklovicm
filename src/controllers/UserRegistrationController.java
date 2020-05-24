@@ -82,6 +82,11 @@ public class UserRegistrationController implements Controller {
         primaryStage.setTitle(rbSk.getString("userReg.window"));
     }
 
+    /**
+     * navrat na obrazovku pre prihlasovanie pouzivatela
+     *
+     * @throws Exception
+     */
     public void backButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -92,6 +97,12 @@ public class UserRegistrationController implements Controller {
         LOG.log(Level.INFO, "Navrat do hlavneho menu prihlasenia pouzivatela.");
     }
 
+    /**
+     * registracia, overi sa korektnost udajov a pouzivatel je zaregistrovany
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signUpButtonClicked(ActionEvent actionEvent) throws Exception {
         Logger LOG = ProgramData.getInstance().getLOG();
 
@@ -137,6 +148,11 @@ public class UserRegistrationController implements Controller {
         }
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -145,6 +161,11 @@ public class UserRegistrationController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();

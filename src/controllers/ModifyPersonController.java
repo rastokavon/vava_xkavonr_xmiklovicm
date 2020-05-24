@@ -82,6 +82,12 @@ public class ModifyPersonController implements Controller {
         confirmButton.setText(rbSk.getString("companyModify.confirm"));
     }
 
+    /**
+     * zatvori sa okno pre zmenu udajov
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void backButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = (Stage) contactLabel.getScene().getWindow();
         primaryStage.close();
@@ -94,6 +100,12 @@ public class ModifyPersonController implements Controller {
         LOG.log(Level.INFO, "Zrusena modifikacia zaznamu pouzivatela.");
     }
 
+    /**
+     * kontroluju sa udaje a potvrdi sa ich zmena (zapisanie)
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void confirmButtonClicked(ActionEvent actionEvent) throws Exception {
         StringBuffer message = ManagerPerson.updatePerson(ProgramData.getInstance().getUser(),
                 firstNameTextField.getText(), surnameTextField.getText(), mailTextField.getText(),

@@ -145,6 +145,11 @@ public class UserRoomMembers implements Controller {
         fillTable();
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -153,6 +158,11 @@ public class UserRoomMembers implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
@@ -161,6 +171,12 @@ public class UserRoomMembers implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
+    /**
+     * zobrazi sa okno s profilom prihlaseneho pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -172,6 +188,12 @@ public class UserRoomMembers implements Controller {
 
     }
 
+    /**
+     * odhlasenie
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -182,6 +204,12 @@ public class UserRoomMembers implements Controller {
         LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
+    /**
+     * otvori sa okno, s hlavnym menu pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -192,13 +220,26 @@ public class UserRoomMembers implements Controller {
         LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
+    /**
+     * zobrazi sa okno so vsetkymi pouzivatelmi patriacimi do miestnosti
+     *
+     * @param actionEvent
+     */
     public void usersButtonClicked(ActionEvent actionEvent) {
     }
 
+    /**
+     * podla filtra, zadaneho do pola sa zobrazi zoznam pouzivatelov, patriacich do miestnosti
+     *
+     * @param mouseEvent
+     */
     public void magnifierClicked(MouseEvent mouseEvent) {
         fillTable();
     }
 
+    /**
+     * vyplni sa tabulka s pouzivatelmi patriacimi do miestnosti
+     */
     public void fillTable() {
         int roomNumber = ProgramData.getInstance().getUser().getCompany().getId();
         String bundle = ProgramData.getInstance().getLanguage();

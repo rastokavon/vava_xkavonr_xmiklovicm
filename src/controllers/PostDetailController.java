@@ -99,6 +99,11 @@ public class PostDetailController implements Controller {
         fillCommentsTable();
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -107,6 +112,11 @@ public class PostDetailController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
@@ -115,6 +125,12 @@ public class PostDetailController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
+    /**
+     * zobrazi sa profil prihlaseneho pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signedUserHyperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -125,6 +141,12 @@ public class PostDetailController implements Controller {
         LOG.log(Level.INFO, "Zobrazenie profilu prihlaseneho pouzivatela.");
     }
 
+    /**
+     * odhlasenie
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -135,6 +157,12 @@ public class PostDetailController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
+    /**
+     * zobrazi sa povodna domovska stranka (hlavne menu pouzivatela)
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -145,6 +173,12 @@ public class PostDetailController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
+    /**
+     * zobrazi sa zoznam vsetkych pouzivatelov v miestnosti
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -155,6 +189,12 @@ public class PostDetailController implements Controller {
         LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
+    /**
+     * zobrazi sa detail pouzivatela, ktory pridal prispevok
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void userPostedHyperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader(UserDetailController.class.getResource("../GUI/UserDetail.fxml"));
@@ -176,6 +216,9 @@ public class PostDetailController implements Controller {
                 + ProgramData.getInstance().getPost().getPerson().getUsername());
     }
 
+    /**
+     * vyplni tabulku komentov patriacich prispevku
+     */
     public void fillCommentsTable() {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk =  ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
@@ -211,6 +254,12 @@ public class PostDetailController implements Controller {
 
     }
 
+    /**
+     * prida sa komentar (ak nejaky text je vyplneny v policku pre komentovanie)
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addCommentButtonClicked(ActionEvent actionEvent) throws Exception {
         StringBuffer message = ManagerComments.createComment(commentTextArea.getText(),
                 ProgramData.getInstance().getPost(), ProgramData.getInstance().getUser());

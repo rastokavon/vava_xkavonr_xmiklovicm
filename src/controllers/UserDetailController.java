@@ -64,11 +64,19 @@ public class UserDetailController implements Controller {
         mailLabel.setText(rbSk.getString("reg.mail") + ":");
     }
 
+    /**
+     * zavrie sa okno, ktore zobrazuje detail pouzivatela
+     *
+     * @param actionEvent
+     */
     public void confirmButtonClicked(ActionEvent actionEvent) {
         primaryStage = (Stage) firstNameLabel.getScene().getWindow();
         primaryStage.close();
     }
 
+    /**
+     * vyplni polia s informaciami o pouzivatelovi
+     */
     public void setLabels() {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("reg"));

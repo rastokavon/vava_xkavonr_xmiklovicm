@@ -84,6 +84,11 @@ public class AddPostController implements Controller {
         primaryStage.setTitle(rbSk.getString("userAddPost.windowTitle"));
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -92,6 +97,11 @@ public class AddPostController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
@@ -101,6 +111,12 @@ public class AddPostController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
+    /**
+     * po kliknuti sa otvori menu prihlaseneho pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -111,6 +127,12 @@ public class AddPostController implements Controller {
         LOG.log(Level.INFO, "Zobrazenie profilu prihlaseneho pouzivatela.");
     }
 
+    /**
+     * odhlasenie
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -121,6 +143,12 @@ public class AddPostController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
+    /**
+     * nacita sa povodna domovska stranka (hlavne menu pouzivatela)
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -131,6 +159,12 @@ public class AddPostController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
+    /**
+     * zobrazi sa zoznnam vsetkych pouzivatelov v miestnosti
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -141,6 +175,12 @@ public class AddPostController implements Controller {
         LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
+    /**
+     * po kliknuti na tlacidlo sa otvori okno, kde je mozne pridat prispevok
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addPostButtonClicked(ActionEvent actionEvent) throws Exception {
         StringBuffer message = ManagerPosts.createPost(titleTextField.getText(), postTextArea.getText(),
                 ProgramData.getInstance().getUser());

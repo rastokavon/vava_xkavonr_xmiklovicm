@@ -70,6 +70,11 @@ public class UserLoginController implements Controller {
         primaryStage.setTitle(rbSk.getString("userLogin.window"));
     }
 
+    /**
+     * zmena prihlasenia pre spolocnost
+     *
+     * @throws Exception
+     */
     public void signAsCompanyButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -83,6 +88,11 @@ public class UserLoginController implements Controller {
     public void signAsUserButtonClicked() {
     }
 
+    /**
+     * pouzivatel sa prihlasuje, po zadani korektnych udajov sa otvori hlavne menu
+     *
+     * @throws Exception
+     */
     public void signInButtonClicked() throws Exception {
         Person person = ManagerPerson.isRegistered(usernameTextField.getText(), passwordTextField.getText());
         if (person == null) {
@@ -109,6 +119,11 @@ public class UserLoginController implements Controller {
         }
     }
 
+    /**
+     * ak pouzivatel nie je registrovany, tak po kliknuti sa otvori okno pre registraciu
+     *
+     * @throws Exception
+     */
     public void notRegisteredButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -119,6 +134,11 @@ public class UserLoginController implements Controller {
         LOG.log(Level.INFO, "Otvorenie registracie pouzivatela.");
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -127,6 +147,11 @@ public class UserLoginController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();

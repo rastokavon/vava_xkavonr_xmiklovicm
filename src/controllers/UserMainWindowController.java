@@ -93,6 +93,11 @@ public class UserMainWindowController implements Controller {
         fillTable();
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -101,6 +106,11 @@ public class UserMainWindowController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
@@ -109,6 +119,12 @@ public class UserMainWindowController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
+    /**
+     * zobrazi sa profil pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -120,6 +136,12 @@ public class UserMainWindowController implements Controller {
 
     }
 
+    /**
+     * odhlasenie
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -130,9 +152,20 @@ public class UserMainWindowController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
+    /**
+     * hlavne menu pouzivatela
+     *
+     * @param actionEvent
+     */
     public void homeButtonClicked(ActionEvent actionEvent) {
     }
 
+    /**
+     * zobrazi sa okno, kde je mozne vidiet vsetkych pouzivatelov patriacich do miestnosti
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -143,6 +176,9 @@ public class UserMainWindowController implements Controller {
         LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
+    /**
+     * vyplni sa tabulka vsetkych prispevkov v miestnosti
+     */
     public void fillTable() {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
@@ -174,6 +210,12 @@ public class UserMainWindowController implements Controller {
 
     }
 
+    /**
+     * otvori sa okno pre pridanie prispevku
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addPostButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 

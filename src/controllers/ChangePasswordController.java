@@ -79,11 +79,21 @@ public class ChangePasswordController implements Controller {
 
     }
 
+    /**
+     * zatvori sa okno pre zmenu hesla
+     *
+     * @param actionEvent
+     */
     public void backButtonClicked(ActionEvent actionEvent) {
         primaryStage = (Stage) changePasswordLabel.getScene().getWindow();
         primaryStage.close();
     }
 
+    /**
+     * kontroluju sa zadane udaje a zmeni sa heslo
+     *
+     * @param actionEvent
+     */
     public void confirmButtonClicked(ActionEvent actionEvent) {
         Person user = ProgramData.getInstance().getUser();
         Company company = ProgramData.getInstance().getCompany();

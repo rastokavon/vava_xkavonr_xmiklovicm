@@ -135,6 +135,11 @@ public class UserInformationController implements Controller {
         fillTable();
     }
 
+    /**
+     * zmena jazyka na Slovencinu
+     *
+     * @param mouseEvent
+     */
     public void slovakFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
@@ -143,6 +148,11 @@ public class UserInformationController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
+    /**
+     * zmena jazyka na Anglictinu
+     *
+     * @param mouseEvent
+     */
     public void britishFlagClicked(MouseEvent mouseEvent) {
         ProgramData.getInstance().setLanguage("en");
         initialize();
@@ -151,9 +161,21 @@ public class UserInformationController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
+    /**
+     * zobrazi sa profil prihlaseneho pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signedUserHiperlinkClicked(ActionEvent actionEvent) throws Exception {
     }
 
+    /**
+     * odhlasenie
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void signOutButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -164,6 +186,12 @@ public class UserInformationController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel bol odhlaseny.");
     }
 
+    /**
+     * zobrazi sa hlavne menu pouzivatela
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void homeButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -174,6 +202,12 @@ public class UserInformationController implements Controller {
         LOG.log(Level.INFO, "Pouzivatel sa nachadza v hlavnom menu.");
     }
 
+    /**
+     * okno so zoznamov vsetkych pouzivatelov patriacich do miestnosti
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void usersButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -184,6 +218,12 @@ public class UserInformationController implements Controller {
         LOG.log(Level.INFO, "Zobrazenie vsetkych pouzivatelov v miestnosti.");
     }
 
+    /**
+     * otvori sa okno, pre zmenu hesla
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
@@ -195,6 +235,12 @@ public class UserInformationController implements Controller {
                 + " vybral moznost zmeny hesla.");
     }
 
+    /**
+     * otvori sa okno pre zmenu udajov
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = new Stage();
 
@@ -206,6 +252,9 @@ public class UserInformationController implements Controller {
                 + " vybral moznost zmeny profilu.");
     }
 
+    /**
+     * vyplni sa tabulka s pouzivatelmi patriacimi do miestnosti
+     */
     public void fillTable() {
         String bundle = ProgramData.getInstance().getLanguage();
         ResourceBundle rbSk = ResourceBundle.getBundle(bundle, Locale.forLanguageTag("uMainPan"));
@@ -243,6 +292,12 @@ public class UserInformationController implements Controller {
 
     }
 
+    /**
+     * otvori sa okno pre pridanie prispevku
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addPostButtonClicked(ActionEvent actionEvent) throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
