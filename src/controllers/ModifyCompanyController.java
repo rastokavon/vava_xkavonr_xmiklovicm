@@ -91,7 +91,12 @@ public class ModifyCompanyController implements Controller {
         phoneNumberTextField.setText(company.getPhoneNumber());
     }
 
-    public void backButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * Tlacidlo na zatvorenie mensieho okna, ktore bolo otvorene.
+     *
+     * @throws Exception
+     */
+    public void backButtonClicked() throws Exception {
         primaryStage = (Stage) contactLabel.getScene().getWindow();
         primaryStage.close();
 
@@ -103,7 +108,12 @@ public class ModifyCompanyController implements Controller {
         LOG.log(Level.INFO, "Zrusena modifikacia zaznamu firmy.");
     }
 
-    public void confirmButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * Handler stacenia tlacidla pre potvdenie zmeny informacii o firme.
+     *
+     * @throws Exception
+     */
+    public void confirmButtonClicked() throws Exception {
         Company company = ProgramData.getInstance().getCompany();
         StringBuffer message = ManagerCompany.updateCompany(company, streetTextField.getText(), cityTextField.getText(),
                 countryTextField.getText(), postalCodeTextField.getText(), mailTextField.getText(),

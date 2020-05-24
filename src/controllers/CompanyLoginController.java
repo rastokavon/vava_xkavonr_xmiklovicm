@@ -73,7 +73,12 @@ public class CompanyLoginController implements Controller {
     public void signAsCompanyButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void signAsUserButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * V pripade ze pouzivatel sa chce prihlasit ako pouzivatel, nie ako firma.
+     *
+     * @throws Exception
+     */
+    public void signAsUserButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
         Controller ulc = new UserLoginController();
@@ -83,7 +88,13 @@ public class CompanyLoginController implements Controller {
         LOG.log(Level.INFO, "Otvorenie prihlasenia pouzivatela.");
     }
 
-    public void signInButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * Kliknute tlacidlo prihlasenia firmy. Prihlasovacie udaje su skontrolovane a v pripade spravnosti je firma
+     * prihlasena do systemu.
+     *
+     * @throws Exception
+     */
+    public void signInButtonClicked() throws Exception {
         int roomNumber;
         try {
             roomNumber = Integer.parseInt(usernameTextField.getText());
@@ -124,7 +135,12 @@ public class CompanyLoginController implements Controller {
         }
     }
 
-    public void notRegisteredButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * Ak firma este nie je registrovana a ma zaujem o vytvorenie vlastnej miestnosti.
+     *
+     * @throws Exception
+     */
+    public void notRegisteredButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
         Controller crc = new CompanyRegistrationController();
@@ -134,7 +150,10 @@ public class CompanyLoginController implements Controller {
         LOG.log(Level.INFO, "Otvorenie registracie firmy.");
     }
 
-    public void slovakFlagClicked(MouseEvent mouseEvent) {
+    /**
+     * Zmena jazyku na slovencinu.
+     */
+    public void slovakFlagClicked() {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
 
@@ -142,7 +161,10 @@ public class CompanyLoginController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
-    public void britishFlagClicked(MouseEvent mouseEvent) {
+    /**
+     * Zmena jazyku na anglictinu.
+     */
+    public void britishFlagClicked() {
         ProgramData.getInstance().setLanguage("en");
         initialize();
 

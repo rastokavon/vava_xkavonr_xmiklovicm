@@ -33,6 +33,12 @@ import java.util.logging.Logger;
  */
 public class ManagerPerson {
 
+    /**
+     * Funkcia vrati boolean hodnotu podla toho, ci je zadane pouzivatelske meno uz pouzivane alebo nie.
+     *
+     * @param username - pouzivatelske meno
+     * @return boolean hodnota
+     */
     public static boolean isUsedUsername(String username) {
 
         Session session = CreateDatabase.getSession();
@@ -57,6 +63,13 @@ public class ManagerPerson {
 
     }
 
+    /**
+     * Funkcia zisti, ci zadane meno a heslo tvoria par, teda ci existuje pouzivatel so zadanymi udajmi.
+     *
+     * @param username - pouzivatelske meno
+     * @param password - heslo
+     * @return objekt pouzivatela
+     */
     public static Person isRegistered(String username, String password) {
 
         Session session = CreateDatabase.getSession();
@@ -83,6 +96,12 @@ public class ManagerPerson {
         return results.get(0);
     }
 
+    /**
+     * Funkcia zmeni heslo na nove heslo, ktore pouzivatel zada.
+     *
+     * @param person - pouzivatel
+     * @param password - heslo
+     */
     public static void changePassword(Person person, String password) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -93,6 +112,15 @@ public class ManagerPerson {
         session.close();
     }
 
+    /**
+     * Funkcia vrati zoznam pouzivatelov zaregistrovanych v danej miestnosti. Parameter name je nastaveny defaultne
+     * na "", avsak po vyhladani konkretneho meno alebo casti mena funkcia vrati iba danych pouzivatelov, ktori
+     * splnaju kriteria.
+     *
+     * @param name - pouzivatelske meno
+     * @param roomId - cislo miestnosti
+     * @return zoznam pouzivatelov
+     */
     public static List<Person> getUsers(String name, int roomId) {
 
         name = "%" + name + "%";
@@ -114,6 +142,11 @@ public class ManagerPerson {
 
     }
 
+    /**
+     * Funkcia vymaze pouzivatela zo systemu na zaklade zadaneho pouzivatelskeho mena.
+     *
+     * @param username - pouzivatelske meno
+     */
     public static void deleteUser(String username) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -132,6 +165,19 @@ public class ManagerPerson {
         session.close();
     }
 
+    /**
+     * Funkcia zaregistruje pouzivatela do systemu. Ak to nie je mozne, metoda cez navratovu hodnotu posle spravu
+     * ulozenu v stringu.
+     *
+     * @param firstName - krstne meno
+     * @param lastName - priezvisko
+     * @param username - pouzivatelske meno
+     * @param password - heslo
+     * @param mail - mailova adresa
+     * @param phoneNumber - telefonne cislo
+     * @param companyID - cislo miestnosti
+     * @return chybova sprava, ak nejaka chyba nastala
+     */
     public static StringBuffer createPerson(String firstName, String lastName, String username,
                                             String password, String mail, String phoneNumber, int companyID) {
         Logger LOG = ProgramData.getInstance().getLOG();
@@ -193,6 +239,16 @@ public class ManagerPerson {
         return errorBuffer;
     }
 
+    /**
+     * Funkcia pozmeni informacie o zadanom pouzivatelovi a ulozi ich do databazy pouzivatelov.
+     *
+     * @param person - pouzivatel
+     * @param firstName - krstne meno
+     * @param surname priezvisko
+     * @param mail - mailova adresa
+     * @param phoneNumber - telefonne cislo
+     * @return chybova sprava, ak nejaka chyba nastala
+     */
     public static StringBuffer updatePerson(Person person, String firstName, String surname,
                                             String mail, String phoneNumber) {
         Logger LOG = ProgramData.getInstance().getLOG();

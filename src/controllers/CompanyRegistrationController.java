@@ -159,7 +159,10 @@ public class CompanyRegistrationController implements Controller {
         }
     }
 
-    public void slovakFlagClicked(MouseEvent mouseEvent) {
+    /**
+     * Zmena jazyku na slovencinu.
+     */
+    public void slovakFlagClicked() {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
 
@@ -167,7 +170,10 @@ public class CompanyRegistrationController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
-    public void britishFlagClicked(MouseEvent mouseEvent) {
+    /**
+     * Zmena jazyku na anglictinu.
+     */
+    public void britishFlagClicked() {
         ProgramData.getInstance().setLanguage("en");
         initialize();
 
@@ -175,6 +181,11 @@ public class CompanyRegistrationController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
+    /**
+     * Vo funkcii je vygenerovane PDF, ktore je pouzivatelovi ulozene v pocitaci.
+     * Najprv sa pomocou filechoosera vyberie miesto, kam sa ma PDF ulozit a nasledne sa vygeneruju do neho jednotlive
+     * informacie.
+     */
     public void generatePDF() {
 
         FileChooser chooser = new FileChooser();

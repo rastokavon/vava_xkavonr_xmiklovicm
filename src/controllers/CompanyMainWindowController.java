@@ -96,7 +96,10 @@ public class CompanyMainWindowController implements Controller {
         fillTable();
     }
 
-    public void slovakFlagClicked(MouseEvent mouseEvent) {
+    /**
+     * Zmena jazyku na slovencinu.
+     */
+    public void slovakFlagClicked() {
         ProgramData.getInstance().setLanguage("sk");
         initialize();
 
@@ -104,7 +107,10 @@ public class CompanyMainWindowController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na slovencinu.");
     }
 
-    public void britishFlagClicked(MouseEvent mouseEvent) {
+    /**
+     * Zmena jazyku na anglictinu.
+     */
+    public void britishFlagClicked() {
         ProgramData.getInstance().setLanguage("en");
         initialize();
 
@@ -112,7 +118,12 @@ public class CompanyMainWindowController implements Controller {
         LOG.log(Level.INFO, "Zmeneny jazyk na anglictinu.");
     }
 
-    public void signOutHyperlinkClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * Ak sa firma rozhodne odist zo systemu a teda odhlasit sa z prave prihlaseneho uctu.
+     *
+     * @throws Exception
+     */
+    public void signOutHyperlinkClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
         Controller clc = new CompanyLoginController();
@@ -122,11 +133,19 @@ public class CompanyMainWindowController implements Controller {
         LOG.log(Level.INFO, "Firma " + ProgramData.getInstance().getCompany().getName() + " bola odhlasena.");
     }
 
-    public void magnifierClicked(MouseEvent mouseEvent) {
+    /**
+     * Handler pre kliknutie vyhladavaca pouzivatelov.
+     */
+    public void magnifierClicked() {
         fillTable();
     }
 
-    public void modifyButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * V pripade, ze firma chce pozmenit niektore udaje zadane pri registracii, ktore uz nie su aktualne.
+     *
+     * @throws Exception
+     */
+    public void modifyButtonClicked() throws Exception {
         primaryStage = new Stage();
 
         Controller mcc = new ModifyCompanyController();
@@ -136,7 +155,12 @@ public class CompanyMainWindowController implements Controller {
         LOG.log(Level.INFO, "Vybrata moznost zmeny informacii o firme.");
     }
 
-    public void changePasswordButtonClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * V pripade, ze firma chce zmenit svoje heslo.
+     *
+     * @throws Exception
+     */
+    public void changePasswordButtonClicked() throws Exception {
         primaryStage = ProgramData.getInstance().getPrimaryStage();
 
         Controller cpc = new ChangePasswordController();
@@ -146,6 +170,10 @@ public class CompanyMainWindowController implements Controller {
         LOG.log(Level.INFO, "Vybrata moznost zmeny hesla firmy.");
     }
 
+    /**
+     * Funkcia naplni tabulku pouzivatelmi registrovany do miestnosti danej firmy.
+     * Tabulka je naplnena pouzivatelmi na zaklade znakoveho retazca zadaneho vo vyhladavaci.
+     */
     public void fillTable() {
         int roomNumber = ProgramData.getInstance().getCompany().getId();
         String bundle = ProgramData.getInstance().getLanguage();
@@ -169,7 +197,10 @@ public class CompanyMainWindowController implements Controller {
 
     }
 
-    public void deleteCMClicked(ActionEvent actionEvent) {
+    /**
+     * V pripade, ze firma chce vymazat zo systemu pouzivatela.
+     */
+    public void deleteCMClicked() {
         Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
         if (person != null) {
             Logger LOG = ProgramData.getInstance().getLOG();
@@ -182,7 +213,12 @@ public class CompanyMainWindowController implements Controller {
         initialize();
     }
 
-    public void showCMClicked(ActionEvent actionEvent) throws Exception {
+    /**
+     * Ak sa firma rozhodne zobrazit detail konkretneho pouzivatela.
+     *
+     * @throws Exception
+     */
+    public void showCMClicked() throws Exception {
         Person person = (Person) usersTable.getSelectionModel().getSelectedItem();
         if (person != null) {
 

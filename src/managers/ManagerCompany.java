@@ -28,6 +28,12 @@ import java.util.logging.Logger;
  */
 public class ManagerCompany {
 
+    /**
+     * Funkcia vyhlada konkretnu firmu na zaklade zvoleneho ID.
+     *
+     * @param companyID - ID firmy
+     * @return objekt firmy
+     */
     public static Company getCompanyFromID(Integer companyID) {
 
         Session session = CreateDatabase.getSession();
@@ -51,6 +57,19 @@ public class ManagerCompany {
         return results.get(0);
     }
 
+    /**
+     * Funkcia zaregistruje do systemu novu firmu so zadanymi parametrami.
+     * Pri chybe posle cez navratovu hodnotu spravu ulozenu v stringu.
+     *
+     * @param name - nazov firmy
+     * @param street - ulica sidla firmy
+     * @param city- mesto sidla firmy
+     * @param country- krajina sidla firmy
+     * @param postalCode - PSC sidla firmy
+     * @param mail - mail firmy
+     * @param phoneNumber - telefonicky kontakt na firmu
+     * @return chybova sprava, ak nejaka chyba nastala
+     */
     public static StringBuffer createCompany(String name, String street, String city,
                                              String country, String postalCode, String mail, String phoneNumber) {
 
@@ -121,6 +140,13 @@ public class ManagerCompany {
         return errorBuffer;
     }
 
+    /**
+     * Funkcia zisti, ci zadane cislo miestnosti a heslo tvoria par, teda ci je firma zaregistrovana v danej miestnosti.
+     *
+     * @param roomNumber - cislo miestnosti
+     * @param password - heslo
+     * @return firma, ak tato firma je registrovana
+     */
     public static Company isRegistered(int roomNumber, String password) {
 
         Session session = CreateDatabase.getSession();
@@ -147,6 +173,12 @@ public class ManagerCompany {
         return results.get(0);
     }
 
+    /**
+     * Funkcia nastavi heslo firmy na ine zvolene (teda funkcia zmeni heslo).
+     *
+     * @param company - firma
+     * @param password - heslo firmy
+     */
     public static void changePassword(Company company, String password) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -157,6 +189,9 @@ public class ManagerCompany {
         session.close();
     }
 
+    /**
+     * Funkcia vygeneruje nove heslo pre registrovnu firmu. Heslo je dlhe 10 znakov a sklada sa z cisel a pismen.
+     */
     public static String generatePassword() {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
         int lenght = 10;
@@ -170,6 +205,19 @@ public class ManagerCompany {
         return sb.toString();
     }
 
+    /**
+     * Funkcia modifikuje zaznam o firme. Kazda firma si moze upravit profil a tato netoda nasledne ulozi informacie
+     * o novych informaciach o firme.
+     *
+     * @param company - firma
+     * @param street - ulica sidla firmy
+     * @param city- mesto sidla firmy
+     * @param country- krajina sidla firmy
+     * @param postalCode - PSC sidla firmy
+     * @param mail - mail firmy
+     * @param phoneNumber - telefonicky kontakt na firmu
+     * @return chybova sprava, ak nejaka chyba nastala
+     */
     public static StringBuffer updateCompany(Company company, String street, String city, String country,
                                              String postalCode, String mail, String phoneNumber) {
 

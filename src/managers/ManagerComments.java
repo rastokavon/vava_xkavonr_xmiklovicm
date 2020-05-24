@@ -24,6 +24,12 @@ import java.util.logging.Logger;
  */
 public class ManagerComments {
 
+    /**
+     * Funkcia vyhlada vsetky komentare konkretneho prispevku vybrateho v pouzivatelskej obrazovke.
+     *
+     * @param post - prispevok, ktoreho komentare hladame
+     * @return vsetky komentare daneho prispevku
+     */
     public static List<Comment> getComments(Post post) {
 
         Session session = CreateDatabase.getSession();
@@ -41,6 +47,14 @@ public class ManagerComments {
         return results;
     }
 
+    /**
+     * Funkcia vytvori novy komentar napisany pouzivatelom a pripoji ho na konkretny prispevok.
+     *
+     * @param commentText - test komentaru
+     * @param post - prispevok, ku ktoremu patri komentar
+     * @param person - pouzivatel, ktory zadal komentar
+     * @return chybova sprava, ak nejaka chyba nastala
+     */
     public static StringBuffer createComment(String commentText, Post post, Person person) {
         Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();

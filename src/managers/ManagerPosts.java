@@ -25,6 +25,13 @@ import java.util.logging.Logger;
  */
 public class ManagerPosts {
 
+    /**
+     * Funkcia vyhlada prispevok na zaklade nadpisu prispevku (ktory je jedinecny pre kazdy prispevok) a vrati ho
+     * cez navratovu hodnotu funkcie.
+     *
+     * @param title - nadpis
+     * @return prispevok
+     */
     public static Post getPost(String title) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -41,6 +48,12 @@ public class ManagerPosts {
         return results.get(0);
     }
 
+    /**
+     * Funkcia vrati vsetky prispevky pouzivatela.
+     *
+     * @param person - pouzivatel
+     * @return zoznam prispevkov
+     */
     public static List<Post> getPosts(Person person) {
 
         Session session = CreateDatabase.getSession();
@@ -58,6 +71,12 @@ public class ManagerPosts {
         return results;
     }
 
+    /**
+     * Funkcia vrati zoznam vsetkych prispevkov, ktore boli napisane pouzivatelmi z danej firmy.
+     *
+     * @param company - firma
+     * @return zoznam prispevkov
+     */
     public static List<Post> getPosts(Company company) {
         Session session = CreateDatabase.getSession();
         session.beginTransaction();
@@ -82,6 +101,14 @@ public class ManagerPosts {
         return posts;
     }
 
+    /**
+     * Funkcia vytvori novy prispevok. V pripade neuspechu posle cez navratovu hodnotu chybovu hlasku.
+     *
+     * @param title - nadpis
+     * @param postText - text prispevku
+     * @param person - pouzivatel
+     * @return chybova sprava, ak nejaka chyba nastala
+     */
     public static StringBuffer createPost(String title, String postText, Person person) {
         Logger LOG = ProgramData.getInstance().getLOG();
         String bundle = ProgramData.getInstance().getLanguage();
