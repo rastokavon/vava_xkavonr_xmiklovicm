@@ -28,6 +28,8 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        CreateDatabase.ping();
+
         Logger LOG = ProgramData.getInstance().getLOG();
         LOG.log(Level.INFO, "Aplikacia bola spustena.");
 

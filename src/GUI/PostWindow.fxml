@@ -46,7 +46,7 @@
         </ImageView>
         <Hyperlink fx:id="userPostedHyperlink" alignment="CENTER" layoutX="34.0" layoutY="196.0" onAction="#userPostedHyperlinkClicked" prefHeight="23.0" prefWidth="94.0" style="-fx-border-width: 0px 0px 0px 0px;" text="Post user" />
         <Button fx:id="addCommentButton" layoutX="11.0" layoutY="441.0" mnemonicParsing="false" onAction="#addCommentButtonClicked" prefHeight="35.0" prefWidth="124.0" style="-fx-border-radius: 30px;" stylesheets="@buttons_login.css" text="+ Pridat" />
-        <Label fx:id="dateLabel" layoutX="14.0" layoutY="214.0" prefHeight="18.0" prefWidth="135.0" text="2020-20-50 14:29:17.289" />
+        <Label fx:id="dateLabel" alignment="CENTER" layoutX="14.0" layoutY="214.0" prefHeight="18.0" prefWidth="135.0" text="2020-20-50 14:29:17.289" />
         <Label fx:id="commentsLabel" layoutX="152.0" layoutY="237.0" prefHeight="18.0" prefWidth="187.0" text="Komentare:">
          <font>
             <Font size="16.0" />

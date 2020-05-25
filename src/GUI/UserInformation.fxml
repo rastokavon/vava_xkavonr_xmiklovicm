@@ -66,29 +66,9 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="usernameLabel" alignment="CENTER" layoutY="50.0" prefHeight="32.0" prefWidth="312.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-weight: bold;" text="username">
+                <Label fx:id="usernameLabel" alignment="CENTER" layoutY="101.0" prefHeight="32.0" prefWidth="312.0" style="-fx-font-family: &quot;Verdana&quot;; -fx-font-weight: bold;" text="username">
                     <font>
                         <Font size="20.0" />
-                    </font>
-                </Label>
-                <Label fx:id="streetLabel" layoutX="8.0" layoutY="150.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="street">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </Label>
-                <Label fx:id="cityLabel" layoutX="156.0" layoutY="150.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="city">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </Label>
-                <Label fx:id="countryLabel" layoutX="8.0" layoutY="185.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="country">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </Label>
-                <Label fx:id="postalCodeLabel" layoutX="156.0" layoutY="185.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="postal code">
-                    <font>
-                        <Font size="16.0" />
                     </font>
                 </Label>
                 <Label fx:id="mailLabel" layoutX="8.0" layoutY="235.0" prefHeight="32.0" prefWidth="296.0" style="-fx-font-family: &quot;Verdana&quot;;" text="mail">
@@ -96,12 +76,12 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="firstNameLabel" layoutX="8.0" layoutY="100.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Meno">
+                <Label fx:id="firstNameLabel" layoutX="8.0" layoutY="151.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="Meno">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="surnameLabel" layoutX="156.0" layoutY="100.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="priezvisko">
+                <Label fx:id="surnameLabel" layoutX="156.0" layoutY="151.0" prefHeight="32.0" prefWidth="148.0" style="-fx-font-family: &quot;Verdana&quot;;" text="priezvisko">
                     <font>
                         <Font size="16.0" />
                     </font>

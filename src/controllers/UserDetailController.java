@@ -84,7 +84,7 @@ public class UserDetailController implements Controller {
         firstNameLabelUser.setText(person.getFirstName());
         secondNameLabelUser.setText(person.getLastName());
         usernameLabelUser.setText(person.getUsername());
-        mailLabelUser.setText(person.getUsername());
+        mailLabelUser.setText(person.getMail());
 
         primaryStage = (Stage) firstNameLabel.getScene().getWindow();
         primaryStage.setTitle(rbSk.getString("userDetail.title"));

@@ -1,4 +1,4 @@
-package tables;
+package main;
 
 /**
  * Trieda, ktora obsahuje atributy, ktorymi sa naplnaju tabulky, konkretne tabulky otvoreneho prispevku,

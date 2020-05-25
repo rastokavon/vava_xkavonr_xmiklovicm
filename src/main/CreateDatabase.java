@@ -54,7 +54,7 @@ public class CreateDatabase {
         return ourSessionFactory.openSession();
     }
 
-    public static void main(final String[] args) throws Exception {
+    public static void ping() {
         final Session session = getSession();
 
         Transaction t = session.beginTransaction();
@@ -62,5 +62,9 @@ public class CreateDatabase {
 
         session.close();
         System.out.println("successfully");
+    }
+
+    public static void main(final String[] args) throws Exception {
+        ping();
     }
 }

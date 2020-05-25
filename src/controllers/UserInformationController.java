@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerPosts;
-import tables.TableAllPosts;
+import main.TableAllPosts;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +53,6 @@ public class UserInformationController implements Controller {
     Label firstNameLabel;
     @FXML
     Label surnameLabel;
-    @FXML
-    Label streetLabel;
-    @FXML
-    Label cityLabel;
-    @FXML
-    Label countryLabel;
-    @FXML
-    Label postalCodeLabel;
     @FXML
     Label mailLabel;
     @FXML
@@ -107,10 +99,6 @@ public class UserInformationController implements Controller {
         usernameLabel.setText(ProgramData.getInstance().getUser().getUsername());
         firstNameLabel.setText(ProgramData.getInstance().getUser().getFirstName());
         surnameLabel.setText(ProgramData.getInstance().getUser().getLastName());
-        streetLabel.setText("street");
-        cityLabel.setText("city");
-        countryLabel.setText("country");
-        postalCodeLabel.setText("91943");
         mailLabel.setText(ProgramData.getInstance().getUser().getMail());
         phoneNumberLabel.setText(ProgramData.getInstance().getUser().getPhoneNumber());
 

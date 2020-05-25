@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import managers.ManagerComments;
-import tables.TableAllPosts;
+import main.TableAllPosts;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;

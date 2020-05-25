@@ -33,7 +33,7 @@ public class UserRegistrationController implements Controller {
     @FXML
     TextField usernameTextField;
     @FXML
-    TextField passwordTextField;
+    PasswordField passwordTextField;
     @FXML
     TextField firstNameTextField;
     @FXML
